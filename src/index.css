@@ -1,0 +1,69 @@
+@import 'tailwindcss';
+
+@theme {
+  --color-ground: #0a0b0d;
+  --color-panel: #121418;
+  --color-raised: #191d22;
+  --color-hair: rgba(255, 255, 255, 0.09);
+  --color-fg: #e9ecef;
+  --color-muted: #99a1a9;
+  --color-faint: #6b7379;
+  --color-gold: #f2b441;
+  --color-gold-dim: #8a6a24;
+
+  --font-display: 'Unbounded', system-ui, sans-serif;
+  --font-serif: 'Playfair Display', Georgia, serif;
+  --font-body: 'Golos Text', system-ui, -apple-system, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+
+html {
+  scroll-behavior: smooth;
+  background: var(--color-ground);
+  overflow-x: clip;
+}
+
+body {
+  margin: 0;
+  background: var(--color-ground);
+  color: var(--color-fg);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: clip;
+}
+
+/* Заголовки: сталь, светлеющая сверху вниз — главный приём типографики */
+.steel {
+  background: linear-gradient(180deg, #5c6470 0%, #d8e1e8 78%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+.rule {
+  border-top: 1px solid var(--color-hair);
+}
+
+::selection {
+  background: var(--color-gold);
+  color: #0a0b0d;
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-gold);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}

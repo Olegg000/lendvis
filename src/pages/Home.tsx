@@ -33,7 +33,7 @@ export function SectionHead({
   lead?: string
 }) {
   return (
-    <header className="mb-14">
+    <header className="mb-10">
       {eyebrow && (
         <Reveal>
           <p className="eyebrow mb-5">{eyebrow}</p>
@@ -62,12 +62,11 @@ export default function Home() {
     <>
       <Hero />
 
-      <section className="mx-auto max-w-[1180px] px-5 py-24 sm:px-8 sm:py-32">
+      <section className="mx-auto max-w-[1180px] px-5 py-20 sm:px-8 sm:py-24">
         <SectionHead
           eyebrow={t.home.services.eyebrow}
           title={t.home.services.title}
           accent={t.home.services.titleAccent}
-          lead={t.home.services.lead}
         />
         <div>
           {t.services.items.map((s, i) => (
@@ -92,12 +91,11 @@ export default function Home() {
         </Reveal>
       </section>
 
-      <section className="mx-auto max-w-[1180px] px-5 py-24 sm:px-8 sm:py-32">
+      <section className="mx-auto max-w-[1180px] px-5 py-20 sm:px-8 sm:py-24">
         <SectionHead
           eyebrow={t.home.work.eyebrow}
           title={t.home.work.title}
           accent={t.home.work.titleAccent}
-          lead={t.home.work.lead}
         />
         {shown.map((p, i) => (
           <WorkCard key={p.n} project={p} index={i} />
@@ -112,16 +110,13 @@ export default function Home() {
         </Reveal>
       </section>
 
-      <section className="mx-auto max-w-[1180px] px-5 py-24 sm:px-8 sm:py-32">
+      <section className="mx-auto max-w-[1180px] px-5 py-20 sm:px-8 sm:py-24">
         <div className="border-t border-line pt-14">
           <Reveal>
             <h2 className="max-w-[18ch] text-[clamp(1.7rem,4vw,2.9rem)] leading-[1.1] font-extralight tracking-[-0.03em]">
               {t.home.final.title}
               <span className="font-serif text-[1.08em] font-light italic tracking-normal"> {t.home.final.titleAccent}</span>
             </h2>
-          </Reveal>
-          <Reveal delay={0.08}>
-            <p className="mt-6 max-w-[54ch] text-[15px] leading-relaxed text-soft">{t.home.final.text}</p>
           </Reveal>
           <Reveal delay={0.16}>
             <Link

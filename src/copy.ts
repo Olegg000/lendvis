@@ -19,6 +19,7 @@ export const copy = {
         titleAfter: 'в проде',
         subtitle:
           'Сайты, мобильные приложения, блокчейн, бекенды. От архитектуры до боевого сервера — и дальше, пока проект живёт.',
+        tagline: 'Сайты · Мобильные · Блокчейн · Бекенды',
         ctaPrimary: 'Расскажите о задаче',
         ctaSecondary: 'Обсудить задачу',
         scroll: 'Прокрутите',
@@ -235,6 +236,7 @@ export const copy = {
         titleAfter: 'in production',
         subtitle:
           'Web, mobile, blockchain, backends. From architecture to the live server — and after that, for as long as the project runs.',
+        tagline: 'Web · Mobile · Blockchain · Backends',
         ctaPrimary: 'Tell us about your project',
         ctaSecondary: 'Talk it through',
         scroll: 'Scroll',

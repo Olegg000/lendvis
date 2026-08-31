@@ -29,6 +29,8 @@ export function LightField({ intensity = 1 }: { intensity?: number }) {
       canvas.style.width = w + 'px'
       canvas.style.height = h + 'px'
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0)
+      // присваивание width очищает канвас: при отключённом движении кадр нужно вернуть руками
+      if (still) requestAnimationFrame(draw)
     }
 
     const blob = (x: number, y: number, r: number, color: string) => {

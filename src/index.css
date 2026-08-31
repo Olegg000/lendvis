@@ -8,7 +8,7 @@
   --color-line: rgba(255, 255, 255, 0.09);
   --color-fg: #ffffff;
   --color-soft: rgba(255, 255, 255, 0.62);
-  --color-faint: rgba(255, 255, 255, 0.4);
+  --color-faint: rgba(255, 255, 255, 0.56);
   --color-sand: #d8b384;
   --color-cold: #96afd7;
 
@@ -19,6 +19,16 @@
   --font-ui-ru: 'Onest', system-ui, sans-serif;
   --font-serif-ru: 'PT Serif', Georgia, serif;
   --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  /* Шкала: у каждой роли ровно один кегль, иначе разнобой в полпикселя читается как небрежность */
+  --text-micro: 10px;
+  --text-micro--letter-spacing: 0.18em;
+  --text-label: 11px;
+  --text-label--letter-spacing: 0.16em;
+  --text-body: 15.5px;
+  --text-body--line-height: 1.7;
+  --text-lead: 16.5px;
+  --text-lead--line-height: 1.6;
 }
 
 html {
@@ -72,7 +82,6 @@ body {
 :focus-visible {
   outline: 1px solid rgba(255, 255, 255, 0.75);
   outline-offset: 4px;
-  border-radius: 2px;
 }
 
 @media (prefers-reduced-motion: reduce) {

@@ -13,7 +13,6 @@ export const copy = {
 
     home: {
       hero: {
-        pill: '«Профессионалы» 2025 — 3 место в России по мобильной разработке',
         titleBefore: 'Пишем то, что',
         titleItalic: 'работает',
         titleAfter: 'в проде',
@@ -21,7 +20,6 @@ export const copy = {
           'Сайты, мобильные приложения, блокчейн, бекенды. От архитектуры до боевого сервера — и дальше, пока проект живёт.',
         tagline: 'Разработка программного обеспечения',
         ctaPrimary: 'Расскажите о задаче',
-        ctaSecondary: 'Обсудить задачу',
         scroll: 'Прокрутите',
       },
       services: {
@@ -234,7 +232,6 @@ export const copy = {
       studioLinks: { about: 'О студии', work: 'Проекты', services: 'Услуги' },
       meta: {
         hours: 'Отвечаем в рабочее время, обычно в тот же день',
-        geo: 'Самара · работаем удалённо по России и за рубежом',
         lang: 'Ведём проекты на русском и английском',
       },
     },
@@ -252,7 +249,6 @@ export const copy = {
 
     home: {
       hero: {
-        pill: 'Professionals 2025 — third in Russia for mobile development',
         titleBefore: 'We ship what',
         titleItalic: 'works',
         titleAfter: 'in production',
@@ -260,7 +256,6 @@ export const copy = {
           'Web, mobile, blockchain, backends. From architecture to the live server — and after that, for as long as the project runs.',
         tagline: 'Software development',
         ctaPrimary: 'Tell us about your project',
-        ctaSecondary: 'Talk it through',
         scroll: 'Scroll',
       },
       services: {
@@ -473,7 +468,6 @@ export const copy = {
       studioLinks: { about: 'About', work: 'Work', services: 'Services' },
       meta: {
         hours: 'We reply during working hours, usually the same day',
-        geo: 'Samara · working remotely across Russia and abroad',
         lang: 'We run projects in Russian and English',
       },
     },

@@ -34,7 +34,7 @@ export function Nav() {
         </NavLink>
 
         <nav className="ml-auto hidden items-center gap-7 md:flex">
-          {routes.slice(1).map((r) => (
+          {routes.slice(1, 4).map((r) => (
             <NavLink
               key={r.to}
               to={r.to}
@@ -48,6 +48,13 @@ export function Nav() {
             </NavLink>
           ))}
         </nav>
+
+        <NavLink
+          to="/contact"
+          className="hidden rounded-full border border-white/28 px-4 py-2 font-mono text-micro uppercase transition-[background-color,border-color] duration-300 hover:border-white/60 hover:bg-white/[0.08] md:inline-flex"
+        >
+          {t.nav.cta}
+        </NavLink>
 
         <button
           type="button"
@@ -64,13 +71,13 @@ export function Nav() {
 export function MobileNav() {
   const { t } = useLang()
   return (
-    <nav className="fixed inset-x-0 bottom-0 z-50 flex justify-center gap-1 border-t border-line bg-ground/92 px-2 py-2 backdrop-blur-md md:hidden">
+    <nav className="fixed inset-x-0 bottom-0 z-50 flex justify-center gap-1 border-t border-line bg-ground/92 px-2 pt-1 pb-[calc(0.25rem+env(safe-area-inset-bottom))] backdrop-blur-md md:hidden">
       {routes.map((r) => (
         <NavLink
           key={r.to}
           to={r.to}
           className={({ isActive }) =>
-            `rounded-full px-2.5 py-2 font-mono text-[9px] tracking-[0.08em] whitespace-nowrap uppercase transition-colors ${
+            `flex min-h-[44px] items-center justify-center rounded-full px-2.5 font-mono text-[10px] tracking-[0.06em] whitespace-nowrap uppercase transition-colors ${
               isActive ? 'bg-white/10 text-fg' : 'text-faint'
             }`
           }
@@ -96,9 +103,9 @@ export function Footer() {
 
           <FooterCol title={f.columns.services}>
             {t.services.items.map((s) => (
-              <FooterLink key={s.number} to="/services">
+              <li key={s.number} className="text-[13.5px] text-faint">
                 {s.name}
-              </FooterLink>
+              </li>
             ))}
           </FooterCol>
 
@@ -115,8 +122,7 @@ export function Footer() {
           </FooterCol>
         </div>
 
-        <ul className="mt-14 grid gap-2 border-t border-line pt-8 text-[12px] text-faint md:grid-cols-3">
-          <li>{f.meta.geo}</li>
+        <ul className="mt-14 grid gap-2 border-t border-line pt-8 text-[12px] text-faint md:grid-cols-2">
           <li>{f.meta.hours}</li>
           <li>{f.meta.lang}</li>
         </ul>
@@ -133,7 +139,7 @@ export function Footer() {
 function FooterCol({ title, children }: { title: string; children: React.ReactNode }) {
   return (
     <div>
-      <p className="font-mono text-[10px] tracking-[0.18em] text-white/30 uppercase">{title}</p>
+      <p className="font-mono text-micro text-faint uppercase">{title}</p>
       <ul className="mt-4 space-y-2.5">{children}</ul>
     </div>
   )

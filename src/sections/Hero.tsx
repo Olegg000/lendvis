@@ -54,7 +54,7 @@ export function Hero() {
           initial={still ? false : { opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 1.6, delay: 1.25 }}
-          className="mb-8 font-mono text-[9.5px] tracking-[0.34em] text-white/38 uppercase"
+          className="mb-8 font-mono text-micro tracking-[0.34em] text-faint uppercase"
         >
           {t.home.hero.tagline}
         </motion.p>
@@ -72,33 +72,54 @@ export function Hero() {
           <FocusIn text={h.titleAfter} delay={0.62} />
         </h1>
 
+        <motion.p
+          initial={still ? false : { opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1, delay: 0.95, ease: EASE }}
+          className="mt-7 max-w-[48ch] text-lead text-soft"
+        >
+          {h.subtitle}
+        </motion.p>
+
         <motion.div
           initial={still ? false : { opacity: 0, y: 14 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, delay: 1.05, ease: EASE }}
+          transition={{ duration: 1, delay: 1.15, ease: EASE }}
+          className="mt-10 flex flex-wrap items-center justify-center gap-x-7 gap-y-4"
         >
           <Link
             to="/contact"
-            data-cursor={t.nav.cta}
-            className="mt-10 inline-flex items-center rounded-full border border-white/25 px-8 py-3.5 font-mono text-[11px] tracking-[0.18em] text-fg uppercase transition-all duration-500 hover:border-white/70 hover:bg-white/[0.07] hover:tracking-[0.24em]"
+            className="inline-flex items-center rounded-full border border-white/25 px-8 py-3.5 font-mono text-label text-fg uppercase transition-[background-color,border-color,transform] duration-300 ease-out hover:border-white/70 hover:bg-white/[0.12] active:scale-[0.98]"
           >
             {h.ctaPrimary}
+          </Link>
+          <Link
+            to="/work"
+            className="inline-flex items-center border-b border-white/25 pb-1 font-mono text-label text-soft uppercase transition-colors duration-300 hover:border-white/70 hover:text-fg"
+          >
+            {t.nav.work}
           </Link>
         </motion.div>
       </motion.div>
 
-      {/* Тонкая линия света, стекающая вниз — вместо слова «прокрутите» */}
+      {/* Тонкая линия света, стекающая вниз — вместо слова «прокрутите».
+          Гаснет вместе со сценой: подсказка «прокрутите» не нужна тому, кто уже прокрутил. */}
+      <motion.div
+        style={still ? undefined : { opacity }}
+        className="absolute bottom-9 left-1/2 z-10 -translate-x-1/2"
+      >
       <motion.div
         initial={still ? false : { opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ duration: 1.4, delay: 1.6 }}
-        className="absolute bottom-9 left-1/2 z-10 h-12 w-px -translate-x-1/2 overflow-hidden bg-white/12"
+        transition={{ duration: 1.4, delay: 1.9 }}
+        className="h-12 w-px overflow-hidden bg-white/12"
       >
         <motion.span
           className="absolute inset-x-0 top-0 block h-5 bg-gradient-to-b from-transparent via-white/85 to-transparent"
           animate={still ? undefined : { y: ['-100%', '340%'] }}
           transition={{ duration: 2.6, repeat: Infinity, ease: 'easeInOut', repeatDelay: 0.5 }}
         />
+      </motion.div>
       </motion.div>
     </section>
   )

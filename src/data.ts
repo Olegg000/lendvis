@@ -4,7 +4,9 @@ export type Project = {
   n: string
   name: string
   kind: string
+  kindEn: string
   summary: string
+  summaryEn: string
   stack: string[]
   repo: string
   demo?: string
@@ -50,8 +52,11 @@ export const projects: Project[] = [
     n: '01',
     name: 'AutoCheck',
     kind: 'Веб-платформа · живое демо',
+    kindEn: 'Web platform · live demo',
     summary:
       'Панель эксперта для автоматической проверки заданий: очередь проверок, загрузка решений, разбор по чекерам и аналитика. Демо работает целиком в браузере — данные отдают моки, бекенд не нужен.',
+    summaryEn:
+      'An expert console for automated assignment checking: a queue of runs, uploads, a per-checker breakdown and analytics. The demo runs entirely in the browser — mocked data, no backend needed.',
     stack: ['React 19', 'RTK Query', 'Tailwind', 'MSW'],
     repo: 'https://github.com/Olegg000/autoCheckMobileReact',
     demo: 'https://olegg000.github.io/autoCheckMobileReact/',
@@ -61,8 +66,11 @@ export const projects: Project[] = [
     n: '02',
     name: 'Geo Album',
     kind: 'Мобильное · ОС Аврора · Волга-IT, 3 место',
+    kindEn: 'Mobile · Aurora OS · Volga-IT, 3rd place',
     summary:
       'Фотоальбом для отечественной ОС Аврора: читает геометки EXIF и раскладывает снимки по карте, кэширует тайлы для работы без сети, готовит миниатюры в отдельных изолятах.',
+    summaryEn:
+      'A photo album for Russia\'s Aurora OS: reads EXIF geotags onto a map, caches tiles so it works without a network, and builds thumbnails in separate isolates.',
     stack: ['Flutter', 'Dart', 'Aurora OS'],
     repo: 'https://github.com/Olegg000/volgaIT2025-flutter',
     shots: [`${base}shots/aurora-1.png`, `${base}shots/aurora-2.png`, `${base}shots/aurora-3.png`],
@@ -72,8 +80,11 @@ export const projects: Project[] = [
     n: '03',
     name: 'Drawer',
     kind: 'Реальное время · живое демо',
+    kindEn: 'Realtime · live demo',
     summary:
       'Общая доска: несколько человек рисуют и печатают на одном холсте, штрихи и текст расходятся по комнате мгновенно через WebSocket.',
+    summaryEn:
+      'A shared board: several people draw and type on one canvas, and strokes and text reach the whole room instantly over WebSocket.',
     stack: ['React', 'Konva', 'Socket.IO', 'Express'],
     repo: 'https://github.com/Olegg000/drawer',
     demo: 'https://olegg000.github.io/drawer/',
@@ -83,8 +94,11 @@ export const projects: Project[] = [
     n: '04',
     name: 'Разбор багов React',
     kind: 'Поддержка · демо «до / после»',
+    kindEn: 'Support · before / after demo',
     summary:
       'Четыре типовые ошибки — потеря состояния при быстрых кликах, мутация массива, index в ключе, утечка таймера. Каждая с разбором: симптом, причина, исправление.',
+    summaryEn:
+      'Four classic mistakes — state lost on rapid clicks, a mutated array, index as a key, a leaking timer. Each one with the symptom, the cause and the fix.',
     stack: ['React', 'Vite'],
     repo: 'https://github.com/Olegg000/react-bugfix-demo',
     demo: 'https://olegg000.github.io/react-bugfix-demo/',
@@ -94,8 +108,11 @@ export const projects: Project[] = [
     n: '05',
     name: 'Quiz',
     kind: 'Платформа тестирования',
+    kindEn: 'Testing platform',
     summary:
       'LMS с ролями преподавателя, студента и руководства: группы, назначение тестов, статистика и загрузка материалов. Поднимается одной командой в Docker.',
+    summaryEn:
+      'An LMS with teacher, student and management roles: groups, assigned tests, statistics and uploads. Comes up with a single Docker command.',
     stack: ['React', 'Express', 'PostgreSQL', 'Docker'],
     repo: 'https://github.com/Olegg000/quiz',
     shots: [`${base}shots/quiz-catalog.png`, `${base}shots/quiz-login.png`],
@@ -104,8 +121,11 @@ export const projects: Project[] = [
     n: '06',
     name: 'HR Connect API',
     kind: 'Бекенд · документация онлайн',
+    kindEn: 'Backend · docs online',
     summary:
       'Mock REST API на 27 маршрутов: авторизация по токену, пагинация, генерация аватаров — и всё это на чистом Node без единой зависимости.',
+    summaryEn:
+      'A mock REST API with 27 routes: token auth, pagination, generated avatars — all on plain Node without a single dependency.',
     stack: ['Node.js', 'OpenAPI', 'Docker'],
     repo: 'https://github.com/Olegg000/hr-connect-mock-backend',
     demo: 'https://olegg000.github.io/hr-connect-mock-backend/',

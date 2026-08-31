@@ -61,7 +61,7 @@ export default function Contact() {
             <h2 className="text-[clamp(1.2rem,2.6vw,1.6rem)] font-extralight tracking-[-0.02em]">{b.title}</h2>
             <p className="mt-3 max-w-[52ch] text-[14px] leading-relaxed text-soft">{b.lead}</p>
 
-            <p className="mt-8 font-mono text-[10px] tracking-[0.18em] text-white/30 uppercase">{b.pickDay}</p>
+            <p className="mt-8 font-mono text-micro text-faint uppercase">{b.pickDay}</p>
             <div className="mt-3 flex flex-wrap gap-2">
               {days.map((d) => {
                 const l = dayLabel(d)
@@ -84,7 +84,7 @@ export default function Contact() {
               })}
             </div>
 
-            <p className="mt-7 font-mono text-[10px] tracking-[0.18em] text-white/30 uppercase">{b.pickTime}</p>
+            <p className="mt-7 font-mono text-micro text-faint uppercase">{b.pickTime}</p>
             <div className="mt-3 flex flex-wrap gap-2">
               {SLOTS.map((s) => (
                 <button
@@ -102,12 +102,12 @@ export default function Contact() {
 
             <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-3">
               <a
-                href={link}
+                href={ready ? link : undefined}
                 data-cursor="telegram"
                 aria-disabled={!ready}
                 className={`inline-flex rounded-full px-7 py-3.5 font-mono text-[11px] tracking-[0.16em] uppercase transition-all duration-500 ${
                   ready
-                    ? 'bg-white text-ground hover:tracking-[0.22em]'
+                    ? 'bg-white text-ground hover:bg-white/85'
                     : 'pointer-events-none border border-line text-white/25'
                 }`}
               >
@@ -124,20 +124,20 @@ export default function Contact() {
 
         <div className="mt-16">
           <Reveal>
-            <p className="font-mono text-[10px] tracking-[0.18em] text-white/30 uppercase">{t.contact.channels}</p>
+            <p className="font-mono text-micro text-faint uppercase">{t.contact.channels}</p>
           </Reveal>
-          <div className="mt-5 grid gap-3 sm:grid-cols-3">
+          <div className="mt-5 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
             {channels.map((c, i) => (
               <Reveal key={c.key} delay={i * 0.06}>
                 <a
                   href={c.href}
                   data-cursor={t.contact.fields[c.key]}
-                  className="group flex items-baseline justify-between gap-4 rounded-xl border border-line px-5 py-4 transition-colors hover:border-white/35 hover:bg-white/[0.03]"
+                  className="group flex flex-col gap-2 rounded-xl border border-line px-5 py-4 transition-colors hover:border-white/35 hover:bg-white/[0.03]"
                 >
-                  <span className="font-mono text-[10px] tracking-[0.16em] text-faint uppercase">
+                  <span className="font-mono text-micro text-faint uppercase">
                     {t.contact.fields[c.key]}
                   </span>
-                  <span className="text-[13.5px] break-all text-soft transition-colors group-hover:text-fg">
+                  <span className="text-[13.5px] text-soft transition-colors group-hover:text-fg">
                     {c.value}
                   </span>
                 </a>

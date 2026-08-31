@@ -23,14 +23,16 @@ function StackItem({ children, index, total }: { children: React.ReactNode; inde
   const ref = useRef<HTMLDivElement>(null)
   const still = useReducedMotion()
   const { scrollYProgress } = useScroll({ target: ref, offset: ['start 0.18', 'end 0.1'] })
-  const scale = useTransform(scrollYProgress, [0, 1], [1, 1 - (total - index) * 0.012])
-  const opacity = useTransform(scrollYProgress, [0, 0.85], [1, 0.35])
+  // Только масштаб: затухание делало карточку полупрозрачной ещё в момент чтения,
+  // и сквозь неё просвечивала предыдущая — стопка теряла плотность.
+  const scale = useTransform(scrollYProgress, [0, 1], [1, 1 - (total - index) * 0.014])
+  const covered = index < total - 1
 
   return (
-    <div ref={ref} className="sticky top-20 md:top-24">
+    <div ref={ref} className="sticky top-20 md:top-24" style={{ zIndex: index + 1 }}>
       <motion.div
-        style={still ? undefined : { scale, opacity, transformOrigin: 'top center' }}
-        className="rounded-2xl border border-line bg-ground px-5 pt-2 pb-8 sm:px-8"
+        style={still || !covered ? undefined : { scale, transformOrigin: 'top center' }}
+        className="rounded-2xl border border-line bg-ground px-5 py-8 sm:px-8 sm:py-10"
       >
         {children}
       </motion.div>

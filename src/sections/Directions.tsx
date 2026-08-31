@@ -49,7 +49,7 @@ export function Directions() {
               <Link
                 to="/services"
                 data-cursor={t.nav.services.toLowerCase()}
-                className="group block overflow-hidden rounded-xl border border-line bg-panel transition-colors duration-500 hover:border-white/30"
+                className="group flex h-full flex-col overflow-hidden rounded-xl border border-line bg-panel transition-colors duration-500 hover:border-white/30"
               >
                 <div className="relative aspect-[4/3] overflow-hidden bg-[#0d0f13]">
                   {shot ? (
@@ -60,17 +60,27 @@ export function Directions() {
                       className="h-full w-full object-cover object-top opacity-75 transition-all duration-[900ms] group-hover:scale-[1.04] group-hover:opacity-100"
                     />
                   ) : (
-                    <div className="flex h-full items-center justify-center">
-                      <span className="font-serif text-[3.4rem] font-light text-white/12 italic">{s.number}</span>
+                    <div className="relative flex h-full items-center justify-center overflow-hidden">
+                      <span
+                        aria-hidden="true"
+                        className="absolute inset-0"
+                        style={{
+                          background:
+                            'radial-gradient(ellipse 60% 55% at 50% 45%, rgba(150,175,215,0.18), transparent 70%), radial-gradient(ellipse 40% 40% at 70% 70%, rgba(216,179,132,0.14), transparent 70%)',
+                        }}
+                      />
+                      <span className="relative font-serif text-[2.6rem] leading-none font-light text-white/45 italic">
+                        {s.name}
+                      </span>
                     </div>
                   )}
                   <span className="pointer-events-none absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-panel to-transparent" />
-                  <span className="absolute top-3 left-4 font-mono text-[10px] text-white/45">{s.number}</span>
+                  <span className="absolute top-3 left-4 font-mono text-micro text-white/55">{s.number}</span>
                 </div>
 
-                <div className="px-5 pt-4 pb-6">
+                <div className="flex-1 px-5 pt-4 pb-6">
                   <h3 className="text-[16.5px] leading-snug font-light">{s.name}</h3>
-                  <p className="mt-2 font-serif text-[15px] leading-snug text-soft italic">{s.tagline}</p>
+                  <p className="mt-2 font-serif text-[16px] leading-snug text-soft italic">{s.tagline}</p>
                 </div>
               </Link>
             </motion.div>
@@ -99,7 +109,7 @@ export function Directions() {
         </button>
         <Link
           to="/services"
-          className="ml-auto border-b border-white/25 pb-1 font-mono text-[10px] tracking-[0.18em] text-soft uppercase transition-colors hover:border-white/70 hover:text-fg"
+          className="ml-auto border-b border-white/30 pb-1 font-mono text-label text-soft uppercase transition-colors hover:border-white/70 hover:text-fg"
         >
           {t.nav.services}
         </Link>

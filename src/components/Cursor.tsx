@@ -66,8 +66,8 @@ export function Cursor() {
         width: mode.size,
         height: mode.size,
         opacity: visible ? 1 : 0,
-        background: mode.label ? 'var(--color-gold)' : 'transparent',
-        border: mode.label ? 'none' : `1.5px solid ${mode.size > 20 ? 'var(--color-gold)' : 'rgba(233,236,239,.75)'}`,
+        background: mode.label ? 'var(--color-sand)' : 'transparent',
+        border: mode.label ? 'none' : `1.5px solid ${mode.size > 20 ? 'var(--color-sand)' : 'rgba(255,255,255,0.75)'}`,
         transition: 'width .28s cubic-bezier(.2,.8,.2,1), height .28s cubic-bezier(.2,.8,.2,1), background .2s, border-color .2s, opacity .2s',
         mixBlendMode: mode.label ? 'normal' : 'difference',
       }}

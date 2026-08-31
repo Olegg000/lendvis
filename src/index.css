@@ -34,6 +34,8 @@
 html {
   background: var(--color-ground);
   overflow-x: clip;
+  /* Иначе браузер рисует свои элементы — полосы, поля — в светлой схеме поверх тёмной страницы */
+  color-scheme: dark;
 }
 
 html[lang='ru'] body {
@@ -82,6 +84,26 @@ body {
 :focus-visible {
   outline: 1px solid rgba(255, 255, 255, 0.75);
   outline-offset: 4px;
+}
+
+@media print {
+  html,
+  body {
+    background: #fff !important;
+    color: #000 !important;
+  }
+  .grain::after,
+  header,
+  nav,
+  canvas,
+  iframe {
+    display: none !important;
+  }
+  * {
+    color: #000 !important;
+    border-color: #bbb !important;
+    box-shadow: none !important;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

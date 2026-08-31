@@ -1,6 +1,7 @@
 import { useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { motion, useReducedMotion } from 'framer-motion'
+import { EASE } from '../lib/motion'
 import { useLang } from '../lib/i18n'
 import { directionShots } from '../data'
 
@@ -43,7 +44,7 @@ export function Directions() {
               initial={still ? false : { opacity: 0, y: 24 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-60px' }}
-              transition={{ duration: 0.7, delay: Math.min(i * 0.06, 0.3) }}
+              transition={{ duration: 0.85, delay: Math.min(i * 0.06, 0.3), ease: EASE }}
               className="w-[268px] shrink-0 snap-start sm:w-[330px]"
             >
               <Link

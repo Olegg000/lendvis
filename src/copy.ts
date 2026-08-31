@@ -38,7 +38,7 @@ export const copy = {
         eyebrow: 'Цифры',
         title: 'Всё здесь',
         titleAccent: 'проверяемо',
-        lead: 'Места на олимпиадах, пользователи в проде, строки в живом коде. Ни одной цифры, которую нельзя перепроверить.',
+        lead: 'Пользователи в проде, строки в живом коде, открытые репозитории. Ни одной цифры, которую нельзя перепроверить.',
       },
       cases: {
         eyebrow: 'Кейсы',
@@ -138,12 +138,31 @@ export const copy = {
           stack: '1С:Предприятие 8.3 · расширения · печатные формы',
         },
       ],
+      process: {
+        title: 'Как это',
+        titleAccent: 'происходит',
+        steps: [
+          { n: '01', name: 'Разбираемся', text: 'Полчаса разговора: что есть сейчас, что должно быть вместо этого, какие сроки жёсткие, а какие желательные. Если код уже есть — читаем его до оценки.' },
+          { n: '02', name: 'Считаем письменно', text: 'Присылаем этапы, сроки и цену текстом. Там же честно пишем, чего делать не стоит и где мы не лучший выбор.' },
+          { n: '03', name: 'Пишем и показываем', text: 'Работа видна по ходу: репозиторий, стенд, короткие сводки. Не «покажем, когда будет готово», а «смотрите, как есть сейчас».' },
+          { n: '04', name: 'Отдаём и остаёмся', text: 'Код, репозиторий и доступы ваши с первого дня. После запуска остаёмся на поддержке ровно столько, сколько нужно.' },
+        ],
+      },
+      limits: {
+        title: 'Когда мы',
+        titleAccent: 'не нужны',
+        items: [
+          'Если задача закрывается готовым сервисом за тысячу рублей в месяц — мы скажем это, а не продадим разработку.',
+          'Если нужен один человек в штат на полный день — вам нужен сотрудник, а не студия.',
+          'Если сроки требуют команды из десяти человек со следующей недели — честнее сказать сразу, чем сорвать.',
+        ],
+      },
     },
 
     work: {
       title: 'Проекты, которые можно',
       titleAccent: 'открыть',
-      lead: 'Репозитории публичные, демо живые, всё поднимается одной командой. Коммерческие проекты под NDA показываем задачами и результатами.',
+      lead: 'Репозитории публичные: у части проектов есть живое демо, остальные разворачиваются локально. Коммерческие проекты под NDA показываем задачами и результатами.',
       filters: {
         all: 'Все',
         web: 'Веб',
@@ -159,10 +178,10 @@ export const copy = {
       titleAccent: 'код',
       lead: 'Лендвис — студия разработки из Самары. Работаем удалённо, с русско- и англоязычными заказчиками.',
       paragraphs: [
-        'Начинали с олимпиад, и это оказалось полезной привычкой: задачу дают за час до сдачи, а работать должно всё. На «Профессионалах» 2025 взяли первое место в Самаре по мобильной разработке, третье по России и первое в командном зачёте. На Волга-IT — третье место с приложением на Flutter под ОС Аврора.',
+        'Начинали с олимпиад, и это оказалось полезной привычкой: задачу дают за час до сдачи, а работать должно всё — включая деплой.',
         'Дальше был прод. Интернет-магазин на 80 тысяч строк: витрина на Next.js, бекенд на FastAPI, оплата через ЮKassa, склад в МойСклад, CRM, Яндекс Доставка. Задача была не в красоте, а в том, чтобы пиковый день система прошла без падений.',
         'Система питания колледжа на тысячу человек: QR-пропуск работает без интернета, подпись ECDSA проверяется на месте, повторное гашение ловит защита от double-spend. Клиент — одна кодовая база Kotlin Multiplatform на Android и iOS. Плюс смарт-контракты для компаний, которых мы не назовём: NDA.',
-        'И отдельная часть работы — чужой код. Проекты, где автор ушёл, документации не было изначально, а всё, что известно, — «иногда падает». Туда мы заходим добровольно: в одном таком нашлась утечка памяти и около двадцати багов, которые считались особенностями.',
+        'И отдельная часть работы — чужой код. Проекты, где автор ушёл, документации не было изначально, а всё, что известно, — «иногда падает». Туда мы заходим добровольно.',
       ],
       principles: {
         title: 'На чём стоим',
@@ -181,20 +200,6 @@ export const copy = {
           },
         ],
       },
-      awards: {
-        title: 'Чем подтверждено',
-        items: [
-          {
-            name: '«Профессионалы» 2025 · мобильная разработка',
-            detail: '1 место в Самаре, 3 место в России, 1 место в командном зачёте',
-          },
-          { name: '«Профессионалы» 2025 · блокчейн', detail: '2 место в Самаре' },
-          { name: 'Волга-IT’2025', detail: '3 место, приложение на Flutter под ОС Аврора' },
-          { name: 'MTS True Tech Champ', detail: '3 место' },
-          { name: 'РуКод, МФТИ', detail: 'Финалист' },
-          { name: '1С:Профессионал', detail: 'Сертификат по платформе 8.3' },
-        ],
-      },
     },
 
     contact: {
@@ -207,6 +212,14 @@ export const copy = {
         github: 'GitHub',
       },
       note: 'Оценку сроков даём после того, как разберёмся в задаче, а не до.',
+      next: {
+        title: 'Что будет дальше',
+        items: [
+          'Отвечаем в рабочее время, обычно в тот же день — туда, откуда вы написали.',
+          'Задаём вопросы по задаче: пока не поймём, что должно происходить в системе, сроки не называем.',
+          'Присылаем письменно этапы, сроки и цену. Код, репозиторий и доступы ваши с первого дня.',
+        ],
+      },
       booking: {
         title: 'Или сразу назначьте созвон',
         lead: 'Выберите день и удобное время — откроется Telegram с готовым сообщением, останется отправить.',
@@ -274,7 +287,7 @@ export const copy = {
         eyebrow: 'Numbers',
         title: 'All of it is',
         titleAccent: 'verifiable',
-        lead: 'Competition placements, users in production, lines in a live codebase. Nothing here you cannot look up.',
+        lead: 'Users in production, lines in a live codebase, open repositories. Nothing here you cannot look up.',
       },
       cases: {
         eyebrow: 'Case studies',
@@ -374,6 +387,25 @@ export const copy = {
           stack: '1C:Enterprise 8.3 · extensions · print forms',
         },
       ],
+      process: {
+        title: 'How it',
+        titleAccent: 'goes',
+        steps: [
+          { n: '01', name: 'We dig in', text: 'Half an hour on a call: what you have now, what should be there instead, which deadlines are hard and which are wishes. If code already exists, we read it before we quote.' },
+          { n: '02', name: 'We quote in writing', text: 'Stages, timing and price come as text. The same note says plainly what is not worth building and where we are not the best fit.' },
+          { n: '03', name: 'We build in the open', text: 'The work stays visible: repository, staging, short updates. Not "we will show you when it is done" but "here is where it stands".' },
+          { n: '04', name: 'We hand over and stay', text: 'The code, the repository and the access are yours from day one. After launch we stay on support for exactly as long as you need.' },
+        ],
+      },
+      limits: {
+        title: 'When you',
+        titleAccent: 'do not need us',
+        items: [
+          'If an off-the-shelf tool solves it for ten dollars a month, we will say so instead of selling you a build.',
+          'If you need one person in-house full time, you need an employee, not a studio.',
+          'If the deadline needs ten people starting next week, it is fairer to say so now than to miss it.',
+        ],
+      },
     },
 
     work: {
@@ -395,10 +427,10 @@ export const copy = {
       titleAccent: 'code',
       lead: 'Lendvis is a development studio based in Samara, Russia. We work remotely, with Russian and English-speaking clients.',
       paragraphs: [
-        'We came up through competitions, and it turned out to be a useful habit: you get the brief an hour before the deadline and everything still has to run. At Professionals 2025 we took first place in Samara for mobile development, third in Russia, and first in the team event. At Volga-IT, third place with a Flutter app for Aurora OS.',
+        'We came up through competitions, and it turned out to be a useful habit: you get the brief an hour before the deadline and everything still has to run — deployment included.',
         'Then came production. An 80,000-line online store: a Next.js storefront over a FastAPI backend, payments through YooKassa, inventory in MoySklad, CRM, Yandex Delivery. The job was not to make it pretty. The job was to get through the peak season without going down.',
         'A campus meal system for a thousand people: the QR pass works with no internet, an ECDSA signature is verified on the spot, and a double-spend guard catches replays. The client is one Kotlin Multiplatform codebase running on Android and iOS. Alongside that, smart contracts for companies we cannot name.',
-        'And a separate line of work: code written by someone else. Projects where the author left, the documentation never existed, and all anyone knows is that it "crashes sometimes". We go in on purpose. One of them turned out to hold a memory leak and around twenty bugs that had been filed as quirks.',
+        'And a separate line of work: code written by someone else. Projects where the author left, the documentation never existed, and all anyone knows is that it "crashes sometimes". We go in on purpose.',
       ],
       principles: {
         title: 'What we hold to',
@@ -417,20 +449,6 @@ export const copy = {
           },
         ],
       },
-      awards: {
-        title: 'The receipts',
-        items: [
-          {
-            name: 'Professionals 2025 · mobile development',
-            detail: 'First in Samara, third in Russia, first in the team event',
-          },
-          { name: 'Professionals 2025 · blockchain', detail: 'Second in Samara' },
-          { name: 'Volga-IT 2025', detail: 'Third place, a Flutter app for Aurora OS' },
-          { name: 'MTS True Tech Champ', detail: 'Third place' },
-          { name: 'RuCode, MIPT', detail: 'Finalist' },
-          { name: '1C:Professional', detail: 'Certified on platform 8.3' },
-        ],
-      },
     },
 
     contact: {
@@ -443,6 +461,14 @@ export const copy = {
         github: 'GitHub',
       },
       note: 'Estimates come once we understand the problem, not before.',
+      next: {
+        title: 'What happens next',
+        items: [
+          'We reply during working hours, usually the same day, on whichever channel you used.',
+          'We ask about the problem: until we understand what the system has to do, we do not name a timeline.',
+          'You get stages, timing and price in writing. The code, the repository and the access are yours from day one.',
+        ],
+      },
       booking: {
         title: 'Or put a call in the calendar',
         lead: 'Pick a day and a slot — Telegram opens with the message ready, you just hit send.',

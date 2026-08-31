@@ -1,17 +1,21 @@
 import { useRef } from 'react'
-import { motion, useReducedMotion, useScroll, useTransform } from 'framer-motion'
+import { motion, useReducedMotion, useScroll, useTransform, type MotionValue } from 'framer-motion'
 import { WorkCard } from '../components/WorkCard'
 import type { Project } from '../data'
 
 /**
- * Витрина стопкой: следующая карточка наезжает на предыдущую,
- * а та слегка ужимается и уходит в тень.
+ * Витрина стопкой: следующая карточка наезжает на предыдущую, а та слегка ужимается.
+ * Прогресс меряется по неподвижной обёртке — липкий элемент сам себя измерить не может,
+ * его положение относительно экрана почти не меняется.
  */
 export function Showcase({ projects }: { projects: Project[] }) {
+  const wrap = useRef<HTMLDivElement>(null)
+  const { scrollYProgress } = useScroll({ target: wrap, offset: ['start start', 'end end'] })
+
   return (
-    <div>
+    <div ref={wrap}>
       {projects.map((p, i) => (
-        <StackItem key={p.n} index={i} total={projects.length}>
+        <StackItem key={p.n} index={i} total={projects.length} progress={scrollYProgress}>
           <WorkCard project={p} index={i} />
         </StackItem>
       ))}
@@ -19,17 +23,26 @@ export function Showcase({ projects }: { projects: Project[] }) {
   )
 }
 
-function StackItem({ children, index, total }: { children: React.ReactNode; index: number; total: number }) {
-  const ref = useRef<HTMLDivElement>(null)
+function StackItem({
+  children,
+  index,
+  total,
+  progress,
+}: {
+  children: React.ReactNode
+  index: number
+  total: number
+  progress: MotionValue<number>
+}) {
   const still = useReducedMotion()
-  const { scrollYProgress } = useScroll({ target: ref, offset: ['start 0.18', 'end 0.1'] })
-  // Только масштаб: затухание делало карточку полупрозрачной ещё в момент чтения,
-  // и сквозь неё просвечивала предыдущая — стопка теряла плотность.
-  const scale = useTransform(scrollYProgress, [0, 1], [1, 1 - (total - index) * 0.014])
   const covered = index < total - 1
+  // Каждая карточка ужимается на своём отрезке общей прокрутки — пока её накрывает следующая
+  const from = index / total
+  const to = (index + 1) / total
+  const scale = useTransform(progress, [from, to], [1, 1 - 0.04])
 
   return (
-    <div ref={ref} className="sticky top-20 md:top-24" style={{ zIndex: index + 1 }}>
+    <div className="sticky top-20 md:top-24" style={{ zIndex: index + 1 }}>
       <motion.div
         style={still || !covered ? undefined : { scale, transformOrigin: 'top center' }}
         className="rounded-2xl border border-line bg-ground px-5 py-8 sm:px-8 sm:py-10"

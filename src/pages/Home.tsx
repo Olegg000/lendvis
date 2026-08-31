@@ -3,10 +3,10 @@ import { motion, useReducedMotion } from 'framer-motion'
 import { Hero } from '../sections/Hero'
 import { Showcase } from '../sections/Showcase'
 import { Directions } from '../sections/Directions'
+import { EASE } from '../lib/motion'
 import { useLang } from '../lib/i18n'
 import { cases, metrics, projects } from '../data'
 
-const EASE = [0.22, 0.61, 0.24, 1] as const
 
 export function Reveal({ children, delay = 0 }: { children: React.ReactNode; delay?: number }) {
   const still = useReducedMotion()
@@ -98,6 +98,7 @@ export default function Home() {
           eyebrow={t.home.services.eyebrow}
           title={t.home.services.title}
           accent={t.home.services.titleAccent}
+          lead={t.home.services.lead}
         />
         <Directions />
       </section>
@@ -107,6 +108,7 @@ export default function Home() {
           eyebrow={t.home.work.eyebrow}
           title={t.home.work.title}
           accent={t.home.work.titleAccent}
+          lead={t.home.work.lead}
         />
         <Showcase projects={shown} />
         <Reveal delay={0.1}>
@@ -120,7 +122,12 @@ export default function Home() {
       </section>
 
       <section className="mx-auto max-w-[1180px] px-5 pb-20 sm:px-8 sm:pb-24">
-        <SectionHead eyebrow={t.home.numbers.eyebrow} title={t.home.numbers.title} accent={t.home.numbers.titleAccent} />
+        <SectionHead
+          eyebrow={t.home.numbers.eyebrow}
+          title={t.home.numbers.title}
+          accent={t.home.numbers.titleAccent}
+          lead={t.home.numbers.lead}
+        />
         <dl className="grid gap-x-10 gap-y-12 border-t border-line pt-12 sm:grid-cols-2 lg:grid-cols-4">
           {metrics.map((m, i) => (
             <Reveal key={m.label} delay={Math.min(i * 0.07, 0.28)}>
@@ -162,6 +169,9 @@ export default function Home() {
         ))}
       </section>
 
+      <section className="mx-auto max-w-[1180px] px-5 pb-24 sm:px-8">
+        <FinalCall />
+      </section>
     </>
   )
 }

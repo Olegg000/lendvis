@@ -65,8 +65,8 @@ export const projects: Project[] = [
   {
     n: '02',
     name: 'Geo Album',
-    kind: 'Мобильное · ОС Аврора · Волга-IT, 3 место',
-    kindEn: 'Mobile · Aurora OS · Volga-IT, 3rd place',
+    kind: 'Мобильное · ОС Аврора',
+    kindEn: 'Mobile · Aurora OS',
     summary:
       'Фотоальбом для отечественной ОС Аврора: читает геометки EXIF и раскладывает снимки по карте, кэширует тайлы для работы без сети, готовит миниатюры в отдельных изолятах.',
     summaryEn:

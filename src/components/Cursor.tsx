@@ -30,6 +30,7 @@ export function Cursor() {
 
     const target = { x: innerWidth / 2, y: innerHeight / 2 }
     const pos = { ...target }
+    let squeeze = 1
     let raf = 0
 
     const onMove = (e: MouseEvent) => {
@@ -52,8 +53,9 @@ export function Cursor() {
       // догоняем с отставанием — курсор «тянется» за мышью
       pos.x += (target.x - pos.x) * 0.18
       pos.y += (target.y - pos.y) * 0.18
+      squeeze += ((pressRef.current ? 0.82 : 1) - squeeze) * 0.25
       if (dot.current)
-        dot.current.style.transform = `translate3d(${pos.x}px, ${pos.y}px, 0) translate(-50%, -50%) scale(${pressRef.current ? 0.82 : 1})`
+        dot.current.style.transform = `translate3d(${pos.x}px, ${pos.y}px, 0) translate(-50%, -50%) scale(${squeeze})`
       raf = requestAnimationFrame(loop)
     }
     raf = requestAnimationFrame(loop)
@@ -91,7 +93,7 @@ export function Cursor() {
         opacity: visible ? 1 : 0,
         background: mode.label ? 'var(--color-sand)' : 'transparent',
         border: mode.label ? 'none' : `1.5px solid ${mode.size > 20 ? 'var(--color-sand)' : 'rgba(255,255,255,0.75)'}`,
-        transition: 'transform .16s ease-out, width .28s cubic-bezier(.2,.8,.2,1), height .28s cubic-bezier(.2,.8,.2,1), background .2s, border-color .2s, opacity .2s',
+        transition: 'width .28s cubic-bezier(.2,.8,.2,1), height .28s cubic-bezier(.2,.8,.2,1), background .2s, border-color .2s, opacity .2s',
         mixBlendMode: mode.label ? 'normal' : 'difference',
       }}
     >

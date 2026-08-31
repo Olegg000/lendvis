@@ -10,8 +10,9 @@ export default function Work() {
       <SectionHead level={1} title={t.work.title} accent={t.work.titleAccent} lead={t.work.lead} />
       <Reveal>
         <p className="mb-14 font-mono text-micro text-faint uppercase">
-          {projects.length} {lang === 'ru' ? 'проекта' : 'projects'} ·{' '}
-          {projects.filter((p) => p.demo).length} {lang === 'ru' ? 'с живым демо' : 'with live demos'}
+          {lang === 'ru'
+            ? `Проектов: ${projects.length} · с живым демо: ${projects.filter((p) => p.demo).length}`
+            : `${projects.length} projects · ${projects.filter((p) => p.demo).length} with live demos`}
         </p>
       </Reveal>
       <div className="space-y-24">

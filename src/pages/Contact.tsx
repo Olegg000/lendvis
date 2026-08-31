@@ -7,11 +7,25 @@ import { useLang } from '../lib/i18n'
 const TG = 'nektoo1111'
 const SLOTS = ['10:00', '12:00', '14:00', '16:00', '18:00']
 
-const channels = [
-  { key: 'telegram', value: '@' + TG, href: 'https://t.me/' + TG },
-  { key: 'email', value: 'olegkovalik2013@yandex.ru', href: 'mailto:olegkovalik2013@yandex.ru' },
-  { key: 'github', value: 'github.com/Olegg000', href: 'https://github.com/Olegg000' },
-] as const
+const MAIL = 'olegkovalik2013@yandex.ru'
+
+/** Письмо уходит с темой и каркасом вопросов — иначе почтовый путь хуже телеграма. */
+function channelsFor(lang: 'ru' | 'en') {
+  const subject = lang === 'ru' ? 'Проект для Лендвис' : 'Project for Lendvis'
+  const body =
+    lang === 'ru'
+      ? 'Что есть сейчас:\n\nЧто должно быть вместо этого:\n\nК какому сроку:\n'
+      : 'What we have now:\n\nWhat should be there instead:\n\nBy when:\n'
+  return [
+    { key: 'telegram', value: '@' + TG, href: 'https://t.me/' + TG },
+    {
+      key: 'email',
+      value: MAIL,
+      href: `mailto:${MAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`,
+    },
+    { key: 'github', value: 'github.com/Olegg000', href: 'https://github.com/Olegg000' },
+  ] as const
+}
 
 /** Ближайшие рабочие дни — выходные под созвон не предлагаем. */
 function workdays(count: number) {
@@ -129,7 +143,7 @@ export default function Contact() {
             <p className="font-mono text-micro text-faint uppercase">{t.contact.channels}</p>
           </Reveal>
           <div className="mt-5 grid gap-3 sm:grid-cols-2 md:grid-cols-3">
-            {channels.map((c, i) => (
+            {channelsFor(lang).map((c, i) => (
               <Reveal key={c.key} delay={i * 0.06}>
                 <a
                   href={c.href}
@@ -148,11 +162,26 @@ export default function Contact() {
           </div>
         </div>
 
-        <Reveal delay={0.2}>
-          <p className="mt-14 max-w-[54ch] border-t border-line pt-8 text-[13.5px] leading-relaxed text-faint">
-            {t.contact.note}
-          </p>
-        </Reveal>
+        <div className="mt-20 border-t border-line pt-12">
+          <Reveal>
+            <h2 className="text-[clamp(1.3rem,2.8vw,1.8rem)] font-extralight tracking-[-0.03em]">
+              {t.contact.next.title}
+            </h2>
+          </Reveal>
+          <ol className="mt-8 space-y-5">
+            {t.contact.next.items.map((item, i) => (
+              <Reveal key={item} delay={Math.min(i * 0.07, 0.24)}>
+                <li className="grid max-w-[64ch] grid-cols-[40px_1fr] gap-x-4">
+                  <span className="font-mono text-micro text-faint tabular-nums">{String(i + 1).padStart(2, '0')}</span>
+                  <span className="text-[14.5px] leading-[1.65] text-soft">{item}</span>
+                </li>
+              </Reveal>
+            ))}
+          </ol>
+          <Reveal delay={0.24}>
+            <p className="mt-10 max-w-[54ch] text-[13.5px] leading-relaxed text-faint">{t.contact.note}</p>
+          </Reveal>
+        </div>
       </div>
     </section>
   )

@@ -3,9 +3,9 @@ import { motion, useReducedMotion, useScroll, useTransform } from 'framer-motion
 import { useRef } from 'react'
 import { LightField } from '../components/Atmosphere'
 import { Dust } from '../components/Dust'
+import { EASE } from '../lib/motion'
 import { useLang } from '../lib/i18n'
 
-const EASE = [0.22, 0.61, 0.24, 1] as const
 
 /** Заголовок собирается из размытия по словам — как наводка резкости в кадре. */
 function FocusIn({ text, className, delay = 0 }: { text: string; className?: string; delay?: number }) {

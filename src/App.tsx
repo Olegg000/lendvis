@@ -1,7 +1,7 @@
 import { Suspense, lazy, useEffect } from 'react'
 import { HashRouter, Navigate, Route, Routes, useLocation } from 'react-router-dom'
 import { LangProvider, useLang } from './lib/i18n'
-import { useSmoothScroll } from './lib/smooth'
+import { scrollToTop, useSmoothScroll } from './lib/smooth'
 import { Cursor } from './components/Cursor'
 import { Footer, MobileNav, Nav } from './components/Chrome'
 import Home from './pages/Home'
@@ -20,9 +20,12 @@ function PageMeta() {
   const { pathname } = useLocation()
   const { t, lang } = useLang()
 
+  // Наверх — только при смене маршрута: переключение языка не должно уносить со страницы
   useEffect(() => {
-    window.scrollTo({ top: 0, behavior: 'instant' as ScrollBehavior })
+    scrollToTop()
+  }, [pathname])
 
+  useEffect(() => {
     const studio = lang === 'ru' ? 'Лендвис' : 'Lendvis'
     const map: Record<string, { title: string; description: string }> = {
       '/': {

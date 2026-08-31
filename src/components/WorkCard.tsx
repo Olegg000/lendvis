@@ -2,9 +2,9 @@ import { useRef, useState } from 'react'
 import { motion, useReducedMotion, useScroll, useTransform } from 'framer-motion'
 import { Phone } from './Device'
 import type { Project } from '../data'
+import { EASE } from '../lib/motion'
 import { useLang } from '../lib/i18n'
 
-const EASE = [0.22, 0.61, 0.24, 1] as const
 
 /**
  * Работа в кадре: номер, название, короткое описание и экран.
@@ -77,9 +77,9 @@ export function WorkCard({
       <p className="mb-7 max-w-[62ch] text-body text-soft">{summary}</p>
 
       {project.phone ? (
-        <div className={`flex items-center justify-center gap-4 overflow-hidden rounded-xl border border-line bg-[#0d0f13] px-6 py-7 sm:gap-7 ${frameHeight}`}>
+        <div className={`flex items-center justify-start gap-4 overflow-x-auto rounded-xl border border-line bg-[#0d0f13] px-6 py-7 snap-x snap-mandatory sm:justify-center sm:gap-7 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden ${frameHeight}`}>
           {project.shots.slice(0, 3).map((src) => (
-            <Phone key={src} src={src} className="h-full w-auto shrink-0" />
+            <Phone key={src} src={src} className="h-full w-auto shrink-0 snap-center" />
           ))}
         </div>
       ) : (

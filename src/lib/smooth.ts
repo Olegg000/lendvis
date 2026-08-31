@@ -1,6 +1,14 @@
 import Lenis from 'lenis'
 import { useEffect } from 'react'
 
+let instance: Lenis | null = null
+
+/** Прокрутка наверх через сам движок: нативный scrollTo проигрывает его инерции. */
+export function scrollToTop() {
+  if (instance) instance.scrollTo(0, { immediate: true })
+  else window.scrollTo({ top: 0, behavior: 'instant' as ScrollBehavior })
+}
+
 /**
  * Инерционный скролл. Страница едет с довеском и мягко останавливается —
  * это и есть тот самый эффект «дорогого» сайта.
@@ -17,6 +25,7 @@ export function useSmoothScroll() {
       touchMultiplier: 1.6,
     })
 
+    instance = lenis
     let raf = 0
     const loop = (time: number) => {
       lenis.raf(time)
@@ -24,23 +33,11 @@ export function useSmoothScroll() {
     }
     raf = requestAnimationFrame(loop)
 
-    // Якорные ссылки должны ехать тем же движком, иначе рывок
-    const onClick = (e: MouseEvent) => {
-      const link = (e.target as HTMLElement).closest('a[href^="#"]')
-      if (!link) return
-      const id = link.getAttribute('href')
-      if (!id || id === '#') return
-      const target = document.querySelector(id)
-      if (!target) return
-      e.preventDefault()
-      lenis.scrollTo(target as HTMLElement, { offset: -80 })
-    }
-    document.addEventListener('click', onClick)
 
     return () => {
-      document.removeEventListener('click', onClick)
       cancelAnimationFrame(raf)
       lenis.destroy()
+      instance = null
     }
   }, [])
 }

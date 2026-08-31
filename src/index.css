@@ -1,24 +1,23 @@
 @import 'tailwindcss';
 
 @theme {
-  --color-ground: #0a0b0d;
-  --color-panel: #121418;
-  --color-raised: #191d22;
-  --color-hair: rgba(255, 255, 255, 0.09);
-  --color-fg: #e9ecef;
-  --color-muted: #99a1a9;
-  --color-faint: #6b7379;
-  --color-gold: #f2b441;
-  --color-gold-dim: #8a6a24;
+  /* Кинематографичная база: почти чёрный, свет и минимум цвета */
+  --color-ground: #050507;
+  --color-panel: #0a0b0d;
+  --color-raised: #111318;
+  --color-line: rgba(255, 255, 255, 0.09);
+  --color-fg: #ffffff;
+  --color-soft: rgba(255, 255, 255, 0.62);
+  --color-faint: rgba(255, 255, 255, 0.4);
+  --color-sand: #d8b384;
+  --color-cold: #96afd7;
 
-  --font-display: 'Unbounded', system-ui, sans-serif;
-  --font-serif: 'Playfair Display', Georgia, serif;
-  --font-body: 'Golos Text', system-ui, -apple-system, sans-serif;
+  --font-ui: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-serif: 'Cormorant Garamond', Georgia, serif;
   --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
 }
 
 html {
-  scroll-behavior: smooth;
   background: var(--color-ground);
   overflow-x: clip;
 }
@@ -27,39 +26,44 @@ body {
   margin: 0;
   background: var(--color-ground);
   color: var(--color-fg);
-  font-family: var(--font-body);
+  font-family: var(--font-ui);
+  font-weight: 300;
   -webkit-font-smoothing: antialiased;
   overflow-x: clip;
 }
 
-/* Заголовки: сталь, светлеющая сверху вниз — главный приём типографики */
-.steel {
-  background: linear-gradient(180deg, #5c6470 0%, #d8e1e8 78%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-  color: transparent;
+/* Плёночное зерно и виньетка поверх всей страницы — держат кадр */
+.grain::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  pointer-events: none;
+  opacity: 0.4;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='.4'/%3E%3C/svg%3E");
 }
 
-.rule {
-  border-top: 1px solid var(--color-hair);
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--color-sand);
 }
 
 ::selection {
-  background: var(--color-gold);
-  color: #0a0b0d;
+  background: rgba(255, 255, 255, 0.9);
+  color: #050507;
 }
 
 :focus-visible {
-  outline: 2px solid var(--color-gold);
-  outline-offset: 3px;
-  border-radius: 4px;
+  outline: 1px solid rgba(255, 255, 255, 0.75);
+  outline-offset: 4px;
+  border-radius: 2px;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  html {
-    scroll-behavior: auto;
-  }
   *,
   *::before,
   *::after {

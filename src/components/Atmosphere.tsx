@@ -62,10 +62,23 @@ export function LightField({ intensity = 1 }: { intensity?: number }) {
       if (!still) raf = requestAnimationFrame(draw)
     }
 
+    // За пределами экрана рисовать незачем: холст героя иначе крутится всю страницу
+    const host = canvas.parentElement ?? canvas
+    const io = new IntersectionObserver(([e]) => {
+      if (e.isIntersecting) {
+        if (!raf) raf = requestAnimationFrame(draw)
+      } else if (raf) {
+        cancelAnimationFrame(raf)
+        raf = 0
+      }
+    })
+    io.observe(host)
+
     resize()
     raf = requestAnimationFrame(draw)
     window.addEventListener('resize', resize, { passive: true })
     return () => {
+      io.disconnect()
       cancelAnimationFrame(raf)
       window.removeEventListener('resize', resize)
     }

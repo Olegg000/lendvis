@@ -4,7 +4,7 @@ import { useLang } from '../lib/i18n'
 export default function About() {
   const { t } = useLang()
   return (
-    <section className="mx-auto max-w-[1180px] px-5 pt-36 pb-4 sm:px-8 sm:pt-44">
+    <section className="mx-auto max-w-[1180px] px-5 pt-36 pb-24 sm:px-8 sm:pt-44">
       <SectionHead level={1} title={t.about.title} accent={t.about.titleAccent} lead={t.about.lead} />
 
       <div className="max-w-[62ch] space-y-6">

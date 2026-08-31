@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
+import { useLocation } from 'react-router-dom'
 
 type Mode = { size: number; label: string }
 
@@ -11,9 +12,15 @@ const IDLE: Mode = { size: 12, label: '' }
  */
 export function Cursor() {
   const dot = useRef<HTMLDivElement>(null)
+  const pressRef = useRef(false)
   const [mode, setMode] = useState<Mode>(IDLE)
   const [visible, setVisible] = useState(false)
   const [enabled, setEnabled] = useState(false)
+  const { pathname } = useLocation()
+
+  // После перехода элемент под курсором исчезает, а mousemove не приходит,
+  // пока мышь не шевельнётся — подпись залипала поверх новой страницы
+  useEffect(() => setMode(IDLE), [pathname])
 
   useEffect(() => {
     const fine = window.matchMedia('(hover: hover) and (pointer: fine)').matches
@@ -26,6 +33,11 @@ export function Cursor() {
     let raf = 0
 
     const onMove = (e: MouseEvent) => {
+      // над кадром демо родительское окно перестаёт получать движение — курсор бы замер
+      if ((e.target as HTMLElement).tagName === 'IFRAME') {
+        setVisible(false)
+        return
+      }
       target.x = e.clientX
       target.y = e.clientY
       setVisible(true)
@@ -40,17 +52,28 @@ export function Cursor() {
       // догоняем с отставанием — курсор «тянется» за мышью
       pos.x += (target.x - pos.x) * 0.18
       pos.y += (target.y - pos.y) * 0.18
-      if (dot.current) dot.current.style.transform = `translate3d(${pos.x}px, ${pos.y}px, 0) translate(-50%, -50%)`
+      if (dot.current)
+        dot.current.style.transform = `translate3d(${pos.x}px, ${pos.y}px, 0) translate(-50%, -50%) scale(${pressRef.current ? 0.82 : 1})`
       raf = requestAnimationFrame(loop)
     }
     raf = requestAnimationFrame(loop)
 
     const onLeave = () => setVisible(false)
+    const onDown = () => {
+      pressRef.current = true
+    }
+    const onUp = () => {
+      pressRef.current = false
+    }
     window.addEventListener('mousemove', onMove, { passive: true })
+    window.addEventListener('mousedown', onDown)
+    window.addEventListener('mouseup', onUp)
     document.addEventListener('mouseleave', onLeave)
     return () => {
       cancelAnimationFrame(raf)
       window.removeEventListener('mousemove', onMove)
+      window.removeEventListener('mousedown', onDown)
+      window.removeEventListener('mouseup', onUp)
       document.removeEventListener('mouseleave', onLeave)
     }
   }, [])
@@ -68,7 +91,7 @@ export function Cursor() {
         opacity: visible ? 1 : 0,
         background: mode.label ? 'var(--color-sand)' : 'transparent',
         border: mode.label ? 'none' : `1.5px solid ${mode.size > 20 ? 'var(--color-sand)' : 'rgba(255,255,255,0.75)'}`,
-        transition: 'width .28s cubic-bezier(.2,.8,.2,1), height .28s cubic-bezier(.2,.8,.2,1), background .2s, border-color .2s, opacity .2s',
+        transition: 'transform .16s ease-out, width .28s cubic-bezier(.2,.8,.2,1), height .28s cubic-bezier(.2,.8,.2,1), background .2s, border-color .2s, opacity .2s',
         mixBlendMode: mode.label ? 'normal' : 'difference',
       }}
     >

@@ -4,7 +4,7 @@ import { useLang } from '../lib/i18n'
 export default function Services() {
   const { t } = useLang()
   return (
-    <section className="mx-auto max-w-[1180px] px-5 pt-36 pb-4 sm:px-8 sm:pt-44">
+    <section className="mx-auto max-w-[1180px] px-5 pt-36 pb-24 sm:px-8 sm:pt-44">
       <SectionHead level={1} title={t.services.title} accent={t.services.titleAccent} lead={t.services.lead} />
 
       {t.services.items.map((s, i) => (

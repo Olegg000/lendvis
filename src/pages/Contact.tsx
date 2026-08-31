@@ -53,7 +53,7 @@ export default function Contact() {
       </div>
 
       <div className="relative z-10 mx-auto max-w-[1180px] px-5 pt-36 pb-24 sm:px-8 sm:pt-44">
-        <SectionHead title={t.contact.title} accent={t.contact.titleAccent} lead={t.contact.lead} />
+        <SectionHead level={1} title={t.contact.title} accent={t.contact.titleAccent} lead={t.contact.lead} />
 
         {/* Запись на созвон: выбор дня и слота собирает готовое сообщение */}
         <Reveal>
@@ -61,8 +61,8 @@ export default function Contact() {
             <h2 className="text-[clamp(1.2rem,2.6vw,1.6rem)] font-extralight tracking-[-0.02em]">{b.title}</h2>
             <p className="mt-3 max-w-[52ch] text-[14px] leading-relaxed text-soft">{b.lead}</p>
 
-            <p className="mt-8 font-mono text-micro text-faint uppercase">{b.pickDay}</p>
-            <div className="mt-3 flex flex-wrap gap-2">
+            <p id="pick-day" className="mt-8 font-mono text-micro text-faint uppercase">{b.pickDay}</p>
+            <div role="group" aria-labelledby="pick-day" className="mt-3 flex flex-wrap gap-2">
               {days.map((d) => {
                 const l = dayLabel(d)
                 const active = day?.toDateString() === d.toDateString()
@@ -71,6 +71,7 @@ export default function Contact() {
                     key={d.toISOString()}
                     type="button"
                     onClick={() => setDay(d)}
+                    aria-pressed={active}
                     className={`rounded-xl border px-4 py-3 text-left transition-colors ${
                       active ? 'border-white/70 bg-white/10' : 'border-line hover:border-white/35'
                     }`}
@@ -84,13 +85,14 @@ export default function Contact() {
               })}
             </div>
 
-            <p className="mt-7 font-mono text-micro text-faint uppercase">{b.pickTime}</p>
-            <div className="mt-3 flex flex-wrap gap-2">
+            <p id="pick-time" className="mt-7 font-mono text-micro text-faint uppercase">{b.pickTime}</p>
+            <div role="group" aria-labelledby="pick-time" className="mt-3 flex flex-wrap gap-2">
               {SLOTS.map((s) => (
                 <button
                   key={s}
                   type="button"
                   onClick={() => setTime(s)}
+                  aria-pressed={time === s}
                   className={`rounded-full border px-5 py-2.5 font-mono text-[12px] transition-colors ${
                     time === s ? 'border-white/70 bg-white/10 text-fg' : 'border-line text-soft hover:border-white/35'
                   }`}
@@ -126,7 +128,7 @@ export default function Contact() {
           <Reveal>
             <p className="font-mono text-micro text-faint uppercase">{t.contact.channels}</p>
           </Reveal>
-          <div className="mt-5 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="mt-5 grid gap-3 sm:grid-cols-2 md:grid-cols-3">
             {channels.map((c, i) => (
               <Reveal key={c.key} delay={i * 0.06}>
                 <a

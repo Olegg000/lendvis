@@ -27,10 +27,10 @@ export function Phone({ src, alt = '', className = '' }: { src: string; alt?: st
     <figure
       className={`m-0 rounded-[30px] border border-white/12 bg-gradient-to-b from-[#2a2f36] to-[#191d22] p-[7px] shadow-[0_30px_60px_-32px_rgba(0,0,0,.95)] ${className}`}
     >
-      <div className="relative overflow-hidden rounded-[24px] bg-ground">
+      <div className="relative h-full overflow-hidden rounded-[24px] bg-ground">
         {/* островок камеры */}
         <span className="absolute top-2 left-1/2 z-10 h-[14px] w-[52px] -translate-x-1/2 rounded-full bg-black/85" />
-        <img src={src} alt={alt} loading="lazy" className="block w-full" />
+        <img src={src} alt={alt} loading="lazy" className="block h-full w-auto object-contain" />
       </div>
     </figure>
   )

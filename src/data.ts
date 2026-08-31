@@ -60,7 +60,7 @@ export const projects: Project[] = [
     stack: ['React 19', 'RTK Query', 'Tailwind', 'MSW'],
     repo: 'https://github.com/Olegg000/autoCheckMobileReact',
     demo: 'https://olegg000.github.io/autoCheckMobileReact/',
-    shots: [`${base}shots/autocheck.png`],
+    shots: [`${base}shots/autocheck.webp`],
   },
   {
     n: '02',
@@ -73,7 +73,7 @@ export const projects: Project[] = [
       'A photo album for Russia\'s Aurora OS: reads EXIF geotags onto a map, caches tiles so it works without a network, and builds thumbnails in separate isolates.',
     stack: ['Flutter', 'Dart', 'Aurora OS'],
     repo: 'https://github.com/Olegg000/volgaIT2025-flutter',
-    shots: [`${base}shots/aurora-1.png`, `${base}shots/aurora-2.png`, `${base}shots/aurora-3.png`],
+    shots: [`${base}shots/aurora-1.webp`, `${base}shots/aurora-2.webp`, `${base}shots/aurora-3.webp`],
     phone: true,
   },
   {
@@ -88,7 +88,7 @@ export const projects: Project[] = [
     stack: ['React', 'Konva', 'Socket.IO', 'Express'],
     repo: 'https://github.com/Olegg000/drawer',
     demo: 'https://olegg000.github.io/drawer/',
-    shots: [`${base}shots/drawer.png`],
+    shots: [`${base}shots/drawer.webp`],
   },
   {
     n: '04',
@@ -102,7 +102,7 @@ export const projects: Project[] = [
     stack: ['React', 'Vite'],
     repo: 'https://github.com/Olegg000/react-bugfix-demo',
     demo: 'https://olegg000.github.io/react-bugfix-demo/',
-    shots: [`${base}shots/bugfix-fix.png`],
+    shots: [`${base}shots/bugfix-fix.webp`],
   },
   {
     n: '05',
@@ -115,7 +115,7 @@ export const projects: Project[] = [
       'An LMS with teacher, student and management roles: groups, assigned tests, statistics and uploads. Comes up with a single Docker command.',
     stack: ['React', 'Express', 'PostgreSQL', 'Docker'],
     repo: 'https://github.com/Olegg000/quiz',
-    shots: [`${base}shots/quiz-catalog.png`, `${base}shots/quiz-login.png`],
+    shots: [`${base}shots/quiz-catalog.webp`, `${base}shots/quiz-login.webp`],
   },
   {
     n: '06',
@@ -129,33 +129,64 @@ export const projects: Project[] = [
     stack: ['Node.js', 'OpenAPI', 'Docker'],
     repo: 'https://github.com/Olegg000/hr-connect-mock-backend',
     demo: 'https://olegg000.github.io/hr-connect-mock-backend/',
-    shots: [`${base}shots/hr-swagger.png`],
+    shots: [`${base}shots/hr-swagger.webp`],
   },
 ]
 
 export const marquee = [
-  `${base}shots/autocheck.png`,
-  `${base}shots/quiz-catalog.png`,
-  `${base}shots/bugfix-fix.png`,
-  `${base}shots/drawer.png`,
-  `${base}shots/hr-swagger.png`,
-  `${base}shots/quiz-login.png`,
-  `${base}shots/alice-oauth.png`,
+  `${base}shots/autocheck.webp`,
+  `${base}shots/quiz-catalog.webp`,
+  `${base}shots/bugfix-fix.webp`,
+  `${base}shots/drawer.webp`,
+  `${base}shots/hr-swagger.webp`,
+  `${base}shots/quiz-login.webp`,
+  `${base}shots/alice-oauth.webp`,
 ]
 
-export const metrics = [
-  { value: '1 место', label: 'Мобильная разработка, «Профессионалы» 2025', sub: 'Самара · 3 место в России · 1 место в командном' },
-  { value: '2 место', label: 'Блокчейн-компетенция, «Профессионалы» 2025', sub: 'Самара' },
-  { value: '3 место', label: 'Волга-IT’2025 и MTS True Tech Champ', sub: 'Flutter для ОС Аврора · AI-сервис' },
-  { value: '~1000', label: 'Пользователей в проде у системы питания', sub: 'Офлайн-QR, ECDSA, нагрузочные тесты' },
+export const metrics: Metric[] = [
+  {
+    value: '~1000',
+    valueEn: '~1000',
+    label: 'Пользователей у системы питания колледжа в проде',
+    labelEn: 'Users on the campus meal system in production',
+    sub: 'Офлайн-QR на ECDSA, защита от повторного гашения, нагрузочные прогоны',
+    subEn: 'Offline ECDSA-signed QR, double-spend protection, load tested',
+  },
+  {
+    value: '4',
+    valueEn: '4',
+    label: 'Блокчейн-сети, в которых у нас есть рабочий код',
+    labelEn: 'Blockchain networks we have shipped working code on',
+    sub: 'TON · Ethereum · Waves Enterprise · Hyperledger Fabric',
+    subEn: 'TON · Ethereum · Waves Enterprise · Hyperledger Fabric',
+  },
+  {
+    value: '80K+',
+    valueEn: '80K+',
+    label: 'Строк в боевом магазине с оплатой, складом и доставкой',
+    labelEn: 'Lines in a live shop with payments, stock and delivery',
+    sub: 'Next.js и FastAPI, три мессенджер-бота, админка на двадцать разделов',
+    subEn: 'Next.js and FastAPI, three messenger bots, a twenty-section admin panel',
+  },
+  {
+    value: '6',
+    valueEn: '6',
+    label: 'Проектов, которые можно открыть и потрогать прямо сейчас',
+    labelEn: 'Projects you can open and poke at right now',
+    sub: 'Открытый код, живые демо, запуск одной командой',
+    subEn: 'Open code, live demos, one command to run',
+  },
 ]
 
-export const cases = [
+export const cases: Case[] = [
   {
     name: 'PrimeFlowers',
     kind: 'Интернет-магазин под нагрузкой',
     metric: '80K+',
     metricLabel: 'строк кода',
+    kindEn: 'Online shop under load',
+    textEn:
+      'A live flower-delivery shop: a Next.js storefront over FastAPI, PostgreSQL, Redis and Celery. Payments, stock, CRM, delivery, three messenger bots and a twenty-section admin panel. The job was not to look good — it was to survive the busiest day of the year without going down.',
     text: 'Боевой магазин доставки цветов: витрина на Next.js поверх FastAPI, PostgreSQL, Redis и Celery. Оплата, склад, CRM, доставка, три мессенджер-бота и админка на двадцать разделов. Задача была не в красоте, а в том, чтобы 8 марта система прошла пик без падений.',
   },
   {
@@ -163,6 +194,9 @@ export const cases = [
     kind: 'Система питания колледжа',
     metric: '~1000',
     metricLabel: 'пользователей',
+    kindEn: 'Campus meal system',
+    textEn:
+      'Meal payments by QR pass that works with no internet: an ECDSA signature is verified on the spot, and double-spend protection catches a pass used twice. The Kotlin backend was load tested; the client is one codebase for Android and iOS.',
     text: 'Оплата питания по QR-пропуску, который работает без интернета: подпись ECDSA проверяется на месте, а повторное гашение ловит защита от double-spend. Бекенд на Kotlin проверен нагрузкой, клиент — одна кодовая база на Android и iOS.',
   },
   {
@@ -170,18 +204,32 @@ export const cases = [
     kind: 'Поддержка и багфиксы',
     metric: '~20',
     metricLabel: 'исправленных багов',
+    kindEn: 'Support and bugfixes',
+    textEn:
+      'A project handed over as-is: enemy logic did not work, physics behaved unpredictably, performance decayed. The cause was a leak — twelve data structures allocated every frame and never freed.',
     text: 'Проект достался в наследство: логика противников не работала, физика вела себя непредсказуемо, производительность падала. Причиной оказалась утечка — двенадцать структур создавались каждый кадр и никогда не освобождались.',
   },
 ]
+
+export type Metric = { value: string; valueEn: string; label: string; labelEn: string; sub: string; subEn: string }
+export type Case = {
+  name: string
+  kind: string
+  kindEn: string
+  metric: string
+  metricLabel: string
+  text: string
+  textEn: string
+}
 
 export type Direction = { key: string; shot?: string }
 
 /** Картинка к каждому направлению: где есть настоящий экран — берём его. */
 export const directionShots: Direction[] = [
-  { key: '01', shot: `${import.meta.env.BASE_URL}shots/quiz-catalog.png` },
-  { key: '02', shot: `${import.meta.env.BASE_URL}shots/aurora-1.png` },
-  { key: '03', shot: `${import.meta.env.BASE_URL}shots/blockchain.png` },
-  { key: '04', shot: `${import.meta.env.BASE_URL}shots/hr-swagger.png` },
-  { key: '05', shot: `${import.meta.env.BASE_URL}shots/bugfix-fix.png` },
+  { key: '01', shot: `${import.meta.env.BASE_URL}shots/quiz-catalog.webp` },
+  { key: '02', shot: `${import.meta.env.BASE_URL}shots/aurora-1.webp` },
+  { key: '03', shot: `${import.meta.env.BASE_URL}shots/blockchain.webp` },
+  { key: '04', shot: `${import.meta.env.BASE_URL}shots/hr-swagger.webp` },
+  { key: '05', shot: `${import.meta.env.BASE_URL}shots/bugfix-fix.webp` },
   { key: '06' },
 ]

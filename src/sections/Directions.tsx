@@ -9,10 +9,10 @@ import { directionShots } from '../data'
  * Список из шести строк читался как оглавление — здесь их видно.
  */
 export function Directions() {
-  const { t } = useLang()
+  const { t, lang } = useLang()
   const still = useReducedMotion()
   const track = useRef<HTMLDivElement>(null)
-  const [atEnd, setAtEnd] = useState(false)
+  const [edge, setEdge] = useState({ start: true, end: false })
 
   const shotOf = (n: string) => directionShots.find((d) => d.key === n)?.shot
 
@@ -25,7 +25,7 @@ export function Directions() {
   const onScroll = () => {
     const el = track.current
     if (!el) return
-    setAtEnd(el.scrollLeft + el.clientWidth >= el.scrollWidth - 24)
+    setEdge({ start: el.scrollLeft <= 8, end: el.scrollLeft + el.clientWidth >= el.scrollWidth - 24 })
   }
 
   return (
@@ -75,7 +75,7 @@ export function Directions() {
                     </div>
                   )}
                   <span className="pointer-events-none absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-panel to-transparent" />
-                  <span className="absolute top-3 left-4 font-mono text-micro text-white/55">{s.number}</span>
+                  <span className="absolute top-3 left-5 font-mono text-micro text-white/55">{s.number}</span>
                 </div>
 
                 <div className="flex-1 px-5 pt-4 pb-6">
@@ -92,20 +92,20 @@ export function Directions() {
         <button
           type="button"
           onClick={() => nudge(-1)}
-          aria-label="←"
-          className="h-9 w-9 rounded-full border border-line text-soft transition-colors hover:border-white/40 hover:text-fg"
+          disabled={edge.start}
+          aria-label={lang === 'ru' ? 'Предыдущие направления' : 'Previous directions'}
+          className="h-9 w-9 rounded-full border border-line text-soft transition-colors hover:border-white/40 hover:text-fg disabled:cursor-default disabled:border-line/40 disabled:text-white/20 disabled:hover:border-line/40 disabled:hover:text-white/20"
         >
-          ←
+          <span aria-hidden="true">←</span>
         </button>
         <button
           type="button"
           onClick={() => nudge(1)}
-          aria-label="→"
-          className={`h-9 w-9 rounded-full border text-soft transition-colors hover:border-white/40 hover:text-fg ${
-            atEnd ? 'border-line/40 text-white/20' : 'border-line'
-          }`}
+          disabled={edge.end}
+          aria-label={lang === 'ru' ? 'Следующие направления' : 'Next directions'}
+          className="h-9 w-9 rounded-full border border-line text-soft transition-colors hover:border-white/40 hover:text-fg disabled:cursor-default disabled:border-line/40 disabled:text-white/20 disabled:hover:border-line/40 disabled:hover:text-white/20"
         >
-          →
+          <span aria-hidden="true">→</span>
         </button>
         <Link
           to="/services"

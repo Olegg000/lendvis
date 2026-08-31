@@ -95,7 +95,8 @@ export default function Contact() {
 
         {/* Запись на созвон: выбор дня и слота собирает готовое сообщение */}
         <Reveal>
-          <div className="mt-16 rounded-2xl border border-line bg-white/[0.02] p-6 backdrop-blur-sm sm:p-9">
+          <div className="mt-16 grid gap-x-14 gap-y-12 rounded-2xl border border-line bg-white/[0.02] p-6 backdrop-blur-sm sm:p-9 lg:grid-cols-[1fr_300px]">
+            <div>
             <h2 className="text-[clamp(1.4rem,3vw,2rem)] font-extralight tracking-[-0.03em]">{b.title}</h2>
             <p className="mt-3 max-w-[52ch] text-[14px] leading-relaxed text-soft">{b.lead}</p>
 
@@ -159,29 +160,26 @@ export default function Contact() {
                   : b.tz}
               </span>
             </div>
+            </div>
+
+            {/* Шаги стоят рядом с кнопкой: они снимают сомнение ровно там, где человек решается */}
+            <div className="lg:border-l lg:border-line lg:pl-12">
+              <h3 className="font-mono text-micro text-faint uppercase">{t.contact.next.title}</h3>
+              <ol className="mt-6 space-y-5">
+                {t.contact.next.items.map((item, i) => (
+                  <li key={item} className="grid grid-cols-[28px_1fr] gap-x-3">
+                    <span className="font-mono text-micro text-faint tabular-nums">{String(i + 1).padStart(2, '0')}</span>
+                    <span className="text-[13.5px] leading-[1.6] text-soft">{item}</span>
+                  </li>
+                ))}
+              </ol>
+            </div>
           </div>
         </Reveal>
 
-        <div className="mt-20 border-t border-line pt-12">
-          <Reveal>
-            <h2 className="text-[clamp(1.4rem,3vw,2rem)] font-extralight tracking-[-0.03em]">
-              {t.contact.next.title}
-            </h2>
-          </Reveal>
-          <ol className="mt-8 space-y-5">
-            {t.contact.next.items.map((item, i) => (
-              <Reveal key={item} delay={Math.min(i * 0.07, 0.24)}>
-                <li className="grid max-w-[64ch] grid-cols-[40px_1fr] gap-x-4">
-                  <span className="font-mono text-micro text-faint tabular-nums">{String(i + 1).padStart(2, '0')}</span>
-                  <span className="text-[14.5px] leading-[1.65] text-soft">{item}</span>
-                </li>
-              </Reveal>
-            ))}
-          </ol>
-          <Reveal delay={0.24}>
-            <p className="mt-10 max-w-[54ch] text-[13.5px] leading-relaxed text-faint">{t.contact.note}</p>
-          </Reveal>
-        </div>
+        <Reveal delay={0.1}>
+          <p className="mt-12 max-w-[54ch] text-[13.5px] leading-relaxed text-faint">{t.contact.note}</p>
+        </Reveal>
       </div>
     </section>
   )

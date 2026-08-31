@@ -3,6 +3,7 @@ const base = import.meta.env.BASE_URL
 export type Project = {
   n: string
   name: string
+  nameEn: string
   kind: string
   kindEn: string
   summary: string
@@ -14,43 +15,26 @@ export type Project = {
   phone?: boolean
 }
 
-export const services = [
-  {
-    n: '01',
-    name: 'Сайты и веб-сервисы',
-    text: 'Интернет-магазины, платформы, дашборды и админки: от макета до боевого сервера с оплатой, интеграциями и нагрузкой.',
-  },
-  {
-    n: '02',
-    name: 'Мобильные приложения',
-    text: 'Android, iOS и кроссплатформа — Kotlin Multiplatform, Compose, Flutter. Включая отечественную ОС Аврора.',
-  },
-  {
-    n: '03',
-    name: 'Блокчейн',
-    text: 'Смарт-контракты и интеграции: TON и FunC, Solidity, Waves Enterprise, Hyperledger Fabric. Токеномика, вестинг, приватные сети.',
-  },
-  {
-    n: '04',
-    name: 'Бекенды и интеграции',
-    text: 'API, очереди, платёжные и складские системы, Docker и серверы под ключ. Spring Boot, FastAPI, Node.',
-  },
-  {
-    n: '05',
-    name: 'Поддержка и багфиксы',
-    text: 'Входим в чужой код и находим причину, а не симптом: утечки памяти, гонки, сломанные сборки, наследство без документации.',
-  },
-  {
-    n: '06',
-    name: '1С',
-    text: 'Доработка и сопровождение конфигураций, расширения, печатные формы, обновление до новых релизов платформы.',
-  },
-]
-
 export const projects: Project[] = [
+  {
+    n: '07',
+    name: 'TON Jetton Vesting',
+    nameEn: 'TON Jetton Vesting',
+    kind: 'Блокчейн · смарт-контракт',
+    kindEn: 'Blockchain · smart contract',
+    summary:
+      'Токен стандарта TIP-3 для TON с он-чейн вестингом: девять пулов токеномики, трёхмесячный клиф, графики на 12 и 18 месяцев, сжигание с перераспределением. Ошибку в контракте не откатишь, поэтому всё покрыто песочными тестами — 34 из 34 зелёные.',
+    summaryEn:
+      'A TIP-3 jetton for TON with on-chain vesting: nine tokenomics pools, a three-month cliff, 12- and 18-month schedules, and burn with redistribution. A contract cannot be patched after deploy, so it is covered by sandbox tests — 34 of 34 green.',
+    stack: ['FunC', 'TON', 'TypeScript', 'Jest'],
+    repo: 'https://github.com/Olegg000/ton-jetton-vesting',
+    shots: [`${base}shots/blockchain.webp`],
+  },
+
   {
     n: '01',
     name: 'AutoCheck',
+    nameEn: 'AutoCheck',
     kind: 'Веб-платформа · живое демо',
     kindEn: 'Web platform · live demo',
     summary:
@@ -65,6 +49,7 @@ export const projects: Project[] = [
   {
     n: '02',
     name: 'Geo Album',
+    nameEn: 'Geo Album',
     kind: 'Мобильное · ОС Аврора',
     kindEn: 'Mobile · Aurora OS',
     summary:
@@ -79,6 +64,7 @@ export const projects: Project[] = [
   {
     n: '03',
     name: 'Drawer',
+    nameEn: 'Drawer',
     kind: 'Реальное время · живое демо',
     kindEn: 'Realtime · live demo',
     summary:
@@ -93,6 +79,7 @@ export const projects: Project[] = [
   {
     n: '04',
     name: 'Разбор багов React',
+    nameEn: 'React bug teardown',
     kind: 'Поддержка · демо «до / после»',
     kindEn: 'Support · before / after demo',
     summary:
@@ -107,6 +94,7 @@ export const projects: Project[] = [
   {
     n: '05',
     name: 'Quiz',
+    nameEn: 'Quiz',
     kind: 'Платформа тестирования',
     kindEn: 'Testing platform',
     summary:
@@ -120,6 +108,7 @@ export const projects: Project[] = [
   {
     n: '06',
     name: 'HR Connect API',
+    nameEn: 'HR Connect API',
     kind: 'Бекенд · документация онлайн',
     kindEn: 'Backend · docs online',
     summary:
@@ -131,16 +120,6 @@ export const projects: Project[] = [
     demo: 'https://olegg000.github.io/hr-connect-mock-backend/',
     shots: [`${base}shots/hr-swagger.webp`],
   },
-]
-
-export const marquee = [
-  `${base}shots/autocheck.webp`,
-  `${base}shots/quiz-catalog.webp`,
-  `${base}shots/bugfix-fix.webp`,
-  `${base}shots/drawer.webp`,
-  `${base}shots/hr-swagger.webp`,
-  `${base}shots/quiz-login.webp`,
-  `${base}shots/alice-oauth.webp`,
 ]
 
 export const metrics: Metric[] = [
@@ -169,8 +148,8 @@ export const metrics: Metric[] = [
     subEn: 'Next.js and FastAPI, three messenger bots, a twenty-section admin panel',
   },
   {
-    value: '6',
-    valueEn: '6',
+    value: String(projects.length),
+    valueEn: String(projects.length),
     label: 'Проектов, которые можно открыть и потрогать прямо сейчас',
     labelEn: 'Projects you can open and poke at right now',
     sub: 'Открытый код, живые демо, запуск одной командой',
@@ -181,9 +160,11 @@ export const metrics: Metric[] = [
 export const cases: Case[] = [
   {
     name: 'PrimeFlowers',
+    nameEn: 'PrimeFlowers',
     kind: 'Интернет-магазин под нагрузкой',
     metric: '80K+',
     metricLabel: 'строк кода',
+    metricLabelEn: 'lines of code',
     kindEn: 'Online shop under load',
     textEn:
       'A live flower-delivery shop: a Next.js storefront over FastAPI, PostgreSQL, Redis and Celery. Payments, stock, CRM, delivery, three messenger bots and a twenty-section admin panel. The job was not to look good — it was to survive the busiest day of the year without going down.',
@@ -191,9 +172,11 @@ export const cases: Case[] = [
   },
   {
     name: 'PGK FOOD',
+    nameEn: 'PGK FOOD',
     kind: 'Система питания колледжа',
     metric: '~1000',
     metricLabel: 'пользователей',
+    metricLabelEn: 'users',
     kindEn: 'Campus meal system',
     textEn:
       'Meal payments by QR pass that works with no internet: an ECDSA signature is verified on the spot, and double-spend protection catches a pass used twice. The Kotlin backend was load tested; the client is one codebase for Android and iOS.',
@@ -201,9 +184,11 @@ export const cases: Case[] = [
   },
   {
     name: 'Спасение legacy-кода',
+    nameEn: 'Rescuing legacy code',
     kind: 'Поддержка и багфиксы',
     metric: '~20',
     metricLabel: 'исправленных багов',
+    metricLabelEn: 'bugs fixed',
     kindEn: 'Support and bugfixes',
     textEn:
       'A project handed over as-is: enemy logic did not work, physics behaved unpredictably, performance decayed. The cause was a leak — twelve data structures allocated every frame and never freed.',
@@ -214,10 +199,12 @@ export const cases: Case[] = [
 export type Metric = { value: string; valueEn: string; label: string; labelEn: string; sub: string; subEn: string }
 export type Case = {
   name: string
+  nameEn: string
   kind: string
   kindEn: string
   metric: string
   metricLabel: string
+  metricLabelEn: string
   text: string
   textEn: string
 }

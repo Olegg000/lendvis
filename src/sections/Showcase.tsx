@@ -42,7 +42,7 @@ function StackItem({
   const scale = useTransform(progress, [from, to], [1, 1 - 0.04])
 
   return (
-    <div className="sticky top-20 md:top-24" style={{ zIndex: index + 1 }}>
+    <div className="top-24 [@media(min-width:768px)_and_(min-height:820px)]:sticky" style={{ zIndex: index + 1 }}>
       <motion.div
         style={still || !covered ? undefined : { scale, transformOrigin: 'top center' }}
         className="rounded-2xl border border-line bg-ground px-5 py-8 sm:px-8 sm:py-10"

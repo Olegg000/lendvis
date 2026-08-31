@@ -69,7 +69,7 @@ export function WorkCard({
       <div className="mb-5 flex flex-wrap items-baseline gap-x-6 gap-y-1">
         <span className="font-mono text-label text-white/30 tabular-nums">{String(index + 1).padStart(2, '0')}</span>
         <Heading className="text-[clamp(1.4rem,3vw,2.1rem)] leading-tight font-extralight tracking-[-0.03em]">
-          {project.name}
+          {lang === 'ru' ? project.name : project.nameEn}
         </Heading>
         <span className="font-mono text-micro text-faint uppercase">{kind}</span>
       </div>
@@ -92,13 +92,13 @@ export function WorkCard({
             <span className="h-2 w-2 rounded-full bg-white/12" />
             <span className="h-2 w-2 rounded-full bg-white/12" />
             <span className="h-2 w-2 rounded-full bg-white/12" />
-            <span className="mx-auto flex items-center gap-2 rounded-full bg-white/[0.05] px-3 py-1 font-mono text-[9.5px] text-faint">
+            <span className="mx-auto flex min-w-0 items-center gap-2 truncate rounded-full bg-white/[0.05] px-3 py-1 font-mono text-[9.5px] text-faint">
               {live && (
                 <span
                   className={`h-1.5 w-1.5 rounded-full ${ready ? 'bg-[#5ec08a]' : 'animate-pulse bg-white/45'}`}
                 />
               )}
-              {live && ready ? label.running : (project.demo ?? project.repo).replace(/^https?:\/\//, '').slice(0, 42)}
+              {live && ready ? label.running : (project.demo ?? project.repo).replace(/^https?:\/\//, '')}
             </span>
             {live && (
               <button
@@ -107,7 +107,7 @@ export function WorkCard({
                   setLive(false)
                   setReady(false)
                 }}
-                className="font-mono text-[9.5px] tracking-[0.14em] text-faint uppercase transition-colors hover:text-fg"
+                className="shrink-0 font-mono text-[9.5px] tracking-[0.14em] text-faint uppercase transition-colors hover:text-fg"
               >
                 {label.close}
               </button>
@@ -123,7 +123,7 @@ export function WorkCard({
               />
               <iframe
                 src={project.demo}
-                title={project.name}
+                title={lang === "ru" ? project.name : project.nameEn}
                 onLoad={() => setReady(true)}
                 className={`absolute inset-0 h-full w-full bg-white transition-opacity duration-700 ${
                   ready ? 'opacity-100' : 'opacity-0'

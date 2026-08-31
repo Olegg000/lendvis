@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { motion, useReducedMotion } from 'framer-motion'
 import { EASE } from '../lib/motion'
@@ -22,6 +22,14 @@ export function Directions() {
     if (!el) return
     el.scrollBy({ left: dir * (el.clientWidth * 0.8), behavior: still ? 'auto' : 'smooth' })
   }
+
+  // Без замера на монтировании и ресайзе правая стрелка врёт о конце ленты
+  useEffect(() => {
+    onScroll()
+    window.addEventListener('resize', onScroll, { passive: true })
+    return () => window.removeEventListener('resize', onScroll)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   const onScroll = () => {
     const el = track.current

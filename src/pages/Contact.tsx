@@ -69,10 +69,34 @@ export default function Contact() {
       <div className="relative z-10 mx-auto max-w-[1180px] px-5 pt-36 pb-24 sm:px-8 sm:pt-44">
         <SectionHead level={1} title={t.contact.title} accent={t.contact.titleAccent} lead={t.contact.lead} />
 
+        <div className="mt-6">
+          <Reveal>
+            <p className="font-mono text-micro text-faint uppercase">{t.contact.channels}</p>
+          </Reveal>
+          <div className="mt-5 grid gap-3 sm:grid-cols-2 md:grid-cols-3">
+            {channelsFor(lang).map((c, i) => (
+              <Reveal key={c.key} delay={i * 0.06}>
+                <a
+                  href={c.href}
+                  data-cursor={t.contact.fields[c.key]}
+                  className="group flex flex-col gap-2 rounded-xl border border-line px-5 py-4 transition-colors hover:border-white/35 hover:bg-white/[0.03]"
+                >
+                  <span className="font-mono text-micro text-faint uppercase">
+                    {t.contact.fields[c.key]}
+                  </span>
+                  <span className="text-[13.5px] text-soft transition-colors group-hover:text-fg">
+                    {c.value}
+                  </span>
+                </a>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+
         {/* Запись на созвон: выбор дня и слота собирает готовое сообщение */}
         <Reveal>
-          <div className="mt-6 rounded-2xl border border-line bg-white/[0.02] p-6 backdrop-blur-sm sm:p-9">
-            <h2 className="text-[clamp(1.2rem,2.6vw,1.6rem)] font-extralight tracking-[-0.02em]">{b.title}</h2>
+          <div className="mt-16 rounded-2xl border border-line bg-white/[0.02] p-6 backdrop-blur-sm sm:p-9">
+            <h2 className="text-[clamp(1.4rem,3vw,2rem)] font-extralight tracking-[-0.03em]">{b.title}</h2>
             <p className="mt-3 max-w-[52ch] text-[14px] leading-relaxed text-soft">{b.lead}</p>
 
             <p id="pick-day" className="mt-8 font-mono text-micro text-faint uppercase">{b.pickDay}</p>
@@ -121,9 +145,9 @@ export default function Contact() {
                 href={ready ? link : undefined}
                 data-cursor="telegram"
                 aria-disabled={!ready}
-                className={`inline-flex rounded-full px-7 py-3.5 font-mono text-[11px] tracking-[0.16em] uppercase transition-all duration-500 ${
+                className={`inline-flex rounded-full px-7 py-3.5 font-mono text-label uppercase transition-[background-color,border-color] duration-300 ${
                   ready
-                    ? 'bg-white text-ground hover:bg-white/85'
+                    ? 'border border-white bg-white text-ground hover:border-white/85 hover:bg-white/85'
                     : 'pointer-events-none border border-line text-white/25'
                 }`}
               >
@@ -138,33 +162,9 @@ export default function Contact() {
           </div>
         </Reveal>
 
-        <div className="mt-16">
-          <Reveal>
-            <p className="font-mono text-micro text-faint uppercase">{t.contact.channels}</p>
-          </Reveal>
-          <div className="mt-5 grid gap-3 sm:grid-cols-2 md:grid-cols-3">
-            {channelsFor(lang).map((c, i) => (
-              <Reveal key={c.key} delay={i * 0.06}>
-                <a
-                  href={c.href}
-                  data-cursor={t.contact.fields[c.key]}
-                  className="group flex flex-col gap-2 rounded-xl border border-line px-5 py-4 transition-colors hover:border-white/35 hover:bg-white/[0.03]"
-                >
-                  <span className="font-mono text-micro text-faint uppercase">
-                    {t.contact.fields[c.key]}
-                  </span>
-                  <span className="text-[13.5px] text-soft transition-colors group-hover:text-fg">
-                    {c.value}
-                  </span>
-                </a>
-              </Reveal>
-            ))}
-          </div>
-        </div>
-
         <div className="mt-20 border-t border-line pt-12">
           <Reveal>
-            <h2 className="text-[clamp(1.3rem,2.8vw,1.8rem)] font-extralight tracking-[-0.03em]">
+            <h2 className="text-[clamp(1.4rem,3vw,2rem)] font-extralight tracking-[-0.03em]">
               {t.contact.next.title}
             </h2>
           </Reveal>

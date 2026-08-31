@@ -218,6 +218,7 @@ export const copy = {
           'Отвечаем в рабочее время, обычно в тот же день — туда, откуда вы написали.',
           'Задаём вопросы по задаче: пока не поймём, что должно происходить в системе, сроки не называем.',
           'Присылаем письменно этапы, сроки и цену. Код, репозиторий и доступы ваши с первого дня.',
+          'Работаем по договору, NDA — по запросу. Оплата по этапам, с предоплатой за первый.',
         ],
       },
       booking: {
@@ -298,7 +299,7 @@ export const copy = {
       final: {
         title: 'Tell us what needs',
         titleAccent: 'building',
-        text: 'Two paragraphs is enough. Back comes a timeline, a couple of options, and a straight "this is not a job for us" when that is the honest answer.',
+        text: 'Two paragraphs is enough. Back comes a timeline, a couple of options, and a straight “this is not a job for us” when that is the honest answer.',
         cta: 'Start a project',
       },
     },
@@ -364,7 +365,7 @@ export const copy = {
           number: '05',
           name: 'Support and bug fixing',
           tagline: 'We hunt the cause, not the symptom.',
-          text: 'We walk into code written by someone else: no documentation, no author, one sentence to go on — "it crashes sometimes". We read it, reproduce it, and get to the root. In one project the root was a leak: twelve structures allocated every frame and never freed.',
+          text: 'We walk into code written by someone else: no documentation, no author, one sentence to go on — “it crashes sometimes”. We read it, reproduce it, and get to the root. In one project the root was a leak: twelve structures allocated every frame and never freed.',
           bullets: [
             'Legacy code with no documentation',
             'Memory leaks, race conditions, intermittent bugs',
@@ -393,7 +394,7 @@ export const copy = {
         steps: [
           { n: '01', name: 'We dig in', text: 'Half an hour on a call: what you have now, what should be there instead, which deadlines are hard and which are wishes. If code already exists, we read it before we quote.' },
           { n: '02', name: 'We quote in writing', text: 'Stages, timing and price come as text. The same note says plainly what is not worth building and where we are not the best fit.' },
-          { n: '03', name: 'We build in the open', text: 'The work stays visible: repository, staging, short updates. Not "we will show you when it is done" but "here is where it stands".' },
+          { n: '03', name: 'We build in the open', text: 'The work stays visible: repository, staging, short updates. Not “we will show you when it is done” but “here is where it stands”.' },
           { n: '04', name: 'We hand over and stay', text: 'The code, the repository and the access are yours from day one. After launch we stay on support for exactly as long as you need.' },
         ],
       },
@@ -430,7 +431,7 @@ export const copy = {
         'We came up through competitions, and it turned out to be a useful habit: you get the brief an hour before the deadline and everything still has to run — deployment included.',
         'Then came production. An 80,000-line online store: a Next.js storefront over a FastAPI backend, payments through YooKassa, inventory in MoySklad, CRM, Yandex Delivery. The job was not to make it pretty. The job was to get through the peak season without going down.',
         'A campus meal system for a thousand people: the QR pass works with no internet, an ECDSA signature is verified on the spot, and a double-spend guard catches replays. The client is one Kotlin Multiplatform codebase running on Android and iOS. Alongside that, smart contracts for companies we cannot name.',
-        'And a separate line of work: code written by someone else. Projects where the author left, the documentation never existed, and all anyone knows is that it "crashes sometimes". We go in on purpose.',
+        'And a separate line of work: code written by someone else. Projects where the author left, the documentation never existed, and all anyone knows is that it “crashes sometimes”. We go in on purpose.',
       ],
       principles: {
         title: 'What we hold to',
@@ -467,6 +468,7 @@ export const copy = {
           'We reply during working hours, usually the same day, on whichever channel you used.',
           'We ask about the problem: until we understand what the system has to do, we do not name a timeline.',
           'You get stages, timing and price in writing. The code, the repository and the access are yours from day one.',
+          'We work under contract, NDA on request. Payment goes stage by stage, with the first one paid upfront.',
         ],
       },
       booking: {

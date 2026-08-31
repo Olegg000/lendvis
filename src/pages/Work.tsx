@@ -1,5 +1,6 @@
 import { FinalCall, Reveal, SectionHead } from './Home'
 import { WorkCard } from '../components/WorkCard'
+import { Cases } from '../sections/Cases'
 import { useLang } from '../lib/i18n'
 import { projects } from '../data'
 
@@ -19,6 +20,21 @@ export default function Work() {
         {projects.map((p, i) => (
           <WorkCard key={p.n} project={p} index={i} headingLevel={2} />
         ))}
+      </div>
+
+      <div className="mt-24 border-t border-line pt-14">
+        <Reveal>
+          <h2 className="text-[clamp(1.4rem,3vw,2rem)] font-extralight tracking-[-0.03em]">
+            {lang === 'ru' ? 'Под' : 'Under'}
+            <span className="font-serif text-[1.08em] font-light italic tracking-normal">&nbsp;NDA</span>
+          </h2>
+        </Reveal>
+        <p className="mt-5 mb-8 max-w-[58ch] text-[14px] leading-relaxed text-faint">
+          {lang === 'ru'
+            ? 'Коммерческий код закрыт договорами, поэтому эти проекты рассказываем задачами и результатами.'
+            : 'Commercial code is under contract, so these projects are told as problems and outcomes.'}
+        </p>
+        <Cases />
       </div>
 
       <FinalCall />

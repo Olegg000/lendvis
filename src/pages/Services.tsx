@@ -40,8 +40,7 @@ export default function Services() {
           <h2 className="text-[clamp(1.4rem,3vw,2rem)] font-extralight tracking-[-0.03em]">
             {t.services.process.title}
             <span className="font-serif text-[1.08em] font-light italic tracking-normal">
-              {' '}
-              {t.services.process.titleAccent}
+              &nbsp;{t.services.process.titleAccent}
             </span>
           </h2>
         </Reveal>
@@ -65,8 +64,7 @@ export default function Services() {
           <h2 className="text-[clamp(1.4rem,3vw,2rem)] font-extralight tracking-[-0.03em]">
             {t.services.limits.title}
             <span className="font-serif text-[1.08em] font-light italic tracking-normal">
-              {' '}
-              {t.services.limits.titleAccent}
+              &nbsp;{t.services.limits.titleAccent}
             </span>
           </h2>
         </Reveal>

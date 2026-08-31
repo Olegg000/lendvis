@@ -40,7 +40,7 @@ export function Nav() {
               to={r.to}
               className={({ isActive }) =>
                 `font-mono text-[10.5px] tracking-[0.14em] uppercase transition-colors ${
-                  isActive ? 'text-fg' : 'text-faint hover:text-soft'
+                  isActive ? 'text-fg' : 'text-faint hover:text-fg'
                 }`
               }
             >
@@ -71,13 +71,13 @@ export function Nav() {
 export function MobileNav() {
   const { t } = useLang()
   return (
-    <nav className="fixed inset-x-0 bottom-0 z-50 flex justify-center gap-1 border-t border-line bg-ground/92 px-2 pt-1 pb-[calc(0.25rem+env(safe-area-inset-bottom))] backdrop-blur-md md:hidden">
+    <nav className="fixed inset-x-0 bottom-0 z-50 flex justify-center gap-0.5 border-t sm:gap-1 border-line bg-ground/92 px-1.5 pt-1 pb-[calc(0.25rem+env(safe-area-inset-bottom))] backdrop-blur-md md:hidden">
       {routes.map((r) => (
         <NavLink
           key={r.to}
           to={r.to}
           className={({ isActive }) =>
-            `flex min-h-[44px] items-center justify-center rounded-full px-2.5 font-mono text-[10px] tracking-[0.06em] whitespace-nowrap uppercase transition-colors ${
+            `flex min-h-[44px] items-center justify-center rounded-full px-1.5 font-mono text-[10px] tracking-normal whitespace-nowrap uppercase transition-colors sm:px-2.5 sm:tracking-[0.06em] ${
               isActive ? 'bg-white/10 text-fg' : 'text-faint'
             }`
           }
@@ -103,9 +103,9 @@ export function Footer() {
 
           <FooterCol title={f.columns.services}>
             {t.services.items.map((s) => (
-              <li key={s.number} className="text-[13.5px] text-faint">
+              <FooterLink key={s.number} to="/services">
                 {s.name}
-              </li>
+              </FooterLink>
             ))}
           </FooterCol>
 

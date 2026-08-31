@@ -183,6 +183,14 @@ export const copy = {
         'Система питания колледжа на тысячу человек: QR-пропуск работает без интернета, подпись ECDSA проверяется на месте, повторное гашение ловит защита от double-spend. Клиент — одна кодовая база Kotlin Multiplatform на Android и iOS. Плюс смарт-контракты для компаний, которых мы не назовём: NDA.',
         'И отдельная часть работы — чужой код. Проекты, где автор ушёл, документации не было изначально, а всё, что известно, — «иногда падает». Туда мы заходим добровольно.',
       ],
+      facts: [
+        { k: 'Где', v: 'Самара, работаем удалённо' },
+        { k: 'Языки', v: 'Русский и английский' },
+        { k: 'Направления', v: 'Веб, мобильные, блокчейн, бекенды, поддержка, 1С' },
+        { k: 'Открытый код', v: 'Семь репозиториев с живыми демо' },
+        { k: 'Ответ', v: 'В рабочее время, обычно в тот же день' },
+        { k: 'Условия', v: 'Договор и NDA, оплата по этапам' },
+      ],
       principles: {
         title: 'На чём стоим',
         items: [
@@ -432,6 +440,14 @@ export const copy = {
         'Then came production. An 80,000-line online store: a Next.js storefront over a FastAPI backend, payments through YooKassa, inventory in MoySklad, CRM, Yandex Delivery. The job was not to make it pretty. The job was to get through the peak season without going down.',
         'A campus meal system for a thousand people: the QR pass works with no internet, an ECDSA signature is verified on the spot, and a double-spend guard catches replays. The client is one Kotlin Multiplatform codebase running on Android and iOS. Alongside that, smart contracts for companies we cannot name.',
         'And a separate line of work: code written by someone else. Projects where the author left, the documentation never existed, and all anyone knows is that it “crashes sometimes”. We go in on purpose.',
+      ],
+      facts: [
+        { k: 'Where', v: 'Samara, working remotely' },
+        { k: 'Languages', v: 'Russian and English' },
+        { k: 'Fields', v: 'Web, mobile, blockchain, backends, support, 1C' },
+        { k: 'Open code', v: 'Seven repositories with live demos' },
+        { k: 'Reply', v: 'Working hours, usually the same day' },
+        { k: 'Terms', v: 'Contract and NDA, staged payments' },
       ],
       principles: {
         title: 'What we hold to',

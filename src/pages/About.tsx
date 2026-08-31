@@ -7,12 +7,26 @@ export default function About() {
     <section className="mx-auto max-w-[1180px] px-5 pt-36 pb-24 sm:px-8 sm:pt-44">
       <SectionHead level={1} title={t.about.title} accent={t.about.titleAccent} lead={t.about.lead} />
 
-      <div className="max-w-[62ch] space-y-6">
-        {t.about.paragraphs.map((p, i) => (
-          <Reveal key={i} delay={Math.min(i * 0.05, 0.2)}>
-            <p className="text-body text-soft">{p}</p>
-          </Reveal>
-        ))}
+      <div className="grid gap-x-16 gap-y-14 lg:grid-cols-[1fr_260px]">
+        <div className="max-w-[62ch] space-y-6">
+          {t.about.paragraphs.map((p, i) => (
+            <Reveal key={i} delay={Math.min(i * 0.05, 0.2)}>
+              <p className="text-body text-soft">{p}</p>
+            </Reveal>
+          ))}
+        </div>
+
+        {/* Правая половина экрана пустовала на четыре абзаца — здесь то, что клиент сканирует первым */}
+        <Reveal delay={0.1}>
+          <dl className="lg:sticky lg:top-28">
+            {t.about.facts.map((f) => (
+              <div key={f.k} className="border-t border-line py-4 first:border-t-0 first:pt-0 lg:first:border-t lg:first:pt-4">
+                <dt className="font-mono text-micro text-faint uppercase">{f.k}</dt>
+                <dd className="mt-1.5 text-[14px] leading-snug text-soft">{f.v}</dd>
+              </div>
+            ))}
+          </dl>
+        </Reveal>
       </div>
 
       <div className="mt-24 border-t border-line pt-14">

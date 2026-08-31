@@ -1,4 +1,6 @@
 import { Suspense, lazy, useEffect } from 'react'
+import { motion, useReducedMotion } from 'framer-motion'
+import { EASE } from './lib/motion'
 import { HashRouter, Navigate, Route, Routes, useLocation } from 'react-router-dom'
 import { LangProvider, useLang } from './lib/i18n'
 import { scrollToTop, useSmoothScroll } from './lib/smooth'
@@ -45,6 +47,26 @@ function PageMeta() {
   return null
 }
 
+/**
+ * Переход между страницами: содержимое проявляется снизу вверх.
+ * Без exit-анимации — иначе ленивый чанк успевает мигнуть пустотой на первом заходе.
+ */
+function PageFade({ children }: { children: React.ReactNode }) {
+  const { pathname } = useLocation()
+  const still = useReducedMotion()
+  if (still) return <>{children}</>
+  return (
+    <motion.div
+      key={pathname}
+      initial={{ opacity: 0, y: 14 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.55, ease: EASE }}
+    >
+      {children}
+    </motion.div>
+  )
+}
+
 function Shell() {
   useSmoothScroll()
   const { lang } = useLang()
@@ -63,6 +85,7 @@ function Shell() {
       <Nav />
       <PageMeta />
       <main id="main" tabIndex={-1}>
+        <PageFade>
         <Suspense fallback={<div className="min-h-[70vh]" />}>
         <Routes>
           <Route path="/" element={<Home />} />
@@ -73,6 +96,7 @@ function Shell() {
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
         </Suspense>
+        </PageFade>
       </main>
       <Footer />
       <MobileNav />

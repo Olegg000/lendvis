@@ -29,21 +29,6 @@ export default function About() {
         </div>
       </div>
 
-      <div className="mt-24 border-t border-line pt-14">
-        <Reveal>
-          <h2 className="text-[clamp(1.4rem,3vw,2rem)] font-extralight tracking-[-0.03em]">{t.about.awards.title}</h2>
-        </Reveal>
-        <dl className="mt-10">
-          {t.about.awards.items.map((a, i) => (
-            <Reveal key={a.name} delay={Math.min(i * 0.04, 0.2)}>
-              <div className="grid gap-x-10 gap-y-1 border-t border-line py-5 md:grid-cols-[1fr_1fr]">
-                <dt className="text-[15px] font-light">{a.name}</dt>
-                <dd className="font-mono text-[12px] leading-relaxed text-faint">{a.detail}</dd>
-              </div>
-            </Reveal>
-          ))}
-        </dl>
-      </div>
     </section>
   )
 }

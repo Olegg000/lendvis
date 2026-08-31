@@ -1,44 +1,153 @@
+import { useMemo, useState } from 'react'
 import { Reveal, SectionHead } from './Home'
 import { LightField } from '../components/Atmosphere'
+import { Dust } from '../components/Dust'
 import { useLang } from '../lib/i18n'
 
-const links = [
-  { key: 'telegram', value: '@nektoo1111', href: 'https://t.me/nektoo1111' },
+const TG = 'nektoo1111'
+const SLOTS = ['10:00', '12:00', '14:00', '16:00', '18:00']
+
+const channels = [
+  { key: 'telegram', value: '@' + TG, href: 'https://t.me/' + TG },
   { key: 'email', value: 'olegkovalik2013@yandex.ru', href: 'mailto:olegkovalik2013@yandex.ru' },
   { key: 'github', value: 'github.com/Olegg000', href: 'https://github.com/Olegg000' },
-  { key: 'kwork', value: 'olegworking55', href: 'https://kwork.ru/user/olegworking55' },
 ] as const
 
+/** Ближайшие рабочие дни — выходные под созвон не предлагаем. */
+function workdays(count: number) {
+  const out: Date[] = []
+  const d = new Date()
+  d.setHours(0, 0, 0, 0)
+  while (out.length < count) {
+    d.setDate(d.getDate() + 1)
+    if (d.getDay() !== 0 && d.getDay() !== 6) out.push(new Date(d))
+  }
+  return out
+}
+
 export default function Contact() {
-  const { t } = useLang()
+  const { t, lang } = useLang()
+  const b = t.contact.booking
+  const days = useMemo(() => workdays(6), [])
+  const [day, setDay] = useState<Date | null>(null)
+  const [time, setTime] = useState<string | null>(null)
+
+  const locale = lang === 'ru' ? 'ru-RU' : 'en-GB'
+  const dayLabel = (d: Date) => ({
+    weekday: d.toLocaleDateString(locale, { weekday: 'short' }),
+    date: d.toLocaleDateString(locale, { day: 'numeric', month: 'short' }),
+  })
+
+  const ready = day && time
+  const link = ready
+    ? `https://t.me/${TG}?text=${encodeURIComponent(
+        `${b.message} ${day.toLocaleDateString(locale, { day: 'numeric', month: 'long' })}, ${time} (UTC+4)?`,
+      )}`
+    : `https://t.me/${TG}`
+
   return (
     <section className="relative overflow-hidden">
-      <div className="pointer-events-none absolute inset-x-0 top-0 h-[70vh]">
-        <LightField intensity={0.7} />
+      <div className="pointer-events-none absolute inset-x-0 top-0 h-[75vh]">
+        <LightField intensity={0.75} />
+        <Dust density={0.7} />
       </div>
 
       <div className="relative z-10 mx-auto max-w-[1180px] px-5 pt-36 pb-24 sm:px-8 sm:pt-44">
         <SectionHead title={t.contact.title} accent={t.contact.titleAccent} lead={t.contact.lead} />
 
-        <dl className="mt-4 grid gap-x-10 gap-y-8 sm:grid-cols-2 lg:grid-cols-4">
-          {links.map((l, i) => (
-            <Reveal key={l.key} delay={i * 0.06}>
-              <dt className="font-mono text-[10px] tracking-[0.18em] text-faint uppercase">{t.contact.fields[l.key]}</dt>
-              <dd className="mt-2">
-                <a
-                  href={l.href}
-                  className="text-[15px] break-words transition-colors hover:text-sand"
-                  data-cursor={t.nav.cta}
-                >
-                  {l.value}
-                </a>
-              </dd>
-            </Reveal>
-          ))}
-        </dl>
+        {/* Запись на созвон: выбор дня и слота собирает готовое сообщение */}
+        <Reveal>
+          <div className="mt-6 rounded-2xl border border-line bg-white/[0.02] p-6 backdrop-blur-sm sm:p-9">
+            <h2 className="text-[clamp(1.2rem,2.6vw,1.6rem)] font-extralight tracking-[-0.02em]">{b.title}</h2>
+            <p className="mt-3 max-w-[52ch] text-[14px] leading-relaxed text-soft">{b.lead}</p>
 
-        <Reveal delay={0.24}>
-          <p className="mt-16 max-w-[54ch] border-t border-line pt-8 text-[14px] leading-relaxed text-faint">
+            <p className="mt-8 font-mono text-[10px] tracking-[0.18em] text-white/30 uppercase">{b.pickDay}</p>
+            <div className="mt-3 flex flex-wrap gap-2">
+              {days.map((d) => {
+                const l = dayLabel(d)
+                const active = day?.toDateString() === d.toDateString()
+                return (
+                  <button
+                    key={d.toISOString()}
+                    type="button"
+                    onClick={() => setDay(d)}
+                    className={`rounded-xl border px-4 py-3 text-left transition-colors ${
+                      active ? 'border-white/70 bg-white/10' : 'border-line hover:border-white/35'
+                    }`}
+                  >
+                    <span className="block font-mono text-[9.5px] tracking-[0.14em] text-faint uppercase">
+                      {l.weekday}
+                    </span>
+                    <span className="mt-1 block text-[14px] font-light">{l.date}</span>
+                  </button>
+                )
+              })}
+            </div>
+
+            <p className="mt-7 font-mono text-[10px] tracking-[0.18em] text-white/30 uppercase">{b.pickTime}</p>
+            <div className="mt-3 flex flex-wrap gap-2">
+              {SLOTS.map((s) => (
+                <button
+                  key={s}
+                  type="button"
+                  onClick={() => setTime(s)}
+                  className={`rounded-full border px-5 py-2.5 font-mono text-[12px] transition-colors ${
+                    time === s ? 'border-white/70 bg-white/10 text-fg' : 'border-line text-soft hover:border-white/35'
+                  }`}
+                >
+                  {s}
+                </button>
+              ))}
+            </div>
+
+            <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-3">
+              <a
+                href={link}
+                data-cursor="telegram"
+                aria-disabled={!ready}
+                className={`inline-flex rounded-full px-7 py-3.5 font-mono text-[11px] tracking-[0.16em] uppercase transition-all duration-500 ${
+                  ready
+                    ? 'bg-white text-ground hover:tracking-[0.22em]'
+                    : 'pointer-events-none border border-line text-white/25'
+                }`}
+              >
+                {b.confirm}
+              </a>
+              <span className="font-mono text-[11px] text-faint">
+                {ready
+                  ? `${b.chosen}: ${day.toLocaleDateString(locale, { day: 'numeric', month: 'long' })}, ${time}`
+                  : b.tz}
+              </span>
+            </div>
+          </div>
+        </Reveal>
+
+        <div className="mt-16">
+          <Reveal>
+            <p className="font-mono text-[10px] tracking-[0.18em] text-white/30 uppercase">{t.contact.channels}</p>
+          </Reveal>
+          <div className="mt-5 grid gap-3 sm:grid-cols-3">
+            {channels.map((c, i) => (
+              <Reveal key={c.key} delay={i * 0.06}>
+                <a
+                  href={c.href}
+                  data-cursor={t.contact.fields[c.key]}
+                  className="group flex items-baseline justify-between gap-4 rounded-xl border border-line px-5 py-4 transition-colors hover:border-white/35 hover:bg-white/[0.03]"
+                >
+                  <span className="font-mono text-[10px] tracking-[0.16em] text-faint uppercase">
+                    {t.contact.fields[c.key]}
+                  </span>
+                  <span className="text-[13.5px] break-all text-soft transition-colors group-hover:text-fg">
+                    {c.value}
+                  </span>
+                </a>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+
+        <Reveal delay={0.2}>
+          <p className="mt-14 max-w-[54ch] border-t border-line pt-8 text-[13.5px] leading-relaxed text-faint">
             {t.contact.note}
           </p>
         </Reveal>

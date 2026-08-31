@@ -14,12 +14,24 @@
 
   --font-ui: 'Inter', system-ui, -apple-system, sans-serif;
   --font-serif: 'Cormorant Garamond', Georgia, serif;
+  /* Кириллица своими гарнитурами: Onest и PT Serif рисовались под неё,
+     а не адаптировались из латиницы — поэтому наклон и пропорции честные */
+  --font-ui-ru: 'Onest', system-ui, sans-serif;
+  --font-serif-ru: 'PT Serif', Georgia, serif;
   --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
 }
 
 html {
   background: var(--color-ground);
   overflow-x: clip;
+}
+
+html[lang='ru'] body {
+  font-family: var(--font-ui-ru);
+}
+
+html[lang='ru'] .font-serif {
+  font-family: var(--font-serif-ru);
 }
 
 body {

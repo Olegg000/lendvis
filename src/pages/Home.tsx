@@ -1,7 +1,8 @@
 import { Link } from 'react-router-dom'
 import { motion, useReducedMotion } from 'framer-motion'
 import { Hero } from '../sections/Hero'
-import { WorkCard } from '../components/WorkCard'
+import { Showcase } from '../sections/Showcase'
+import { Directions } from '../sections/Directions'
 import { useLang } from '../lib/i18n'
 import { projects } from '../data'
 
@@ -68,27 +69,7 @@ export default function Home() {
           title={t.home.services.title}
           accent={t.home.services.titleAccent}
         />
-        <div>
-          {t.services.items.map((s, i) => (
-            <Reveal key={s.number} delay={i * 0.05}>
-              <div className="grid grid-cols-[36px_1fr] items-baseline gap-x-5 gap-y-2 border-t border-line py-7 md:grid-cols-[52px_300px_1fr] md:py-8">
-                <span className="font-mono text-[11px] text-faint">{s.number}</span>
-                <h3 className="text-[17px] leading-snug font-light md:text-[19px]">{s.name}</h3>
-                <p className="col-start-2 max-w-[52ch] text-[14px] leading-relaxed text-soft md:col-start-3">
-                  {s.tagline}
-                </p>
-              </div>
-            </Reveal>
-          ))}
-        </div>
-        <Reveal delay={0.1}>
-          <Link
-            to="/services"
-            className="mt-10 inline-block border-b border-white/30 pb-1 font-mono text-[10.5px] tracking-[0.16em] text-soft uppercase transition-colors hover:border-white/70 hover:text-fg"
-          >
-            {t.nav.services}
-          </Link>
-        </Reveal>
+        <Directions />
       </section>
 
       <section className="mx-auto max-w-[1180px] px-5 py-20 sm:px-8 sm:py-24">
@@ -97,9 +78,7 @@ export default function Home() {
           title={t.home.work.title}
           accent={t.home.work.titleAccent}
         />
-        {shown.map((p, i) => (
-          <WorkCard key={p.n} project={p} index={i} />
-        ))}
+        <Showcase projects={shown} />
         <Reveal delay={0.1}>
           <Link
             to="/work"

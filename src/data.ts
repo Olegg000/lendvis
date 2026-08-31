@@ -153,3 +153,15 @@ export const cases = [
     text: 'Проект достался в наследство: логика противников не работала, физика вела себя непредсказуемо, производительность падала. Причиной оказалась утечка — двенадцать структур создавались каждый кадр и никогда не освобождались.',
   },
 ]
+
+export type Direction = { key: string; shot?: string }
+
+/** Картинка к каждому направлению: где есть настоящий экран — берём его. */
+export const directionShots: Direction[] = [
+  { key: '01', shot: `${import.meta.env.BASE_URL}shots/quiz-catalog.png` },
+  { key: '02', shot: `${import.meta.env.BASE_URL}shots/aurora-1.png` },
+  { key: '03', shot: `${import.meta.env.BASE_URL}shots/blockchain.png` },
+  { key: '04', shot: `${import.meta.env.BASE_URL}shots/hr-swagger.png` },
+  { key: '05', shot: `${import.meta.env.BASE_URL}shots/bugfix-fix.png` },
+  { key: '06' },
+]

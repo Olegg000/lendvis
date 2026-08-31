@@ -1,4 +1,3 @@
-import { Link } from 'react-router-dom'
 import { Reveal, SectionHead } from './Home'
 import { useLang } from '../lib/i18n'
 
@@ -36,14 +35,6 @@ export default function Services() {
         </Reveal>
       ))}
 
-      <Reveal delay={0.1}>
-        <Link
-          to="/contact"
-          className="mt-14 inline-flex rounded-full border border-white/28 px-7 py-3.5 font-mono text-[11px] tracking-[0.16em] uppercase transition-colors hover:border-white/60 hover:bg-white/[0.06]"
-        >
-          {t.nav.cta}
-        </Link>
-      </Reveal>
     </section>
   )
 }

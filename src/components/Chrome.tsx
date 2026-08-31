@@ -30,7 +30,7 @@ export function Nav() {
     >
       <div className="mx-auto flex max-w-[1180px] items-center gap-5 px-5 py-5 sm:px-8">
         <NavLink to="/" className="text-[15px] font-light tracking-[0.02em] text-fg">
-          Лендвис
+          {lang === 'ru' ? 'Лендвис' : 'Lendvis'}
         </NavLink>
 
         <nav className="ml-auto hidden items-center gap-7 md:flex">
@@ -83,13 +83,78 @@ export function MobileNav() {
 }
 
 export function Footer() {
-  const { t } = useLang()
+  const { t, lang } = useLang()
+  const f = t.footer
   return (
-    <footer className="mx-auto max-w-[1180px] px-5 pt-16 pb-24 sm:px-8 md:pb-16">
-      <div className="flex flex-wrap items-center justify-between gap-4 border-t border-line pt-8">
-        <span className="text-[14px] font-light">{t.footer.line}</span>
-        <span className="font-mono text-[11px] text-faint">{t.footer.copyright}</span>
+    <footer className="mt-24 border-t border-line">
+      <div className="mx-auto max-w-[1180px] px-5 pt-16 pb-24 sm:px-8 md:pb-16">
+        <div className="grid gap-12 md:grid-cols-[1.4fr_1fr_1fr_1fr]">
+          <div>
+            <p className="text-[17px] font-light">{lang === 'ru' ? 'Лендвис' : 'Lendvis'}</p>
+            <p className="mt-4 max-w-[38ch] text-[13.5px] leading-relaxed text-faint">{f.blurb}</p>
+          </div>
+
+          <FooterCol title={f.columns.services}>
+            {t.services.items.map((s) => (
+              <FooterLink key={s.number} to="/services">
+                {s.name}
+              </FooterLink>
+            ))}
+          </FooterCol>
+
+          <FooterCol title={f.columns.studio}>
+            <FooterLink to="/about">{f.studioLinks.about}</FooterLink>
+            <FooterLink to="/work">{f.studioLinks.work}</FooterLink>
+            <FooterLink to="/services">{f.studioLinks.services}</FooterLink>
+          </FooterCol>
+
+          <FooterCol title={f.columns.contact}>
+            <FooterExternal href="https://t.me/nektoo1111">Telegram</FooterExternal>
+            <FooterExternal href="mailto:olegkovalik2013@yandex.ru">{t.contact.fields.email}</FooterExternal>
+            <FooterExternal href="https://github.com/Olegg000">GitHub</FooterExternal>
+          </FooterCol>
+        </div>
+
+        <ul className="mt-14 grid gap-2 border-t border-line pt-8 text-[12px] text-faint md:grid-cols-3">
+          <li>{f.meta.geo}</li>
+          <li>{f.meta.hours}</li>
+          <li>{f.meta.lang}</li>
+        </ul>
+
+        <div className="mt-8 flex flex-wrap items-center justify-between gap-3">
+          <span className="font-mono text-[11px] text-faint">{f.copyright}</span>
+          <span className="font-mono text-[11px] text-faint">{f.line}</span>
+        </div>
       </div>
     </footer>
+  )
+}
+
+function FooterCol({ title, children }: { title: string; children: React.ReactNode }) {
+  return (
+    <div>
+      <p className="font-mono text-[10px] tracking-[0.18em] text-white/30 uppercase">{title}</p>
+      <ul className="mt-4 space-y-2.5">{children}</ul>
+    </div>
+  )
+}
+
+function FooterLink({ to, children }: { to: string; children: React.ReactNode }) {
+  return (
+    <li>
+      <NavLink to={to} className="text-[13.5px] text-soft transition-colors hover:text-fg">
+        {children}
+      </NavLink>
+    </li>
+  )
+}
+
+function FooterExternal({ href, children }: { href: string; children: React.ReactNode }) {
+  return (
+    <li>
+      <a href={href} className="text-[13.5px] text-soft transition-colors hover:text-fg">
+        {children}
+      </a>
+    </li>
   )
 }

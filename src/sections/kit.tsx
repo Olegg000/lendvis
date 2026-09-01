@@ -18,13 +18,11 @@ export function Reveal({ children, delay = 0 }: { children: React.ReactNode; del
 }
 
 export function SectionHead({
-  eyebrow,
   title,
   accent,
   lead,
   level = 2,
 }: {
-  eyebrow?: string
   title: string
   accent?: string
   lead?: string
@@ -34,11 +32,6 @@ export function SectionHead({
   const H = level === 1 ? 'h1' : 'h2'
   return (
     <header className="mb-10">
-      {eyebrow && (
-        <Reveal>
-          <p className="eyebrow mb-5">{eyebrow}</p>
-        </Reveal>
-      )}
       <Reveal delay={0.06}>
         <H className="max-w-[20ch] text-[clamp(1.7rem,4vw,2.9rem)] leading-[1.1] font-extralight tracking-[-0.03em]">
           {title}
@@ -58,22 +51,14 @@ export function SectionHead({
 export function FinalCall() {
   const { t } = useLang()
   return (
-    <div className="relative mt-24 overflow-hidden rounded-3xl border border-line pt-28 pb-24 text-center">
-      {/* Закрывающий кадр: снимок сильно притемнён и уведён в палитру — он держит
-          настроение, но не спорит с текстом поверх. */}
-      <img
-        src={`${import.meta.env.BASE_URL}shots/final-bg.webp`}
-        alt=""
-        loading="lazy"
-        className="absolute inset-0 h-full w-full object-cover"
-        style={{ filter: 'grayscale(0.55) brightness(0.42) contrast(1.05)' }}
-      />
+    <div className="relative mt-24 overflow-hidden border-t border-line pt-24 pb-10 text-center">
+      {/* Сайт открывается по центру — пусть так же и закрывается, со своим светом */}
       <span
         aria-hidden="true"
-        className="pointer-events-none absolute inset-0"
+        className="pointer-events-none absolute inset-x-0 top-0 h-[320px]"
         style={{
           background:
-            'linear-gradient(rgba(5,5,7,0.72), rgba(5,5,7,0.82)), radial-gradient(ellipse 60% 70% at 50% 50%, rgba(216,179,132,0.12), transparent 72%)',
+            'radial-gradient(ellipse 55% 70% at 50% 62%, rgba(216,179,132,0.10), transparent 72%), radial-gradient(ellipse 38% 55% at 50% 45%, rgba(150,175,215,0.09), transparent 70%)',
         }}
       />
       <div className="relative">

@@ -9,6 +9,8 @@ import { useLang } from '../lib/i18n'
 import { projects } from '../data'
 
 const wrap = 'mx-auto max-w-[1180px] px-5 sm:px-8'
+/* Разделы идут плотно: воздух между ними Олег просил убрать. */
+const gap = 'pb-14 sm:pb-20'
 
 /** Ссылка вглубь: главная только знакомит, подробности живут на своей странице. */
 function More({ to, children }: { to: string; children: React.ReactNode }) {
@@ -36,14 +38,11 @@ export default function Home() {
     <>
       <Hero />
 
-      {/* Второй экран — кто это делает. Сводку сняли: под утверждением хватает ссылки,
-          подробности живут на своей странице. */}
-      <section className={`${wrap} pt-28 pb-20 sm:pt-36 sm:pb-24`}>
-        <Reveal>
-          <p className="eyebrow mb-8">
-            {t.about.title} {t.about.titleAccent}
-          </p>
-        </Reveal>
+      {/* Второй экран — кто это делает. Подробности живут на своей странице. */}
+      <section className={`${wrap} pt-24 ${gap} sm:pt-28`}>
+        <h2 className="sr-only">
+          {t.about.title} {t.about.titleAccent}
+        </h2>
         <ScrollLit
           text={t.about.lead}
           className="max-w-[24ch] text-[clamp(1.9rem,5vw,3.6rem)] leading-[1.12] font-extralight tracking-[-0.035em] text-fg"
@@ -51,9 +50,8 @@ export default function Home() {
         <More to="/about">{t.nav.about}</More>
       </section>
 
-      <section className={`${wrap} pb-20 sm:pb-24`}>
+      <section className={`${wrap} ${gap}`}>
         <SectionHead
-          eyebrow={t.home.services.eyebrow}
           title={t.home.services.title}
           accent={t.home.services.titleAccent}
           lead={t.home.services.lead}
@@ -61,22 +59,34 @@ export default function Home() {
         <Directions />
       </section>
 
-      <section className={`${wrap} pb-20 sm:pb-24`}>
-        <SectionHead
-          eyebrow={t.home.work.eyebrow}
-          title={t.home.work.title}
-          accent={t.home.work.titleAccent}
-          lead={t.home.work.lead}
+      {/* Витрина стоит на настоящем кадре: работы плывут поверх сцены, а не поверх пустоты */}
+      <section className={`relative ${gap} pt-16 sm:pt-20`}>
+        <img
+          src={`${import.meta.env.BASE_URL}shots/final-bg.webp`}
+          alt=""
+          loading="lazy"
+          className="absolute inset-0 h-full w-full object-cover"
+          style={{ filter: 'grayscale(0.55) brightness(0.52) contrast(1.06)' }}
         />
-        <Showcase projects={shown} />
-        <More to="/work">
-          {t.home.work.more} · {projects.length}
-        </More>
+        <span
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-0"
+          style={{
+            background:
+              'linear-gradient(to bottom, var(--color-ground) 0%, rgba(5,5,7,0.58) 20%, rgba(5,5,7,0.58) 78%, var(--color-ground) 100%)',
+          }}
+        />
+        <div className={`relative ${wrap}`}>
+          <SectionHead title={t.home.work.title} accent={t.home.work.titleAccent} lead={t.home.work.lead} />
+          <Showcase projects={shown} />
+          <More to="/work">
+            {t.home.work.more} · {projects.length}
+          </More>
+        </div>
       </section>
 
-      <section className={`${wrap} pb-20 sm:pb-24`}>
+      <section className={`${wrap} ${gap}`}>
         <SectionHead
-          eyebrow={t.home.numbers.eyebrow}
           title={t.home.numbers.title}
           accent={t.home.numbers.titleAccent}
           lead={t.home.numbers.lead}

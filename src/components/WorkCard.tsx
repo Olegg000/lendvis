@@ -147,7 +147,8 @@ export function WorkCard({
                 loading="lazy"
                 className={`block w-full object-cover object-top opacity-90 transition-all duration-[900ms] group-hover:scale-[1.015] group-hover:opacity-100 ${frameHeight}`}
               />
-              <div className="pointer-events-none absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-[#0d0f13] to-transparent" />
+              {/* Кадр обрезается по высоте рамки: без растворения нижняя строка выглядит как сбой отрисовки */}
+              <div className="pointer-events-none absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-[#0d0f13] via-[#0d0f13]/80 to-transparent" />
               {project.demo && (
                 <button
                   type="button"

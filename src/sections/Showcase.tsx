@@ -75,7 +75,7 @@ function StackItem({
     >
       <motion.div
         style={still || !covered || !stick ? undefined : { scale, transformOrigin: 'top center' }}
-        className="rounded-2xl border border-line bg-ground px-5 py-8 sm:px-8 sm:py-10"
+        className="rounded-2xl border border-line bg-ground px-5 py-7 sm:px-8 sm:py-8"
       >
         {children}
       </motion.div>

@@ -45,6 +45,13 @@ export function Hero() {
     <section ref={ref} className="relative flex min-h-[94svh] items-center justify-center overflow-hidden px-5 sm:px-8">
       <LightField />
       <Dust />
+      {/* Свет обрывался ровной линией на нижней кромке секции — видно было, где кончается
+          холст. Гасим его в фон страницы, чтобы границы не читалось. */}
+      <span
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-x-0 bottom-0 z-[1] h-40"
+        style={{ background: 'linear-gradient(to bottom, transparent, var(--color-ground) 92%)' }}
+      />
 
       <motion.div
         style={still ? undefined : { opacity, scale, y: lift }}
@@ -55,7 +62,7 @@ export function Hero() {
           initial={still ? false : { opacity: 0, y: 8 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1.2, delay: 0.15, ease: EASE }}
-          className="mb-3.5 font-mono text-[13px] tracking-[0.52em] text-fg uppercase [text-indent:0.52em]"
+          className="wordmark mb-3.5 text-[15px] tracking-[0.46em] text-fg uppercase [text-indent:0.46em]"
         >
           {lang === 'ru' ? 'Лендвис' : 'Lendvis'}
         </motion.p>
@@ -102,12 +109,6 @@ export function Hero() {
             className="inline-flex items-center rounded-full border border-white/25 px-8 py-3.5 font-mono text-label text-fg uppercase transition-[background-color,border-color,transform] duration-300 ease-out hover:border-white/70 hover:bg-white/[0.12] active:scale-[0.98]"
           >
             {h.ctaPrimary}
-          </Link>
-          <Link
-            to="/work"
-            className="inline-flex items-center border-b border-white/25 pb-1 font-mono text-label text-soft uppercase transition-colors duration-300 hover:border-white/70 hover:text-fg"
-          >
-            {t.nav.work}
           </Link>
         </motion.div>
       </motion.div>

@@ -29,6 +29,37 @@ export function Directions() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
+  // Ленту надо уметь тянуть: у обычной мыши нет горизонтального колеса,
+  // а стрелки внизу замечают не все.
+  const drag = useRef({ active: false, startX: 0, startLeft: 0, moved: 0 })
+
+  const onDown = (e: React.PointerEvent) => {
+    const el = track.current
+    if (!el || e.pointerType === 'touch') return
+    drag.current = { active: true, startX: e.clientX, startLeft: el.scrollLeft, moved: 0 }
+  }
+
+  const onMove = (e: React.PointerEvent) => {
+    const el = track.current
+    if (!el || !drag.current.active) return
+    const dx = e.clientX - drag.current.startX
+    drag.current.moved = Math.max(drag.current.moved, Math.abs(dx))
+    el.scrollLeft = drag.current.startLeft - dx
+  }
+
+  const onUp = () => {
+    drag.current.active = false
+  }
+
+  // После протяжки клик по карточке не должен уводить на страницу услуг
+  const onClickCapture = (e: React.MouseEvent) => {
+    if (drag.current.moved > 6) {
+      e.preventDefault()
+      e.stopPropagation()
+      drag.current.moved = 0
+    }
+  }
+
   const onScroll = () => {
     const el = track.current
     if (!el) return
@@ -40,7 +71,13 @@ export function Directions() {
       <div
         ref={track}
         onScroll={onScroll}
-        className="-mx-5 flex snap-x snap-mandatory gap-4 overflow-x-auto px-5 pb-4 sm:-mx-8 sm:px-8 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+        data-lenis-prevent
+        onPointerDown={onDown}
+        onPointerMove={onMove}
+        onPointerUp={onUp}
+        onPointerLeave={onUp}
+        onClickCapture={onClickCapture}
+        className="-mx-5 flex cursor-grab snap-x snap-mandatory gap-4 overflow-x-auto px-5 pb-4 select-none active:cursor-grabbing sm:-mx-8 sm:px-8 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
       >
         {t.services.items.map((s, i) => {
           return (
@@ -57,7 +94,7 @@ export function Directions() {
                 data-cursor={t.nav.services.toLowerCase()}
                 className="group flex h-full flex-col overflow-hidden rounded-xl border border-line bg-panel transition-colors duration-500 hover:border-white/30"
               >
-                <div className="relative aspect-[4/3] overflow-hidden bg-[#0d0f13]">
+                <div className="relative aspect-[16/11] overflow-hidden bg-[#0d0f13]">
                   <DirectionCover n={s.number} />
                   <span className="pointer-events-none absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-panel via-panel/70 to-transparent" />
                   <span className="absolute top-3 left-5 font-mono text-micro text-white/55">{s.number}</span>

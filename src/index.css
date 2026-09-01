@@ -76,6 +76,37 @@ body {
   color: var(--color-sand);
 }
 
+/* Имя студии — всегда одной гарнитурой. Onest рисует и кириллицу, и латиницу,
+   поэтому «Лендвис» и «Lendvis» читаются как один знак, а не как два разных. */
+/* Блик, медленно идущий по цифре. Ничего не сообщает о данных — просто не даёт
+   числу выглядеть мёртвой картинкой. */
+@keyframes sheen-pass {
+  0%,
+  12% {
+    background-position: 100% 0;
+  }
+  88%,
+  100% {
+    background-position: 0 0;
+  }
+}
+
+.sheen {
+  animation: sheen-pass 9s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sheen {
+    animation: none;
+  }
+}
+
+.wordmark {
+  font-family: 'Onest', system-ui, sans-serif;
+  font-weight: 400;
+  letter-spacing: -0.005em;
+}
+
 ::selection {
   background: rgba(255, 255, 255, 0.9);
   color: #050507;

@@ -16,10 +16,13 @@ export function WorkCard({
   project,
   index,
   headingLevel = 3,
+  compact = false,
 }: {
   project: Project
   index: number
   headingLevel?: 2 | 3
+  /** На главной карточка знакомит, а не рассказывает: описание в три строки. */
+  compact?: boolean
 }) {
   const Heading = headingLevel === 2 ? 'h2' : 'h3'
   const { lang } = useLang()
@@ -76,7 +79,7 @@ export function WorkCard({
         <span className="font-mono text-micro text-faint uppercase">{kind}</span>
       </div>
 
-      <p className="mb-7 max-w-[62ch] text-body text-soft">{summary}</p>
+      <p className={`mb-7 max-w-[62ch] text-body text-soft ${compact ? 'line-clamp-3' : ''}`}>{summary}</p>
 
       {project.phone ? (
         <div className={`flex items-center justify-start gap-4 overflow-x-auto rounded-xl border border-line bg-[#0d0f13] px-6 py-7 snap-x snap-mandatory sm:justify-center sm:gap-7 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden ${frameHeight}`}>

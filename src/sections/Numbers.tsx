@@ -21,12 +21,16 @@ export function Numbers() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-80px' }}
           transition={{ duration: 0.9, delay: Math.min(i * 0.06, 0.24), ease: EASE }}
-          className="group grid items-baseline gap-x-12 gap-y-3 border-b border-line py-9 md:grid-cols-[clamp(240px,26vw,380px)_minmax(0,1fr)]"
+          className="group grid items-center gap-x-12 gap-y-4 border-b border-line py-10 md:grid-cols-[clamp(240px,26vw,380px)_minmax(0,1fr)]"
         >
           <dt className="relative">
             <span
-              className="block bg-clip-text font-serif text-[clamp(3.4rem,11vw,8rem)] leading-[0.86] font-light text-transparent italic tabular-nums transition-[filter] duration-700 group-hover:brightness-110"
-              style={{ backgroundImage: 'linear-gradient(96deg, #ffffff 8%, #f0e3d2 46%, #d8b384 100%)' }}
+              className="sheen block bg-clip-text font-serif text-[clamp(3.4rem,11vw,8rem)] leading-[0.86] font-light text-transparent italic tabular-nums transition-[filter] duration-700 group-hover:brightness-110"
+              style={{
+                backgroundImage:
+                  'linear-gradient(96deg, #ffffff 4%, #f0e3d2 28%, #ffffff 44%, #f0e3d2 62%, #d8b384 100%)',
+                backgroundSize: '220% 100%',
+              }}
             >
               <CountUp value={lang === 'ru' ? m.value : m.valueEn} />
             </span>
@@ -37,7 +41,7 @@ export function Numbers() {
             />
           </dt>
 
-          <dd className="md:pb-3">
+          <dd>
             <p className="max-w-[34ch] text-[clamp(1rem,1.6vw,1.15rem)] leading-snug text-fg">
               {lang === 'ru' ? m.label : m.labelEn}
             </p>

@@ -132,7 +132,7 @@ export function DirectionCover({ n }: { n: string }) {
       <div className="relative flex h-full items-center justify-center">
         <DirectionIcon
           n={n}
-          className="h-[38%] w-[38%] text-white/70 transition-all duration-[900ms] group-hover:scale-[1.06] group-hover:text-white/90"
+          className="h-[62%] w-[62%] text-white/75 transition-all duration-[900ms] group-hover:scale-[1.05] group-hover:text-white"
         />
       </div>
     </div>

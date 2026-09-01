@@ -41,7 +41,7 @@ export function Showcase({ projects }: { projects: Project[] }) {
     <div ref={wrap}>
       {projects.map((p, i) => (
         <StackItem key={p.n} index={i} total={projects.length} progress={scrollYProgress} stick={canStick}>
-          <WorkCard project={p} index={i} />
+          <WorkCard project={p} index={i} compact />
         </StackItem>
       ))}
     </div>

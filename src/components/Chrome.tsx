@@ -29,7 +29,7 @@ export function Nav() {
       }`}
     >
       <div className="mx-auto flex max-w-[1180px] items-center gap-5 px-5 py-5 sm:px-8">
-        <NavLink to="/" className="text-[15px] font-light tracking-[0.02em] text-fg">
+        <NavLink to="/" className="wordmark text-[15px] text-fg">
           {lang === 'ru' ? 'Лендвис' : 'Lendvis'}
         </NavLink>
 
@@ -93,21 +93,13 @@ export function Footer() {
   const { t, lang } = useLang()
   const f = t.footer
   return (
-    <footer className="mt-24 border-t border-line">
+    <footer className="mt-16 border-t border-line">
       <div className="mx-auto max-w-[1180px] px-5 pt-16 pb-24 sm:px-8 md:pb-16">
-        <div className="grid gap-12 md:grid-cols-[1.4fr_1fr_1fr_1fr]">
+        <div className="grid gap-12 md:grid-cols-[1.7fr_1fr_1fr]">
           <div>
-            <p className="text-[17px] font-light">{lang === 'ru' ? 'Лендвис' : 'Lendvis'}</p>
+            <p className="wordmark text-[17px]">{lang === 'ru' ? 'Лендвис' : 'Lendvis'}</p>
             <p className="mt-4 max-w-[38ch] text-[13.5px] leading-relaxed text-faint">{f.blurb}</p>
           </div>
-
-          <FooterCol title={f.columns.services}>
-            {t.services.items.map((s) => (
-              <FooterLink key={s.number} to="/services">
-                {s.name}
-              </FooterLink>
-            ))}
-          </FooterCol>
 
           <FooterCol title={f.columns.studio}>
             <FooterLink to="/about">{f.studioLinks.about}</FooterLink>
@@ -123,12 +115,9 @@ export function Footer() {
           </FooterCol>
         </div>
 
-        <ul className="mt-14 grid gap-2 border-t border-line pt-8 text-[12px] text-faint md:grid-cols-2">
-          <li>{f.meta.hours}</li>
-          <li>{f.meta.lang}</li>
-        </ul>
-
-        <div className="mt-8 flex flex-wrap items-center justify-between gap-3">
+        {/* Был второй ярус из служебных строк — схлопнут в одну, где всё конкретно:
+            часовой пояс говорит клиенту, когда мы на связи, а город сам по себе — нет. */}
+        <div className="mt-14 flex flex-wrap items-center justify-between gap-x-8 gap-y-3 border-t border-line pt-8">
           <span className="font-mono text-[11px] text-faint">{f.copyright}</span>
           <span className="font-mono text-[11px] text-faint">{f.line}</span>
         </div>

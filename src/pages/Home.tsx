@@ -36,7 +36,22 @@ export default function Home() {
     <>
       <Hero />
 
+      {/* Второй экран — кто это делает. Сводку сняли: под утверждением хватает ссылки,
+          подробности живут на своей странице. */}
       <section className={`${wrap} pt-28 pb-20 sm:pt-36 sm:pb-24`}>
+        <Reveal>
+          <p className="eyebrow mb-8">
+            {t.about.title} {t.about.titleAccent}
+          </p>
+        </Reveal>
+        <ScrollLit
+          text={t.about.lead}
+          className="max-w-[24ch] text-[clamp(1.9rem,5vw,3.6rem)] leading-[1.12] font-extralight tracking-[-0.035em] text-fg"
+        />
+        <More to="/about">{t.nav.about}</More>
+      </section>
+
+      <section className={`${wrap} pb-20 sm:pb-24`}>
         <SectionHead
           eyebrow={t.home.services.eyebrow}
           title={t.home.services.title}
@@ -69,30 +84,7 @@ export default function Home() {
         <Numbers />
       </section>
 
-      {/* Студия одним экраном: лид и сводка, остальное — на своей странице */}
-      <section className={`${wrap} pb-20 sm:pb-24`}>
-        <Reveal>
-          <p className="eyebrow mb-8">
-            {t.about.title} {t.about.titleAccent}
-          </p>
-        </Reveal>
-        {/* Крупное утверждение, которое разгорается по мере прокрутки — вместо сетки подписей */}
-        <ScrollLit
-          text={t.about.lead}
-          className="max-w-[24ch] text-[clamp(1.9rem,5vw,3.6rem)] leading-[1.12] font-extralight tracking-[-0.035em] text-fg"
-        />
-        <dl className="mt-16 flex flex-wrap gap-x-14 gap-y-6 border-t border-line pt-8">
-          {t.about.facts.map((f) => (
-            <div key={f.k}>
-              <dt className="font-mono text-micro text-faint uppercase">{f.k}</dt>
-              <dd className="mt-1.5 text-[13.5px] leading-snug text-soft">{f.v}</dd>
-            </div>
-          ))}
-        </dl>
-        <More to="/about">{t.nav.about}</More>
-      </section>
-
-      <section className={`${wrap} pb-24`}>
+      <section className={`${wrap} pb-4`}>
         <FinalCall />
       </section>
     </>

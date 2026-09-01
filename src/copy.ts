@@ -17,7 +17,7 @@ export const copy = {
         titleItalic: 'работает',
         titleAfter: 'в проде',
         subtitle:
-          'Сайты, мобильные приложения, блокчейн, бекенды. От архитектуры до боевого сервера — и дальше, пока проект живёт.',
+          'Разрабатываем программное обеспечение под задачу: от архитектуры до боевого сервера — и дальше, пока проект живёт.',
         tagline: 'Разработка программного обеспечения',
         ctaPrimary: 'Расскажите о задаче',
         scroll: 'Прокрутите',
@@ -244,7 +244,7 @@ export const copy = {
     },
 
     footer: {
-      line: 'Студия разработки · Самара · работаем удалённо',
+      line: 'Самара, UTC+4 · работаем удалённо · отвечаем обычно в тот же день',
       copyright: '© 2026 Лендвис',
       blurb: 'Проектируем и пишем системы, которые работают в бою: от витрины до смарт-контракта. Берём проект целиком или подключаемся к живому коду.',
       columns: {
@@ -253,10 +253,6 @@ export const copy = {
         contact: 'Связь',
       },
       studioLinks: { about: 'О студии', work: 'Проекты', services: 'Услуги', contact: 'Контакты' },
-      meta: {
-        hours: 'Отвечаем в рабочее время, обычно в тот же день',
-        lang: 'Ведём проекты на русском и английском',
-      },
     },
   },
 
@@ -276,7 +272,7 @@ export const copy = {
         titleItalic: 'works',
         titleAfter: 'in production',
         subtitle:
-          'Web, mobile, blockchain, backends. From architecture to the live server — and after that, for as long as the project runs.',
+          'We build software around the problem: from architecture to the live server — and after that, for as long as the project runs.',
         tagline: 'Software development',
         ctaPrimary: 'Tell us about your project',
         scroll: 'Scroll',
@@ -503,7 +499,7 @@ export const copy = {
     },
 
     footer: {
-      line: 'Development studio · Samara · working remotely',
+      line: 'Samara, UTC+4 · working remotely · usually a same-day reply',
       copyright: '© 2026 Lendvis',
       blurb: 'We design and build systems that hold up in production — from a storefront to a smart contract. We take a project whole, or plug into the code you already have.',
       columns: {
@@ -512,10 +508,6 @@ export const copy = {
         contact: 'Get in touch',
       },
       studioLinks: { about: 'About', work: 'Work', services: 'Services', contact: 'Contact' },
-      meta: {
-        hours: 'We reply during working hours, usually the same day',
-        lang: 'We run projects in Russian and English',
-      },
     },
   },
 }

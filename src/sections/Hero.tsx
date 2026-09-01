@@ -122,7 +122,7 @@ export function Hero() {
         initial={still ? false : { opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 1.4, delay: 1.9 }}
-        className="h-12 w-px overflow-hidden bg-white/12"
+        className="relative h-12 w-px overflow-hidden bg-white/12"
       >
         <motion.span
           className="absolute inset-x-0 top-0 block h-5 bg-gradient-to-b from-transparent via-white/85 to-transparent"

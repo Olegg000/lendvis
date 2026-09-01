@@ -98,7 +98,7 @@ export function Directions() {
 
                 <div className="flex-1 px-5 pt-4 pb-6">
                   <h3 className="text-[16.5px] leading-snug font-light">{s.name}</h3>
-                  <p className="mt-2 font-serif text-[16px] leading-snug text-soft italic">{s.tagline}</p>
+                  <p className="mt-2 line-clamp-1 font-serif text-[16px] leading-snug text-soft italic">{s.tagline}</p>
                 </div>
               </Link>
             </motion.div>

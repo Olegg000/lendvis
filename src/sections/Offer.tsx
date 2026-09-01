@@ -1,3 +1,4 @@
+import { DirectionIcon } from '../components/DirectionIcon'
 import { Reveal } from './kit'
 import { useLang } from '../lib/i18n'
 
@@ -13,8 +14,11 @@ export function ServiceList() {
     <>
       {t.services.items.map((s, i) => (
         <Reveal key={s.number} delay={Math.min(i * 0.05, 0.2)}>
-          <article className="grid gap-x-10 gap-y-5 border-t border-line py-12 md:grid-cols-[52px_1fr_1fr]">
-            <span className="font-mono text-[11px] text-faint">{s.number}</span>
+          <article className="grid gap-x-10 gap-y-5 border-t border-line py-12 md:grid-cols-[84px_1fr_1fr]">
+            <div className="flex items-start gap-4 md:block">
+              <DirectionIcon n={s.number} className="h-14 w-14 text-soft md:h-[72px] md:w-[72px]" />
+              <span className="mt-0 block font-mono text-[11px] text-faint md:mt-5">{s.number}</span>
+            </div>
 
             <div>
               <h3 className="text-[clamp(1.3rem,2.6vw,1.7rem)] leading-tight font-light tracking-[-0.02em]">

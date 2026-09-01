@@ -3,10 +3,10 @@ import { Hero } from '../sections/Hero'
 import { Showcase } from '../sections/Showcase'
 import { Directions } from '../sections/Directions'
 import { FinalCall, Reveal, SectionHead } from '../sections/kit'
-import { ContactBlock } from '../sections/ContactBlock'
-import { CountUp } from '../components/CountUp'
+import { Numbers } from '../sections/Numbers'
+import { ScrollLit } from '../components/ScrollLit'
 import { useLang } from '../lib/i18n'
-import { metrics, projects } from '../data'
+import { projects } from '../data'
 
 const wrap = 'mx-auto max-w-[1180px] px-5 sm:px-8'
 
@@ -29,7 +29,7 @@ function More({ to, children }: { to: string; children: React.ReactNode }) {
  * Подробности про услуги, проекты и студию живут на отдельных страницах.
  */
 export default function Home() {
-  const { t, lang } = useLang()
+  const { t } = useLang()
   const shown = projects.slice(0, 3)
 
   return (
@@ -66,39 +66,30 @@ export default function Home() {
           accent={t.home.numbers.titleAccent}
           lead={t.home.numbers.lead}
         />
-        <dl className="grid gap-x-10 gap-y-12 border-t border-line pt-12 sm:grid-cols-2 lg:grid-cols-4">
-          {metrics.map((m, i) => (
-            <Reveal key={m.label} delay={Math.min(i * 0.07, 0.28)}>
-              <dt className="font-serif text-[clamp(2.4rem,6vw,4rem)] leading-none font-light text-fg italic tabular-nums">
-                <CountUp value={lang === 'ru' ? m.value : m.valueEn} />
-              </dt>
-              <dd className="mt-4 text-[14px] leading-snug text-soft">{lang === 'ru' ? m.label : m.labelEn}</dd>
-              <dd className="mt-2 font-mono text-micro leading-relaxed text-faint">
-                {lang === 'ru' ? m.sub : m.subEn}
-              </dd>
-            </Reveal>
-          ))}
-        </dl>
+        <Numbers />
       </section>
 
       {/* Студия одним экраном: лид и сводка, остальное — на своей странице */}
       <section className={`${wrap} pb-20 sm:pb-24`}>
-        <SectionHead title={t.about.title} accent={t.about.titleAccent} lead={t.about.lead} />
-        <dl className="grid gap-x-10 gap-y-8 border-t border-line pt-12 sm:grid-cols-2 lg:grid-cols-3">
-          {t.about.facts.map((f, i) => (
-            <Reveal key={f.k} delay={Math.min(i * 0.06, 0.24)}>
+        <Reveal>
+          <p className="eyebrow mb-8">
+            {t.about.title} {t.about.titleAccent}
+          </p>
+        </Reveal>
+        {/* Крупное утверждение, которое разгорается по мере прокрутки — вместо сетки подписей */}
+        <ScrollLit
+          text={t.about.lead}
+          className="max-w-[24ch] text-[clamp(1.9rem,5vw,3.6rem)] leading-[1.12] font-extralight tracking-[-0.035em] text-fg"
+        />
+        <dl className="mt-16 flex flex-wrap gap-x-14 gap-y-6 border-t border-line pt-8">
+          {t.about.facts.map((f) => (
+            <div key={f.k}>
               <dt className="font-mono text-micro text-faint uppercase">{f.k}</dt>
-              <dd className="mt-2 text-[14.5px] leading-snug text-soft">{f.v}</dd>
-            </Reveal>
+              <dd className="mt-1.5 text-[13.5px] leading-snug text-soft">{f.v}</dd>
+            </div>
           ))}
         </dl>
         <More to="/about">{t.nav.about}</More>
-      </section>
-
-      {/* Записаться можно не уходя с главной — это и есть её работа */}
-      <section className={`${wrap} pb-20 sm:pb-24`}>
-        <SectionHead title={t.contact.title} accent={t.contact.titleAccent} lead={t.contact.lead} />
-        <ContactBlock />
       </section>
 
       <section className={`${wrap} pb-24`}>

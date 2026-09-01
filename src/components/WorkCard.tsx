@@ -72,14 +72,18 @@ export function WorkCard({
       className="group relative"
     >
       <div className="mb-5 flex flex-wrap items-baseline gap-x-6 gap-y-1">
-        <span className="font-mono text-label text-white/30 tabular-nums">{String(index + 1).padStart(2, '0')}</span>
+        {!compact && (
+          <span className="font-mono text-label text-white/30 tabular-nums">
+            {String(index + 1).padStart(2, '0')}
+          </span>
+        )}
         <Heading className="text-[clamp(1.4rem,3vw,2.1rem)] leading-tight font-extralight tracking-[-0.03em]">
           {lang === 'ru' ? project.name : project.nameEn}
         </Heading>
         <span className="font-mono text-micro text-faint uppercase">{kind}</span>
       </div>
 
-      <p className={`mb-7 max-w-[62ch] text-body text-soft ${compact ? 'line-clamp-3' : ''}`}>{summary}</p>
+      {!compact && <p className="mb-7 max-w-[62ch] text-body text-soft">{summary}</p>}
 
       {project.phone ? (
         <div className={`flex items-center justify-start gap-4 overflow-x-auto rounded-xl border border-line bg-[#0d0f13] px-6 py-7 snap-x snap-mandatory sm:justify-center sm:gap-7 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden ${frameHeight}`}>
@@ -170,7 +174,7 @@ export function WorkCard({
         </motion.div>
       )}
 
-      <div className="mt-5 flex flex-wrap items-center justify-between gap-4">
+      <div className={`mt-5 flex-wrap items-center justify-between gap-4 ${compact ? 'hidden' : 'flex'}`}>
         <p className="font-mono text-micro text-faint">{project.stack.slice(0, 4).join(' · ')}</p>
         <div className="flex items-center gap-6">
           {project.demo && (

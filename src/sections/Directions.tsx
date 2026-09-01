@@ -13,12 +13,15 @@ import { useLang } from '../lib/i18n'
 /** Лёгкий сбив по вертикали, чтобы строка не выглядела линейкой. Фиксированный, не случайный. */
 const DRIFT = [0, 16, 6, 22, 10, 18]
 
-const SPEED = 0.032 // пикселей на миллисекунду
+/* Быстрее прежнего в два с половиной раза. Выше — имена перестают читаться,
+   и раздел из содержательного становится чисто декоративным. */
+const SPEED = 0.082 // пикселей на миллисекунду
 
 export function Directions() {
   const { t } = useLang()
   const still = useReducedMotion()
-  const track = useRef<HTMLDivElement>(null)
+  const top = useRef<HTMLDivElement>(null)
+  const bottom = useRef<HTMLDivElement>(null)
   const paused = useRef(false)
   const shift = useRef(0)
 
@@ -30,12 +33,19 @@ export function Directions() {
     const step = (now: number) => {
       const dt = Math.min(now - last, 64) // после возврата на вкладку не прыгаем
       last = now
-      const el = track.current
-      if (el && !paused.current) {
-        const half = el.scrollWidth / 2
+      if (!paused.current) {
         shift.current += dt * SPEED
-        if (half > 0 && shift.current >= half) shift.current -= half
-        el.style.transform = `translate3d(${-shift.current}px, 0, 0)`
+        for (const el of [top.current, bottom.current]) {
+          if (!el) continue
+          const half = el.scrollWidth / 2
+          if (half <= 0) continue
+          const x = shift.current % half
+          // нижняя лента идёт навстречу верхней
+          el.style.transform =
+            el === top.current
+              ? `translate3d(${-x}px, 0, 0)`
+              : `translate3d(${x - half}px, 0, 0)`
+        }
       }
       raf = requestAnimationFrame(step)
     }
@@ -51,13 +61,44 @@ export function Directions() {
     paused.current = false
   }
 
-  const items = [...t.services.items, ...t.services.items]
+  /* Вторая лента начинается с середины списка — иначе две строки шли бы близнецами */
+  const order = t.services.items
+  const shifted = [...order.slice(3), ...order.slice(0, 3)]
+
+  const Belt = ({ list, innerRef }: { list: typeof order; innerRef: React.RefObject<HTMLDivElement | null> }) => (
+    <div ref={innerRef} className="flex w-max gap-10 will-change-transform sm:gap-16">
+      {[...list, ...list].map((s, i) => (
+        <div
+          key={`${s.number}-${i}`}
+          className="w-[290px] shrink-0 sm:w-[400px]"
+          style={{ marginTop: DRIFT[i % DRIFT.length] }}
+        >
+          <Link
+            to="/services"
+            aria-hidden={i >= list.length}
+            tabIndex={i >= list.length ? -1 : undefined}
+            data-cursor={t.nav.services.toLowerCase()}
+            className="group block overflow-hidden rounded-xl border border-line bg-panel transition-colors duration-500 hover:border-white/30"
+          >
+            <div className="relative aspect-[16/9] overflow-hidden bg-[#0d0f13]">
+              <DirectionCover n={s.number} />
+              <span className="pointer-events-none absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-panel via-panel/70 to-transparent" />
+            </div>
+            {/* Только имя: описание переехало в лид раздела, на карточках оно дробило ритм */}
+            <div className="px-5 pt-3.5 pb-5">
+              <h3 className="text-[16.5px] leading-snug font-light">{s.name}</h3>
+            </div>
+          </Link>
+        </div>
+      ))}
+    </div>
+  )
 
   return (
     <div className="relative">
       <div
-        className="-mx-5 overflow-hidden px-5 sm:-mx-8 sm:px-8"
-        /* по краям лента тает, иначе бесконечная лента читается как обрезанная */
+        className="-mx-5 space-y-10 overflow-hidden px-5 sm:-mx-8 sm:space-y-14 sm:px-8"
+        /* по краям ленты тают, иначе бесконечность читается как обрезка */
         style={{
           maskImage: 'linear-gradient(to right, transparent, #000 6%, #000 94%, transparent)',
           WebkitMaskImage: 'linear-gradient(to right, transparent, #000 6%, #000 94%, transparent)',
@@ -69,33 +110,8 @@ export function Directions() {
         onTouchStart={hold}
         onTouchEnd={release}
       >
-        <div ref={track} className="flex w-max gap-5 pb-4 will-change-transform">
-          {items.map((s, i) => (
-            <div
-              key={`${s.number}-${i}`}
-              className="w-[300px] shrink-0 sm:w-[420px]"
-              style={{ marginTop: DRIFT[i % DRIFT.length] }}
-            >
-              <Link
-                to="/services"
-                aria-hidden={i >= t.services.items.length}
-                tabIndex={i >= t.services.items.length ? -1 : undefined}
-                data-cursor={t.nav.services.toLowerCase()}
-                className="group flex h-full flex-col overflow-hidden rounded-xl border border-line bg-panel transition-colors duration-500 hover:border-white/30"
-              >
-                <div className="relative aspect-[16/9] overflow-hidden bg-[#0d0f13]">
-                  <DirectionCover n={s.number} />
-                  <span className="pointer-events-none absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-panel via-panel/70 to-transparent" />
-                </div>
-
-                <div className="flex-1 px-5 pt-4 pb-6">
-                  <h3 className="text-[16.5px] leading-snug font-light">{s.name}</h3>
-                  <p className="mt-2 line-clamp-1 font-serif text-[16px] leading-snug text-soft italic">{s.tagline}</p>
-                </div>
-              </Link>
-            </div>
-          ))}
-        </div>
+        <Belt list={order} innerRef={top} />
+        <Belt list={shifted} innerRef={bottom} />
       </div>
 
       <div className="mt-5 flex items-center justify-end">

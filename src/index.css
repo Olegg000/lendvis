@@ -81,6 +81,31 @@ body {
   color: #050507;
 }
 
+/* На Windows системная полоса светло-серая и разрезает тёмный кадр пополам */
+html {
+  scrollbar-color: rgba(255, 255, 255, 0.18) var(--color-ground);
+  scrollbar-width: thin;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-ground);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.16);
+  border: 3px solid var(--color-ground);
+  border-radius: 999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
 :focus-visible {
   outline: 1px solid rgba(255, 255, 255, 0.75);
   outline-offset: 4px;

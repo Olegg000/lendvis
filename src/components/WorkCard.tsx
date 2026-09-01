@@ -59,9 +59,14 @@ export function WorkCard({
 
   const kind = lang === 'ru' ? project.kind : project.kindEn
   const summary = lang === 'ru' ? project.summary : project.summaryEn
-  // Кадр привязан к высоте экрана: от этого зависит, влезает ли карточка целиком
-  // и включается ли стопка в витрине
-  const frameHeight = 'h-[clamp(195px,32vh,420px)]'
+  const lede = summary
+  /* Соотношение снимка (1440x900) — чтобы не резать кадр. Потолок по высоте обязателен:
+     без него карточка выросла до 916px при полезной высоте экрана 786 и не влезала ни в один ноутбук.
+     На узкой колонке соотношение дало бы кадр НИЖЕ прежнего, поэтому там держим прежнюю высоту. */
+  const frameRatio =
+    'h-[clamp(195px,32vh,420px)] md:h-auto md:aspect-[16/10] md:max-h-[calc(100svh-280px)]'
+  // Строй телефонов живёт по своей высоте: вертикальным корпусам широкая рамка не подходит
+  const phoneHeight = 'h-[clamp(195px,32vh,420px)]'
 
   return (
     <motion.article
@@ -83,10 +88,11 @@ export function WorkCard({
         <span className="font-mono text-micro text-faint uppercase">{kind}</span>
       </div>
 
-      {!compact && <p className="mb-7 max-w-[62ch] text-body text-soft">{summary}</p>}
+      {/* На главной карточка показывает, а не рассказывает: только имя и кадр */}
+      {!compact && <p className="mb-7 max-w-[62ch] text-body text-soft">{lede}</p>}
 
       {project.phone ? (
-        <div className={`flex items-center justify-start gap-4 overflow-x-auto rounded-xl border border-line bg-[#0d0f13] px-6 py-7 snap-x snap-mandatory sm:justify-center sm:gap-7 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden ${frameHeight}`}>
+        <div className={`flex items-center justify-start gap-4 overflow-x-auto rounded-xl border border-line bg-[#0d0f13] px-6 py-7 snap-x snap-mandatory sm:justify-center sm:gap-7 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden ${phoneHeight}`}>
           {project.shots.slice(0, 3).map((src) => (
             <Phone key={src} src={src} className="h-full w-auto shrink-0 snap-center" />
           ))}
@@ -124,7 +130,7 @@ export function WorkCard({
           </div>
 
           {live && project.demo ? (
-            <div className={`relative ${frameHeight}`}>
+            <div className={`relative ${frameRatio}`}>
               <img
                 src={project.shots[0]}
                 alt=""
@@ -154,15 +160,13 @@ export function WorkCard({
                 src={project.shots[0]}
                 alt=""
                 loading="lazy"
-                className={`block w-full object-cover object-top opacity-90 transition-all duration-[900ms] group-hover:scale-[1.015] group-hover:opacity-100 ${frameHeight}`}
+                className={`block w-full object-cover object-top opacity-90 transition-all duration-[900ms] group-hover:scale-[1.015] group-hover:opacity-100 ${frameRatio}`}
               />
-              {/* Кадр обрезается по высоте рамки: без растворения нижняя строка выглядит как сбой отрисовки */}
-              <div className="pointer-events-none absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-[#0d0f13] via-[#0d0f13]/80 to-transparent" />
               {project.demo && (
                 <button
                   type="button"
                   onClick={() => setLive(true)}
-                  className="group/play absolute inset-0 flex items-end justify-center pb-6 transition-opacity duration-500 md:items-center md:pb-0 md:opacity-0 md:group-hover:opacity-100 md:focus-visible:opacity-100"
+                  className="group/play absolute inset-0 flex items-end justify-center pb-6 md:items-center md:pb-0"
                 >
                   <span className="rounded-full border border-white/40 bg-black/55 px-7 py-3 font-mono text-label uppercase backdrop-blur-sm transition-[background-color,border-color,transform] duration-300 group-hover/play:border-white/70 group-hover/play:bg-black/75 group-active/play:scale-[0.97]">
                     {label.play}
@@ -174,8 +178,11 @@ export function WorkCard({
         </motion.div>
       )}
 
-      <div className={`mt-5 flex-wrap items-center justify-between gap-4 ${compact ? 'hidden' : 'flex'}`}>
-        <p className="font-mono text-micro text-faint">{project.stack.slice(0, 4).join(' · ')}</p>
+      <div className="mt-5 flex flex-wrap items-center justify-between gap-4">
+        {/* Стек — только на странице проектов: на главной карточка знакомит именем и кадром */}
+        {!compact && (
+          <p className="font-mono text-micro text-faint">{project.stack.slice(0, 4).join(' · ')}</p>
+        )}
         <div className="flex items-center gap-6">
           {project.demo && (
             <a

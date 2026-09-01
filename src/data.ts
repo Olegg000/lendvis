@@ -16,20 +16,6 @@ export type Project = {
 }
 
 export const projects: Project[] = [
-  {
-    n: '07',
-    name: 'TON Jetton Vesting',
-    nameEn: 'TON Jetton Vesting',
-    kind: 'Блокчейн · смарт-контракт',
-    kindEn: 'Blockchain · smart contract',
-    summary:
-      'Токен стандарта TIP-3 для TON с он-чейн вестингом: девять пулов токеномики, трёхмесячный клиф, графики на 12 и 18 месяцев, сжигание с перераспределением. Ошибку в контракте не откатишь, поэтому всё покрыто песочными тестами — 34 из 34 зелёные.',
-    summaryEn:
-      'A TIP-3 jetton for TON with on-chain vesting: nine tokenomics pools, a three-month cliff, 12- and 18-month schedules, and burn with redistribution. A contract cannot be patched after deploy, so it is covered by sandbox tests — 34 of 34 green.',
-    stack: ['FunC', 'TON', 'TypeScript', 'Jest'],
-    repo: 'https://github.com/Olegg000/ton-jetton-vesting',
-    shots: [`${base}shots/blockchain.webp`],
-  },
 
   {
     n: '01',
@@ -48,6 +34,20 @@ export const projects: Project[] = [
   },
   {
     n: '02',
+    name: 'TON Jetton Vesting',
+    nameEn: 'TON Jetton Vesting',
+    kind: 'Блокчейн · смарт-контракт',
+    kindEn: 'Blockchain · smart contract',
+    summary:
+      'Токен стандарта TIP-3 для TON с он-чейн вестингом: девять пулов токеномики, трёхмесячный клиф, графики на 12 и 18 месяцев, сжигание с перераспределением. Ошибку в контракте не откатишь, поэтому всё покрыто песочными тестами — 34 из 34 зелёные.',
+    summaryEn:
+      'A TIP-3 jetton for TON with on-chain vesting: nine tokenomics pools, a three-month cliff, 12- and 18-month schedules, and burn with redistribution. A contract cannot be patched after deploy, so it is covered by sandbox tests — 34 of 34 green.',
+    stack: ['FunC', 'TON', 'TypeScript', 'Jest'],
+    repo: 'https://github.com/Olegg000/ton-jetton-vesting',
+    shots: [`${base}shots/blockchain.webp`],
+  },
+  {
+    n: '03',
     name: 'Geo Album',
     nameEn: 'Geo Album',
     kind: 'Мобильное · ОС Аврора',
@@ -62,7 +62,7 @@ export const projects: Project[] = [
     phone: true,
   },
   {
-    n: '03',
+    n: '04',
     name: 'Drawer',
     nameEn: 'Drawer',
     kind: 'Реальное время · живое демо',
@@ -77,7 +77,7 @@ export const projects: Project[] = [
     shots: [`${base}shots/drawer.webp`],
   },
   {
-    n: '04',
+    n: '05',
     name: 'Разбор багов React',
     nameEn: 'React bug teardown',
     kind: 'Поддержка · демо «до / после»',
@@ -92,7 +92,7 @@ export const projects: Project[] = [
     shots: [`${base}shots/bugfix-fix.webp`],
   },
   {
-    n: '05',
+    n: '06',
     name: 'Quiz',
     nameEn: 'Quiz',
     kind: 'Платформа тестирования',
@@ -106,7 +106,7 @@ export const projects: Project[] = [
     shots: [`${base}shots/quiz-catalog.webp`, `${base}shots/quiz-login.webp`],
   },
   {
-    n: '06',
+    n: '07',
     name: 'HR Connect API',
     nameEn: 'HR Connect API',
     kind: 'Бекенд · документация онлайн',

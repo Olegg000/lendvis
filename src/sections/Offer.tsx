@@ -21,9 +21,9 @@ export function ServiceList() {
             </div>
 
             <div>
-              <h3 className="text-[clamp(1.3rem,2.6vw,1.7rem)] leading-tight font-light tracking-[-0.02em]">
+              <h2 className="text-[clamp(1.3rem,2.6vw,1.7rem)] leading-tight font-light tracking-[-0.02em]">
                 {s.name}
-              </h3>
+              </h2>
               <p className="mt-3 font-serif text-[19px] leading-snug font-light text-soft italic">{s.tagline}</p>
               <p className="mt-6 font-mono text-micro leading-relaxed text-faint">{s.stack}</p>
             </div>

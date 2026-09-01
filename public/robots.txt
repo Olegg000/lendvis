@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://olegg000.github.io/lendvis/sitemap.xml

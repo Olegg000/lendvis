@@ -128,7 +128,7 @@ export default function Home() {
             to="/work"
             className="mt-12 inline-block border-b border-white/30 pb-1 font-mono text-label text-soft uppercase transition-colors hover:border-white/70 hover:text-fg"
           >
-            {t.nav.work}
+            {t.home.work.more} · {projects.length}
           </Link>
         </Reveal>
       </section>

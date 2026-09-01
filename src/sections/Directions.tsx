@@ -129,7 +129,7 @@ export function Directions() {
           to="/services"
           className="ml-auto border-b border-white/30 pb-1 font-mono text-label text-soft uppercase transition-colors hover:border-white/70 hover:text-fg"
         >
-          {t.nav.services}
+          {t.home.services.more} · {t.services.items.length}
         </Link>
       </div>
     </div>

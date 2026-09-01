@@ -27,12 +27,14 @@ export const copy = {
         title: 'Стек выбираем под',
         titleAccent: 'задачу',
         lead: 'А не задачу под стек. Шесть направлений, и в каждом за спиной боевые проекты, а не учебные.',
+        more: 'Все направления',
       },
       work: {
         eyebrow: 'Витрина',
         title: 'Код можно',
         titleAccent: 'прочитать',
         lead: 'Открытые репозитории, живые демо, каждый проект поднимается одной командой. Проверьте нас до того, как заплатите.',
+        more: 'Все проекты',
       },
       numbers: {
         eyebrow: 'Цифры',
@@ -285,12 +287,14 @@ export const copy = {
         title: 'The stack fits the',
         titleAccent: 'problem',
         lead: 'Not the other way round. Six directions, each with production work behind it rather than tutorials.',
+        more: 'All directions',
       },
       work: {
         eyebrow: 'Open code',
         title: 'Read the',
         titleAccent: 'source',
         lead: 'Public repositories, live demos, one command to run any of them. Check us before you pay us.',
+        more: 'All projects',
       },
       numbers: {
         eyebrow: 'Numbers',

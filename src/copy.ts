@@ -423,7 +423,7 @@ export const copy = {
     work: {
       title: 'Projects you can',
       titleAccent: 'open',
-      lead: 'Public repositories, live demos, one command to run any of them. Commercial work under NDA is told as problems and outcomes instead.',
+      lead: 'The repositories are public: some projects come with a live demo, the rest run locally in one command. Commercial work under NDA is told as problems and outcomes.',
       filters: {
         all: 'All',
         web: 'Web',
@@ -505,7 +505,7 @@ export const copy = {
     footer: {
       line: 'Development studio · Samara · working remotely',
       copyright: '© 2026 Lendvis',
-      blurb: 'We design and build systems that hold up in production — from a storefront to a smart contract. Take the whole project, or join the code you already have.',
+      blurb: 'We design and build systems that hold up in production — from a storefront to a smart contract. We take a project whole, or plug into the code you already have.',
       columns: {
         services: 'What we do',
         studio: 'Studio',

@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { ContactIcon } from './ContactIcon'
 import { NavLink } from 'react-router-dom'
 import { useLang } from '../lib/i18n'
 
@@ -92,7 +93,9 @@ export function MobileNav() {
 export function Footer() {
   const { t } = useLang()
   const f = t.footer
-  const link = 'text-[13.5px] text-soft transition-colors hover:text-fg'
+  const link =
+    'group inline-flex items-center gap-2.5 text-[13.5px] text-soft transition-colors hover:text-fg'
+  const ico = 'h-[15px] w-[15px] text-faint transition-colors group-hover:text-sand'
   return (
     /* Одна ступень вместо трёх. В шапке уже есть вся навигация, на странице «О студии» —
        весь рассказ; подвалу остаётся только то, чего больше нигде нет: как связаться,
@@ -104,12 +107,15 @@ export function Footer() {
         </p>
         <nav className="flex flex-wrap items-center gap-x-7 gap-y-2">
           <a href="https://t.me/nektoo1111" className={link}>
+            <ContactIcon kind="telegram" className={ico} />
             Telegram
           </a>
           <a href="mailto:olegkovalik2013@yandex.ru" className={link}>
+            <ContactIcon kind="mail" className={ico} />
             {t.contact.fields.email}
           </a>
           <a href="https://github.com/Olegg000" className={link}>
+            <ContactIcon kind="github" className={ico} />
             GitHub
           </a>
         </nav>

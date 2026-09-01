@@ -101,10 +101,14 @@ body {
   }
 }
 
-.wordmark {
-  font-family: 'Onest', system-ui, sans-serif;
-  font-weight: 400;
-  letter-spacing: -0.005em;
+/* В слое, иначе нелейерное правило перебивает утилиты Tailwind — на первом экране
+   так уже съедалась разрядка tracking-[0.46em]. Межбуквенное здесь НЕ задаём:
+   его назначает место, где имя стоит. */
+@layer components {
+  .wordmark {
+    font-family: 'Rubik Mono One', 'Onest', system-ui, sans-serif;
+    font-weight: 400;
+  }
 }
 
 ::selection {

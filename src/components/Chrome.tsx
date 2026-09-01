@@ -30,7 +30,7 @@ export function Nav() {
       }`}
     >
       <div className="mx-auto flex max-w-[1180px] items-center gap-5 px-5 py-5 sm:px-8">
-        <NavLink to="/" className="wordmark text-[15px] text-fg">
+        <NavLink to="/" className="wordmark text-[14px] tracking-[0.03em] text-fg">
           {lang === 'ru' ? 'Лендвис' : 'Lendvis'}
         </NavLink>
 

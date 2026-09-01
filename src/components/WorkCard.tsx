@@ -56,7 +56,9 @@ export function WorkCard({
 
   const kind = lang === 'ru' ? project.kind : project.kindEn
   const summary = lang === 'ru' ? project.summary : project.summaryEn
-  const frameHeight = 'h-[clamp(240px,46vh,520px)]'
+  // Кадр привязан к высоте экрана: от этого зависит, влезает ли карточка целиком
+  // и включается ли стопка в витрине
+  const frameHeight = 'h-[clamp(210px,37vh,470px)]'
 
   return (
     <motion.article

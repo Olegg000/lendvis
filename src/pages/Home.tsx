@@ -5,6 +5,7 @@ import { Showcase } from '../sections/Showcase'
 import { Directions } from '../sections/Directions'
 import { Cases } from '../sections/Cases'
 import { EASE } from '../lib/motion'
+import { CountUp } from '../components/CountUp'
 import { useLang } from '../lib/i18n'
 import { metrics, projects } from '../data'
 
@@ -144,7 +145,7 @@ export default function Home() {
           {metrics.map((m, i) => (
             <Reveal key={m.label} delay={Math.min(i * 0.07, 0.28)}>
               <dt className="font-serif text-[clamp(2.4rem,6vw,4rem)] leading-none font-light text-fg italic tabular-nums">
-                {lang === 'ru' ? m.value : m.valueEn}
+                <CountUp value={lang === 'ru' ? m.value : m.valueEn} />
               </dt>
               <dd className="mt-4 text-[14px] leading-snug text-soft">{lang === 'ru' ? m.label : m.labelEn}</dd>
               <dd className="mt-2 font-mono text-micro leading-relaxed text-faint">

@@ -30,7 +30,7 @@ function FocusIn({ text, className, delay = 0 }: { text: string; className?: str
 }
 
 export function Hero() {
-  const { t } = useLang()
+  const { t, lang } = useLang()
   const still = useReducedMotion()
   const h = t.home.hero
   const ref = useRef<HTMLElement>(null)
@@ -50,10 +50,19 @@ export function Hero() {
         style={still ? undefined : { opacity, scale, y: lift }}
         className="relative z-10 flex flex-col items-center text-center"
       >
+        {/* Имя студии в кадре: без него первый экран говорил только «разработка ПО» */}
+        <motion.p
+          initial={still ? false : { opacity: 0, y: 8 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1.2, delay: 0.15, ease: EASE }}
+          className="mb-3.5 font-mono text-[13px] tracking-[0.52em] text-fg uppercase [text-indent:0.52em]"
+        >
+          {lang === 'ru' ? 'Лендвис' : 'Lendvis'}
+        </motion.p>
         <motion.p
           initial={still ? false : { opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ duration: 1.6, delay: 1.25 }}
+          transition={{ duration: 1.6, delay: 0.55 }}
           className="mb-8 font-mono text-micro tracking-[0.34em] text-faint uppercase"
         >
           {t.home.hero.tagline}

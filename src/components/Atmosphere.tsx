@@ -49,10 +49,10 @@ export function LightField({ intensity = 1 }: { intensity?: number }) {
         y: up ? 0.08 + Math.random() * 0.2 : 0.68 + Math.random() * 0.24,
         r: 0.09 + Math.random() * 0.13,
         born: t,
-        life: 3.2 + Math.random() * 2.4,
+        life: 3.6 + Math.random() * 2.4,
         warm: Math.random() < 0.45,
       })
-      nextAt = t + 2.6 + Math.random() * 3.4
+      nextAt = t + 1.15 + Math.random() * 1.05
     }
 
     const blob = (x: number, y: number, r: number, color: string) => {

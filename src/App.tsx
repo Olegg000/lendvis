@@ -1,33 +1,31 @@
-import { useEffect } from 'react'
-import { HashRouter, Route, Routes, useLocation } from 'react-router-dom'
+import { Suspense, lazy, useEffect } from 'react'
+import { HashRouter, Navigate, Route, Routes, useLocation } from 'react-router-dom'
+import { motion, useReducedMotion } from 'framer-motion'
 import { LangProvider, useLang } from './lib/i18n'
-import { scrollToEl, scrollToTop, useSmoothScroll } from './lib/smooth'
+import { scrollToTop, useSmoothScroll } from './lib/smooth'
+import { EASE } from './lib/motion'
 import { Cursor } from './components/Cursor'
 import { Progress } from './components/Progress'
-import { Rail } from './components/Rail'
 import { Footer, MobileNav, Nav } from './components/Chrome'
 import Home from './pages/Home'
 
-/** Маршрут → раздел одной страницы: адреса остались прежними, содержимое живёт в одном месте. */
-const ANCHOR: Record<string, string> = {
-  '/services': 'sec-services',
-  '/work': 'sec-work',
-  '/about': 'sec-about',
-  '/contact': 'sec-contact',
-}
+// Внутренние страницы подгружаются по требованию — первый экран не ждёт весь сайт
+const Services = lazy(() => import('./pages/Services'))
+const Work = lazy(() => import('./pages/Work'))
+const About = lazy(() => import('./pages/About'))
+const Contact = lazy(() => import('./pages/Contact'))
 
 /**
- * Заголовок вкладки и переход к нужному разделу. Сайт одностраничный,
- * поэтому «переход» — это доводка до якоря, а не подмена содержимого.
+ * Возврат наверх при переходе и честный заголовок вкладки: одностраничное приложение
+ * иначе оставляет один и тот же title на всех пяти маршрутах.
  */
 function PageMeta() {
   const { pathname } = useLocation()
   const { t, lang } = useLang()
 
+  // Наверх — только при смене маршрута: переключение языка не должно уносить со страницы
   useEffect(() => {
-    const id = ANCHOR[pathname]
-    if (id) scrollToEl(id)
-    else scrollToTop()
+    scrollToTop()
   }, [pathname])
 
   useEffect(() => {
@@ -50,6 +48,26 @@ function PageMeta() {
   return null
 }
 
+/**
+ * Переход между страницами: содержимое проявляется снизу вверх.
+ * Без exit-анимации — иначе ленивый чанк успевает мигнуть пустотой на первом заходе.
+ */
+function PageFade({ children }: { children: React.ReactNode }) {
+  const { pathname } = useLocation()
+  const still = useReducedMotion()
+  if (still) return <>{children}</>
+  return (
+    <motion.div
+      key={pathname}
+      initial={{ opacity: 0, y: 14 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.55, ease: EASE }}
+    >
+      {children}
+    </motion.div>
+  )
+}
+
 function Shell() {
   useSmoothScroll()
   const { lang } = useLang()
@@ -58,7 +76,6 @@ function Shell() {
     <div className="grain min-h-screen bg-ground">
       <Cursor />
       <Progress />
-      <Rail />
       {/* Хэш занят маршрутизатором, поэтому переход к содержимому — кнопкой, а не ссылкой */}
       <button
         type="button"
@@ -70,9 +87,18 @@ function Shell() {
       <Nav />
       <PageMeta />
       <main id="main" tabIndex={-1}>
-        <Routes>
-          <Route path="*" element={<Home />} />
-        </Routes>
+        <PageFade>
+          <Suspense fallback={<div className="min-h-[70vh]" />}>
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/services" element={<Services />} />
+              <Route path="/work" element={<Work />} />
+              <Route path="/about" element={<About />} />
+              <Route path="/contact" element={<Contact />} />
+              <Route path="*" element={<Navigate to="/" replace />} />
+            </Routes>
+          </Suspense>
+        </PageFade>
       </main>
       <Footer />
       <MobileNav />

@@ -106,8 +106,8 @@ body {
    его назначает место, где имя стоит. */
 @layer components {
   .wordmark {
-    font-family: 'Rubik Mono One', 'Onest', system-ui, sans-serif;
-    font-weight: 400;
+    font-family: 'Piazzolla', 'Onest', Georgia, serif;
+    font-weight: 800;
   }
 }
 

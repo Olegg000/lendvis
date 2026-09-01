@@ -1,103 +1,91 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
-import { motion, useReducedMotion } from 'framer-motion'
+import { useReducedMotion } from 'framer-motion'
 import { DirectionCover } from '../components/DirectionCover'
-import { EASE } from '../lib/motion'
 import { useLang } from '../lib/i18n'
 
 /**
- * Направления лентой: карточки с кадрами, которые листаются вбок.
- * Список из шести строк читался как оглавление — здесь их видно.
+ * Направления идут лентой сами и замирают, когда на них наводят.
+ * Список рендерится дважды: когда первая половина уходит влево ровно на свою ширину,
+ * смещение сбрасывается — шва не видно, лента бесконечная.
  */
+
+/** Лёгкий сбив по вертикали, чтобы строка не выглядела линейкой. Фиксированный, не случайный. */
+const DRIFT = [0, 16, 6, 22, 10, 18]
+
+const SPEED = 0.032 // пикселей на миллисекунду
+
 export function Directions() {
-  const { t, lang } = useLang()
+  const { t } = useLang()
   const still = useReducedMotion()
   const track = useRef<HTMLDivElement>(null)
-  const [edge, setEdge] = useState({ start: true, end: false })
+  const paused = useRef(false)
+  const shift = useRef(0)
 
-  const nudge = (dir: 1 | -1) => {
-    const el = track.current
-    if (!el) return
-    el.scrollBy({ left: dir * (el.clientWidth * 0.8), behavior: still ? 'auto' : 'smooth' })
-  }
-
-  // Без замера на монтировании и ресайзе правая стрелка врёт о конце ленты
   useEffect(() => {
-    onScroll()
-    window.addEventListener('resize', onScroll, { passive: true })
-    return () => window.removeEventListener('resize', onScroll)
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+    if (still) return
+    let raf = 0
+    let last = performance.now()
 
-  // Ленту надо уметь тянуть: у обычной мыши нет горизонтального колеса,
-  // а стрелки внизу замечают не все.
-  const drag = useRef({ active: false, startX: 0, startLeft: 0, moved: 0 })
-
-  const onDown = (e: React.PointerEvent) => {
-    const el = track.current
-    if (!el || e.pointerType === 'touch') return
-    drag.current = { active: true, startX: e.clientX, startLeft: el.scrollLeft, moved: 0 }
-  }
-
-  const onMove = (e: React.PointerEvent) => {
-    const el = track.current
-    if (!el || !drag.current.active) return
-    const dx = e.clientX - drag.current.startX
-    drag.current.moved = Math.max(drag.current.moved, Math.abs(dx))
-    el.scrollLeft = drag.current.startLeft - dx
-  }
-
-  const onUp = () => {
-    drag.current.active = false
-  }
-
-  // После протяжки клик по карточке не должен уводить на страницу услуг
-  const onClickCapture = (e: React.MouseEvent) => {
-    if (drag.current.moved > 6) {
-      e.preventDefault()
-      e.stopPropagation()
-      drag.current.moved = 0
+    const step = (now: number) => {
+      const dt = Math.min(now - last, 64) // после возврата на вкладку не прыгаем
+      last = now
+      const el = track.current
+      if (el && !paused.current) {
+        const half = el.scrollWidth / 2
+        shift.current += dt * SPEED
+        if (half > 0 && shift.current >= half) shift.current -= half
+        el.style.transform = `translate3d(${-shift.current}px, 0, 0)`
+      }
+      raf = requestAnimationFrame(step)
     }
+
+    raf = requestAnimationFrame(step)
+    return () => cancelAnimationFrame(raf)
+  }, [still])
+
+  const hold = () => {
+    paused.current = true
+  }
+  const release = () => {
+    paused.current = false
   }
 
-  const onScroll = () => {
-    const el = track.current
-    if (!el) return
-    setEdge({ start: el.scrollLeft <= 8, end: el.scrollLeft + el.clientWidth >= el.scrollWidth - 24 })
-  }
+  const items = [...t.services.items, ...t.services.items]
 
   return (
     <div className="relative">
       <div
-        ref={track}
-        onScroll={onScroll}
-        data-lenis-prevent
-        onPointerDown={onDown}
-        onPointerMove={onMove}
-        onPointerUp={onUp}
-        onPointerLeave={onUp}
-        onClickCapture={onClickCapture}
-        className="-mx-5 flex cursor-grab snap-x snap-mandatory gap-4 overflow-x-auto px-5 pb-4 select-none active:cursor-grabbing sm:-mx-8 sm:px-8 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+        className="-mx-5 overflow-hidden px-5 sm:-mx-8 sm:px-8"
+        /* по краям лента тает, иначе бесконечная лента читается как обрезанная */
+        style={{
+          maskImage: 'linear-gradient(to right, transparent, #000 6%, #000 94%, transparent)',
+          WebkitMaskImage: 'linear-gradient(to right, transparent, #000 6%, #000 94%, transparent)',
+        }}
+        onMouseEnter={hold}
+        onMouseLeave={release}
+        onFocusCapture={hold}
+        onBlurCapture={release}
+        onTouchStart={hold}
+        onTouchEnd={release}
       >
-        {t.services.items.map((s, i) => {
-          return (
-            <motion.div
-              key={s.number}
-              initial={still ? false : { opacity: 0, y: 24 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: '-60px' }}
-              transition={{ duration: 0.85, delay: Math.min(i * 0.06, 0.3), ease: EASE }}
-              className="w-[268px] shrink-0 snap-start sm:w-[330px]"
+        <div ref={track} className="flex w-max gap-5 pb-4 will-change-transform">
+          {items.map((s, i) => (
+            <div
+              key={`${s.number}-${i}`}
+              className="w-[300px] shrink-0 sm:w-[420px]"
+              style={{ marginTop: DRIFT[i % DRIFT.length] }}
             >
               <Link
                 to="/services"
+                aria-hidden={i >= t.services.items.length}
+                tabIndex={i >= t.services.items.length ? -1 : undefined}
                 data-cursor={t.nav.services.toLowerCase()}
                 className="group flex h-full flex-col overflow-hidden rounded-xl border border-line bg-panel transition-colors duration-500 hover:border-white/30"
               >
-                <div className="relative aspect-[16/11] overflow-hidden bg-[#0d0f13]">
+                <div className="relative aspect-[16/9] overflow-hidden bg-[#0d0f13]">
                   <DirectionCover n={s.number} />
-                  <span className="pointer-events-none absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-panel via-panel/70 to-transparent" />
-                  <span className="absolute top-3 left-5 font-mono text-micro text-white/55">{s.number}</span>
+                  <span className="pointer-events-none absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-panel via-panel/70 to-transparent" />
                 </div>
 
                 <div className="flex-1 px-5 pt-4 pb-6">
@@ -105,33 +93,15 @@ export function Directions() {
                   <p className="mt-2 line-clamp-1 font-serif text-[16px] leading-snug text-soft italic">{s.tagline}</p>
                 </div>
               </Link>
-            </motion.div>
-          )
-        })}
+            </div>
+          ))}
+        </div>
       </div>
 
-      <div className="mt-5 flex items-center gap-3">
-        <button
-          type="button"
-          onClick={() => nudge(-1)}
-          disabled={edge.start}
-          aria-label={lang === 'ru' ? 'Предыдущие направления' : 'Previous directions'}
-          className="h-9 w-9 rounded-full border border-line text-soft transition-colors hover:border-white/40 hover:text-fg disabled:cursor-default disabled:border-line/40 disabled:text-white/20 disabled:hover:border-line/40 disabled:hover:text-white/20"
-        >
-          <span aria-hidden="true">←</span>
-        </button>
-        <button
-          type="button"
-          onClick={() => nudge(1)}
-          disabled={edge.end}
-          aria-label={lang === 'ru' ? 'Следующие направления' : 'Next directions'}
-          className="h-9 w-9 rounded-full border border-line text-soft transition-colors hover:border-white/40 hover:text-fg disabled:cursor-default disabled:border-line/40 disabled:text-white/20 disabled:hover:border-line/40 disabled:hover:text-white/20"
-        >
-          <span aria-hidden="true">→</span>
-        </button>
+      <div className="mt-5 flex items-center justify-end">
         <Link
           to="/services"
-          className="ml-auto border-b border-white/30 pb-1 font-mono text-label text-soft uppercase transition-colors hover:border-white/70 hover:text-fg"
+          className="border-b border-white/30 pb-1 font-mono text-label text-soft uppercase transition-colors hover:border-white/70 hover:text-fg"
         >
           {t.home.services.more} · {t.services.items.length}
         </Link>

@@ -190,7 +190,6 @@ export const copy = {
         { k: 'Языки', v: 'Русский и английский' },
         { k: 'Направления', v: 'Веб, мобильные, блокчейн, бекенды, поддержка, 1С' },
         { k: 'Открытый код', v: 'Семь репозиториев с живыми демо' },
-        { k: 'Ответ', v: 'В рабочее время, обычно в тот же день' },
         { k: 'Условия', v: 'Договор и NDA, оплата по этапам' },
       ],
       principles: {
@@ -202,11 +201,11 @@ export const copy = {
           },
           {
             name: 'Показываем, а не рассказываем',
-            text: 'Репозитории открыты, демо работают, код читается. Составить мнение о нас можно до того, как вы заплатите первый рубль.',
+            text: 'Мы не присылаем презентацию с логотипами. Присылаем ссылку, которую можно открыть, и репозиторий, который можно прочитать, — и до начала работы, и всё время, пока она идёт.',
           },
           {
             name: 'Говорим прямо',
-            text: 'Если задача решается готовым сервисом за тысячу рублей в месяц, мы скажем это, а не продадим разработку.',
+            text: 'Если срок поедет, вы узнаете об этом заранее и от нас, а не в день сдачи. Плохую новость дешевле услышать рано.',
           },
         ],
       },
@@ -450,7 +449,6 @@ export const copy = {
         { k: 'Languages', v: 'Russian and English' },
         { k: 'Fields', v: 'Web, mobile, blockchain, backends, support, 1C' },
         { k: 'Open code', v: 'Seven repositories with live demos' },
-        { k: 'Reply', v: 'Working hours, usually the same day' },
         { k: 'Terms', v: 'Contract and NDA, staged payments' },
       ],
       principles: {
@@ -462,11 +460,11 @@ export const copy = {
           },
           {
             name: 'Show, do not tell',
-            text: 'The repositories are public, the demos run, the code reads. You can form an opinion about us before you spend anything.',
+            text: 'We do not send a slide deck with logos. We send a link you can open and a repository you can read — before the work starts and every day it runs.',
           },
           {
             name: 'Straight answers',
-            text: 'If an off-the-shelf tool solves it for ten dollars a month, we will say so instead of selling you a build.',
+            text: 'If a deadline is about to slip, you hear it from us early — not on delivery day. Bad news is cheaper the sooner it lands.',
           },
         ],
       },

@@ -13,6 +13,8 @@ const Services = lazy(() => import('./pages/Services'))
 const Work = lazy(() => import('./pages/Work'))
 const About = lazy(() => import('./pages/About'))
 const Contact = lazy(() => import('./pages/Contact'))
+// Не часть сайта: страница выбора направления первого экрана, в меню её нет
+const Lab = lazy(() => import('./pages/Lab'))
 
 /**
  * Возврат наверх при переходе и честный заголовок вкладки: одностраничное приложение
@@ -93,6 +95,7 @@ function Shell() {
           <Route path="/work" element={<Work />} />
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/lab" element={<Lab />} />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
         </Suspense>

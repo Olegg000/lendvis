@@ -61,11 +61,12 @@ export function Hero() {
 
         <h1 className="max-w-[15ch] text-[clamp(2.1rem,6.6vw,4.6rem)] leading-[1.04] font-extralight tracking-[-0.04em] text-fg">
           <FocusIn text={h.titleBefore} />{' '}
+          {/* Это слово — крупнейший элемент первого экрана: чем позже оно сядет, тем хуже LCP */}
           <motion.span
             className="font-serif text-[1.08em] font-light italic tracking-normal"
             initial={still ? false : { opacity: 0, filter: 'blur(16px)' }}
             animate={{ opacity: 1, filter: 'blur(0px)' }}
-            transition={{ duration: 1.4, delay: 0.42, ease: EASE }}
+            transition={{ duration: 1.0, delay: 0.42, ease: EASE }}
           >
             {h.titleItalic}
           </motion.span>{' '}

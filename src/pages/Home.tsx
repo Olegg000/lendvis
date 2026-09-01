@@ -64,24 +64,35 @@ export function SectionHead({
 export function FinalCall() {
   const { t } = useLang()
   return (
-    <div className="mt-24 border-t border-line pt-14">
-      <Reveal>
-        <h2 className="max-w-[18ch] text-[clamp(1.7rem,4vw,2.9rem)] leading-[1.1] font-extralight tracking-[-0.03em]">
-          {t.home.final.title}
-          <span className="font-serif text-[1.08em] font-light italic tracking-normal">&nbsp;{t.home.final.titleAccent}</span>
-        </h2>
-      </Reveal>
-      <Reveal delay={0.08}>
-        <p className="mt-6 max-w-[52ch] text-body text-soft">{t.home.final.text}</p>
-      </Reveal>
-      <Reveal delay={0.16}>
-        <Link
-          to="/contact"
-          className="mt-9 inline-flex rounded-full border border-white/28 px-7 py-3.5 font-mono text-label uppercase transition-[background-color,border-color,transform] duration-300 hover:border-white/60 hover:bg-white/[0.08] active:scale-[0.98]"
-        >
-          {t.home.final.cta}
-        </Link>
-      </Reveal>
+    <div className="relative mt-24 overflow-hidden border-t border-line pt-24 pb-10 text-center">
+      {/* Сайт открывается по центру — пусть так же и закрывается, со своим светом */}
+      <span
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-x-0 top-0 h-[320px]"
+        style={{
+          background:
+            'radial-gradient(ellipse 55% 70% at 50% 62%, rgba(216,179,132,0.10), transparent 72%), radial-gradient(ellipse 38% 55% at 50% 45%, rgba(150,175,215,0.09), transparent 70%)',
+        }}
+      />
+      <div className="relative">
+        <Reveal>
+          <h2 className="mx-auto max-w-[20ch] text-[clamp(1.9rem,4.4vw,3.2rem)] leading-[1.1] font-extralight tracking-[-0.03em]">
+            {t.home.final.title}
+            <span className="font-serif text-[1.08em] font-light italic tracking-normal">&nbsp;{t.home.final.titleAccent}</span>
+          </h2>
+        </Reveal>
+        <Reveal delay={0.08}>
+          <p className="mx-auto mt-6 max-w-[52ch] text-body text-soft">{t.home.final.text}</p>
+        </Reveal>
+        <Reveal delay={0.16}>
+          <Link
+            to="/contact"
+            className="mt-10 inline-flex rounded-full border border-white/28 px-8 py-4 font-mono text-label uppercase transition-[background-color,border-color,transform] duration-300 hover:border-white/60 hover:bg-white/[0.08] active:scale-[0.98]"
+          >
+            {t.home.final.cta}
+          </Link>
+        </Reveal>
+      </div>
     </div>
   )
 }

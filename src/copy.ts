@@ -251,7 +251,7 @@ export const copy = {
         studio: 'Студия',
         contact: 'Связь',
       },
-      studioLinks: { about: 'О студии', work: 'Проекты', services: 'Услуги' },
+      studioLinks: { about: 'О студии', work: 'Проекты', services: 'Услуги', contact: 'Контакты' },
       meta: {
         hours: 'Отвечаем в рабочее время, обычно в тот же день',
         lang: 'Ведём проекты на русском и английском',
@@ -509,7 +509,7 @@ export const copy = {
         studio: 'Studio',
         contact: 'Get in touch',
       },
-      studioLinks: { about: 'About', work: 'Work', services: 'Services' },
+      studioLinks: { about: 'About', work: 'Work', services: 'Services', contact: 'Contact' },
       meta: {
         hours: 'We reply during working hours, usually the same day',
         lang: 'We run projects in Russian and English',

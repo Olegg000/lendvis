@@ -113,6 +113,7 @@ export function Footer() {
             <FooterLink to="/about">{f.studioLinks.about}</FooterLink>
             <FooterLink to="/work">{f.studioLinks.work}</FooterLink>
             <FooterLink to="/services">{f.studioLinks.services}</FooterLink>
+            <FooterLink to="/contact">{f.studioLinks.contact}</FooterLink>
           </FooterCol>
 
           <FooterCol title={f.columns.contact}>

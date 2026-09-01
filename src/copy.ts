@@ -244,15 +244,8 @@ export const copy = {
     },
 
     footer: {
-      line: 'Самара, UTC+4 · работаем удалённо · отвечаем обычно в тот же день',
+      line: 'Самара, UTC+4 · работаем удалённо',
       copyright: '© 2026 Лендвис',
-      blurb: 'Проектируем и пишем системы, которые работают в бою: от витрины до смарт-контракта. Берём проект целиком или подключаемся к живому коду.',
-      columns: {
-        services: 'Направления',
-        studio: 'Студия',
-        contact: 'Связь',
-      },
-      studioLinks: { about: 'О студии', work: 'Проекты', services: 'Услуги', contact: 'Контакты' },
     },
   },
 
@@ -499,15 +492,8 @@ export const copy = {
     },
 
     footer: {
-      line: 'Samara, UTC+4 · working remotely · usually a same-day reply',
+      line: 'Samara, UTC+4 · working remotely',
       copyright: '© 2026 Lendvis',
-      blurb: 'We design and build systems that hold up in production — from a storefront to a smart contract. We take a project whole, or plug into the code you already have.',
-      columns: {
-        services: 'What we do',
-        studio: 'Studio',
-        contact: 'Get in touch',
-      },
-      studioLinks: { about: 'About', work: 'Work', services: 'Services', contact: 'Contact' },
     },
   },
 }

@@ -90,67 +90,30 @@ export function MobileNav() {
 }
 
 export function Footer() {
-  const { t, lang } = useLang()
+  const { t } = useLang()
   const f = t.footer
+  const link = 'text-[13.5px] text-soft transition-colors hover:text-fg'
   return (
+    /* Одна ступень вместо трёх. В шапке уже есть вся навигация, на странице «О студии» —
+       весь рассказ; подвалу остаётся только то, чего больше нигде нет: как связаться,
+       кто и откуда. Колонка со ссылками на разделы дословно повторяла меню. */
     <footer className="mt-16 border-t border-line">
-      <div className="mx-auto max-w-[1180px] px-5 pt-16 pb-24 sm:px-8 md:pb-16">
-        <div className="grid gap-12 md:grid-cols-[1.7fr_1fr_1fr]">
-          <div>
-            <p className="wordmark text-[17px]">{lang === 'ru' ? 'Лендвис' : 'Lendvis'}</p>
-            <p className="mt-4 max-w-[38ch] text-[13.5px] leading-relaxed text-faint">{f.blurb}</p>
-          </div>
-
-          <FooterCol title={f.columns.studio}>
-            <FooterLink to="/about">{f.studioLinks.about}</FooterLink>
-            <FooterLink to="/work">{f.studioLinks.work}</FooterLink>
-            <FooterLink to="/services">{f.studioLinks.services}</FooterLink>
-            <FooterLink to="/contact">{f.studioLinks.contact}</FooterLink>
-          </FooterCol>
-
-          <FooterCol title={f.columns.contact}>
-            <FooterExternal href="https://t.me/nektoo1111">Telegram</FooterExternal>
-            <FooterExternal href="mailto:olegkovalik2013@yandex.ru">{t.contact.fields.email}</FooterExternal>
-            <FooterExternal href="https://github.com/Olegg000">GitHub</FooterExternal>
-          </FooterCol>
-        </div>
-
-        {/* Был второй ярус из служебных строк — схлопнут в одну, где всё конкретно:
-            часовой пояс говорит клиенту, когда мы на связи, а город сам по себе — нет. */}
-        <div className="mt-14 flex flex-wrap items-center justify-between gap-x-8 gap-y-3 border-t border-line pt-8">
-          <span className="font-mono text-[11px] text-faint">{f.copyright}</span>
-          <span className="font-mono text-[11px] text-faint">{f.line}</span>
-        </div>
+      <div className="mx-auto flex max-w-[1180px] flex-wrap items-center justify-between gap-x-10 gap-y-4 px-5 py-10 pb-28 sm:px-8 md:pb-10">
+        <p className="font-mono text-[11px] text-faint">
+          {f.copyright} · {f.line}
+        </p>
+        <nav className="flex flex-wrap items-center gap-x-7 gap-y-2">
+          <a href="https://t.me/nektoo1111" className={link}>
+            Telegram
+          </a>
+          <a href="mailto:olegkovalik2013@yandex.ru" className={link}>
+            {t.contact.fields.email}
+          </a>
+          <a href="https://github.com/Olegg000" className={link}>
+            GitHub
+          </a>
+        </nav>
       </div>
     </footer>
-  )
-}
-
-function FooterCol({ title, children }: { title: string; children: React.ReactNode }) {
-  return (
-    <div>
-      <p className="font-mono text-micro text-faint uppercase">{title}</p>
-      <ul className="mt-4 space-y-2.5">{children}</ul>
-    </div>
-  )
-}
-
-function FooterLink({ to, children }: { to: string; children: React.ReactNode }) {
-  return (
-    <li>
-      <NavLink to={to} className="text-[13.5px] text-soft transition-colors hover:text-fg">
-        {children}
-      </NavLink>
-    </li>
-  )
-}
-
-function FooterExternal({ href, children }: { href: string; children: React.ReactNode }) {
-  return (
-    <li>
-      <a href={href} className="text-[13.5px] text-soft transition-colors hover:text-fg">
-        {children}
-      </a>
-    </li>
   )
 }

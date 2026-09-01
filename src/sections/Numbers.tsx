@@ -21,7 +21,7 @@ export function Numbers() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-80px' }}
           transition={{ duration: 0.9, delay: Math.min(i * 0.06, 0.24), ease: EASE }}
-          className="group grid items-baseline gap-x-10 gap-y-3 border-b border-line py-9 md:grid-cols-[minmax(0,1fr)_minmax(0,1.05fr)]"
+          className="group grid items-baseline gap-x-12 gap-y-3 border-b border-line py-9 md:grid-cols-[clamp(240px,26vw,380px)_minmax(0,1fr)]"
         >
           <dt className="relative">
             <span

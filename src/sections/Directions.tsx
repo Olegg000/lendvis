@@ -1,9 +1,9 @@
 import { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { motion, useReducedMotion } from 'framer-motion'
+import { DirectionCover } from '../components/DirectionCover'
 import { EASE } from '../lib/motion'
 import { useLang } from '../lib/i18n'
-import { directionShots } from '../data'
 
 /**
  * Направления лентой: карточки с кадрами, которые листаются вбок.
@@ -14,8 +14,6 @@ export function Directions() {
   const still = useReducedMotion()
   const track = useRef<HTMLDivElement>(null)
   const [edge, setEdge] = useState({ start: true, end: false })
-
-  const shotOf = (n: string) => directionShots.find((d) => d.key === n)?.shot
 
   const nudge = (dir: 1 | -1) => {
     const el = track.current
@@ -45,7 +43,6 @@ export function Directions() {
         className="-mx-5 flex snap-x snap-mandatory gap-4 overflow-x-auto px-5 pb-4 sm:-mx-8 sm:px-8 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
       >
         {t.services.items.map((s, i) => {
-          const shot = shotOf(s.number)
           return (
             <motion.div
               key={s.number}
@@ -61,37 +58,7 @@ export function Directions() {
                 className="group flex h-full flex-col overflow-hidden rounded-xl border border-line bg-panel transition-colors duration-500 hover:border-white/30"
               >
                 <div className="relative aspect-[4/3] overflow-hidden bg-[#0d0f13]">
-                  {shot ? (
-                    <>
-                    <img
-                      src={shot}
-                      alt=""
-                      loading="lazy"
-                      className="h-full w-full object-cover object-top opacity-80 transition-all duration-[900ms] group-hover:scale-[1.04] group-hover:opacity-100 group-hover:[filter:grayscale(0.1)_contrast(1)_brightness(0.95)_saturate(1)]"
-                      style={{ filter: 'grayscale(0.62) contrast(0.92) brightness(0.72) saturate(0.7)' }}
-                    />
-                    {/* Кадры сняты в разных интерфейсах — общий холодный намыв сводит их в одну палитру */}
-                    <span
-                      aria-hidden="true"
-                      className="pointer-events-none absolute inset-0 opacity-70 mix-blend-soft-light transition-opacity duration-[900ms] group-hover:opacity-25"
-                      style={{ background: 'linear-gradient(160deg, rgba(150,175,215,0.55), rgba(216,179,132,0.3) 70%)' }}
-                    />
-                    </>
-                  ) : (
-                    <div className="relative flex h-full items-center justify-center overflow-hidden">
-                      <span
-                        aria-hidden="true"
-                        className="absolute inset-0"
-                        style={{
-                          background:
-                            'radial-gradient(ellipse 60% 55% at 50% 45%, rgba(150,175,215,0.18), transparent 70%), radial-gradient(ellipse 40% 40% at 70% 70%, rgba(216,179,132,0.14), transparent 70%)',
-                        }}
-                      />
-                      <span className="relative font-serif text-[2.6rem] leading-none font-light text-white/45 italic">
-                        {s.name}
-                      </span>
-                    </div>
-                  )}
+                  <DirectionCover n={s.number} />
                   <span className="pointer-events-none absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-panel via-panel/70 to-transparent" />
                   <span className="absolute top-3 left-5 font-mono text-micro text-white/55">{s.number}</span>
                 </div>

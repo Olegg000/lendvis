@@ -209,14 +209,3 @@ export type Case = {
   textEn: string
 }
 
-export type Direction = { key: string; shot?: string }
-
-/** Картинка к каждому направлению: где есть настоящий экран — берём его. */
-export const directionShots: Direction[] = [
-  { key: '01', shot: `${import.meta.env.BASE_URL}shots/quiz-catalog.webp` },
-  { key: '02', shot: `${import.meta.env.BASE_URL}shots/aurora-1.webp` },
-  { key: '03', shot: `${import.meta.env.BASE_URL}shots/blockchain.webp` },
-  { key: '04', shot: `${import.meta.env.BASE_URL}shots/hr-swagger.webp` },
-  { key: '05', shot: `${import.meta.env.BASE_URL}shots/bugfix-fix.webp` },
-  { key: '06' },
-]

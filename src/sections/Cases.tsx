@@ -1,4 +1,4 @@
-import { Reveal } from '../pages/Home'
+import { Reveal } from './kit'
 import { useLang } from '../lib/i18n'
 import { cases } from '../data'
 

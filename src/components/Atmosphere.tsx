@@ -33,6 +33,28 @@ export function LightField({ intensity = 1 }: { intensity?: number }) {
       if (still) requestAnimationFrame(draw)
     }
 
+    /**
+     * Вспышки: редкие блики, которые загораются и гаснут. Дают кадру жизнь,
+     * не превращая фон в мигалку — одновременно горит одна-две.
+     */
+    type Flare = { x: number; y: number; r: number; born: number; life: number; warm: boolean }
+    let flares: Flare[] = []
+    let nextAt = 1.5
+
+    const spawn = (t: number) => {
+      // по вертикали держимся верхней и нижней третей: под заголовком вспышка съедает контраст
+      const up = Math.random() < 0.5
+      flares.push({
+        x: 0.1 + Math.random() * 0.8,
+        y: up ? 0.08 + Math.random() * 0.2 : 0.68 + Math.random() * 0.24,
+        r: 0.09 + Math.random() * 0.13,
+        born: t,
+        life: 3.2 + Math.random() * 2.4,
+        warm: Math.random() < 0.45,
+      })
+      nextAt = t + 2.6 + Math.random() * 3.4
+    }
+
     const blob = (x: number, y: number, r: number, color: string) => {
       const g = ctx.createRadialGradient(x, y, 0, x, y, r)
       g.addColorStop(0, color)
@@ -59,6 +81,19 @@ export function LightField({ intensity = 1 }: { intensity?: number }) {
         span * 0.3,
         `rgba(215,170,130,${0.2 * intensity})`,
       )
+
+      if (!still) {
+        if (t > nextAt) spawn(t)
+        flares = flares.filter((f) => t - f.born < f.life)
+        for (const f of flares) {
+          const p = (t - f.born) / f.life
+          // быстро разгорается, долго гаснет — так вспышка читается как отблеск, а не как мигание
+          const a = p < 0.22 ? p / 0.22 : Math.pow(1 - (p - 0.22) / 0.78, 2.2)
+          const tint = f.warm ? '216,179,132' : '150,175,215'
+          blob(w * f.x, h * f.y, span * f.r, `rgba(${tint},${(a * 0.85 * intensity).toFixed(3)})`)
+        }
+      }
+
       if (!still) raf = requestAnimationFrame(draw)
     }
 

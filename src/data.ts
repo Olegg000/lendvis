@@ -96,15 +96,16 @@ export const projects: Project[] = [
     n: '06',
     name: 'Quiz',
     nameEn: 'Quiz',
-    kind: 'Платформа тестирования',
-    kindEn: 'Testing platform',
+    kind: 'Платформа тестирования · живое демо',
+    kindEn: 'Testing platform · live demo',
     summary:
-      'LMS с ролями преподавателя, студента и руководства: группы, назначение тестов, статистика и загрузка материалов. Поднимается одной командой в Docker.',
+      'LMS с ролями преподавателя, студента и руководства: группы, назначение тестов, прохождение и результаты. Главное — аналитика: один SQL-запрос по ответам и меткам времени показывает долю верных и среднее время по каждому вопросу, самый популярный неверный вариант, распределение баллов и срез по группам. Так видно не «сколько баллов», а какой вопрос сформулирован плохо и где у группы общее заблуждение. Поднимается одной командой в Docker.',
     summaryEn:
-      'An LMS with teacher, student and management roles: groups, assigned tests, statistics and uploads. Comes up with a single Docker command.',
-    stack: ['React', 'Express', 'PostgreSQL', 'Docker'],
+      'An LMS with teacher, student and management roles: groups, assignments, test taking and results. The centrepiece is analytics: a single SQL query over answers and timestamps yields share correct and average time per question, the distractor that pulls the most students, score distribution and a per-group cut — so a teacher sees which question is badly worded, not just who scored what. Comes up with a single Docker command.',
+    stack: ['React 19', 'Express', 'PostgreSQL', 'Docker'],
     repo: 'https://github.com/Olegg000/quiz',
-    shots: [`${base}shots/quiz-catalog.webp`, `${base}shots/quiz-login.webp`],
+    demo: 'https://olegg000.github.io/quiz/',
+    shots: [`${base}shots/quiz-analytics.webp`, `${base}shots/quiz-catalog.webp`, `${base}shots/quiz-login.webp`],
   },
   {
     n: '07',

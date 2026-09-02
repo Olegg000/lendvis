@@ -62,7 +62,9 @@ export function Hero() {
           initial={still ? false : { opacity: 0, y: 8 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1.2, delay: 0.15, ease: EASE }}
-          className="wordmark mb-3.5 text-[15px] tracking-[0.46em] text-fg uppercase [text-indent:0.46em]"
+          /* Разрядка в полбуквы и кегль 15px съедали рисунок Piazzolla — имя читалось
+             набором расставленных капителей, а не знаком студии. Кегль крупный, разрядка почти нулевая. */
+          className="wordmark mb-4 text-[clamp(1.35rem,2.6vw,1.95rem)] leading-none tracking-[0.005em] text-fg"
         >
           {lang === 'ru' ? 'Лендвис' : 'Lendvis'}
         </motion.p>

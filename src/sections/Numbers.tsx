@@ -7,6 +7,8 @@ import { metrics } from '../data'
 /**
  * Цифры строками, а не сеткой из четырёх колонок: сетка — заезженный приём,
  * в ней число живёт мелко. Здесь каждое число во всю строку, и цифра сама себе заголовок.
+ * Подпись стоит ПОД числом по левому краю: в колонке справа она вставала к середине полосы
+ * и висела в воздухе, не имея под собой опоры.
  */
 export function Numbers() {
   const { lang } = useLang()
@@ -21,9 +23,11 @@ export function Numbers() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-80px' }}
           transition={{ duration: 0.9, delay: Math.min(i * 0.06, 0.24), ease: EASE }}
-          className="group grid items-center gap-x-12 gap-y-4 border-b border-line py-10 md:grid-cols-[clamp(240px,26vw,380px)_minmax(0,1fr)]"
+          /* Последнюю линию не рисуем: раздел закрывает верхняя кромка финального блока,
+             две одинаковые линии в 128px друг от друга читались как недоделка */
+          className="group border-b border-line py-9 last:border-b-0 sm:py-10"
         >
-          <dt className="relative">
+          <dt>
             <span
               className="sheen block bg-clip-text font-serif text-[clamp(3.4rem,11vw,8rem)] leading-[0.86] font-light text-transparent italic tabular-nums transition-[filter] duration-700 group-hover:brightness-110"
               style={{
@@ -34,15 +38,12 @@ export function Numbers() {
             >
               <CountUp value={lang === 'ru' ? m.value : m.valueEn} />
             </span>
-            {/* тонкая тень под числом — цифра должна стоять на поверхности, а не висеть */}
-            <span
-              aria-hidden="true"
-              className="pointer-events-none absolute -bottom-2 left-0 h-px w-full max-w-[18ch] bg-gradient-to-r from-sand/45 via-white/10 to-transparent"
-            />
           </dt>
 
-          <dd>
-            <p className="max-w-[34ch] text-[clamp(1rem,1.6vw,1.15rem)] leading-snug text-fg">
+          {/* Волоска под числом больше нет: фиксированная длина совпадала с шириной цифры
+              только случайно — под «~1000» обрывалась, под «4» уезжала далеко вправо. */}
+          <dd className="mt-3">
+            <p className="max-w-[38ch] text-[clamp(1rem,1.6vw,1.15rem)] leading-snug text-fg">
               {lang === 'ru' ? m.label : m.labelEn}
             </p>
           </dd>

@@ -4,6 +4,8 @@ import { WorkCard } from '../components/WorkCard'
 import type { Project } from '../data'
 
 const TOP = 72
+/** Шаг между машинами в стопке. Ниже он же уходит в pb-6 на обёртке. */
+const GAP = 24
 
 /**
  * Витрина стопкой: следующая карточка наезжает на предыдущую, а та слегка ужимается.
@@ -21,10 +23,13 @@ export function Showcase({ projects }: { projects: Project[] }) {
     const check = () => {
       const el = wrap.current
       if (!el) return
+      /* Меряем именно карточку, а не обёртку: у обёртки высота сама зависит от режима
+         (в стопке к ней добавляется pb-6, вне стопки — mb-14). На обёртке порог начинал
+         колебаться — включился, потолстел, перестал влезать, выключился — и залипал на «нет». */
       const tallest = Math.max(
-        ...[...el.children].map((c) => (c.firstElementChild ?? c).getBoundingClientRect().height),
+        ...[...el.children].map((c) => c.querySelector('article')?.getBoundingClientRect().height ?? 0),
       )
-      setCanStick(window.innerWidth >= 768 && tallest + TOP <= window.innerHeight)
+      setCanStick(window.innerWidth >= 768 && tallest + TOP + GAP <= window.innerHeight)
     }
     check()
     const ro = new ResizeObserver(check)
@@ -74,8 +79,9 @@ function StackItem({
     >
       <motion.div
         style={still || !covered || !stick ? undefined : { scale, transformOrigin: 'top center' }}
-        /* Фон нужен именно стопке: без него карточки просвечивали бы одна сквозь другую */
-        className={stick ? 'rounded-2xl bg-ground pb-6' : ''}
+        /* Плашки под карточкой нет: непрозрачность в стопке даёт сам корпус ноутбука,
+           силуэт которого идёт во всю ширину. Остаётся только шаг между машинами. */
+        className={stick ? 'pb-6' : ''}
       >
         {children}
       </motion.div>

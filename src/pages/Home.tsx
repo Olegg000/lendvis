@@ -56,14 +56,14 @@ export default function Home() {
           alt=""
           loading="lazy"
           className="absolute inset-0 h-full w-full object-cover"
-          style={{ filter: 'grayscale(0.55) brightness(0.52) contrast(1.06)' }}
+          style={{ filter: 'grayscale(0.5) brightness(0.62) contrast(1.05)' }}
         />
         <span
           aria-hidden="true"
           className="pointer-events-none absolute inset-0"
           style={{
             background:
-              'linear-gradient(to bottom, var(--color-ground) 0%, rgba(5,5,7,0.58) 20%, rgba(5,5,7,0.58) 78%, var(--color-ground) 100%)',
+              'linear-gradient(to bottom, var(--color-ground) 0%, rgba(5,5,7,0.52) 20%, rgba(5,5,7,0.52) 78%, var(--color-ground) 100%)',
           }}
         />
         <div className={`relative ${wrap}`}>
@@ -72,8 +72,10 @@ export default function Home() {
         </div>
       </section>
 
-      <section className={`${wrap} ${gap}`}>
-        <SectionHead title={t.home.numbers.title} accent={t.home.numbers.titleAccent} />
+      {/* Нижнего отступа нет намеренно: финальный блок несёт свой собственный воздух,
+          вместе с ним между последней цифрой и призывом набегала пустая треть экрана. */}
+      <section className={`${wrap}`}>
+        <SectionHead title={t.home.numbers.title} accent={t.home.numbers.titleAccent} center />
         <Numbers />
       </section>
 

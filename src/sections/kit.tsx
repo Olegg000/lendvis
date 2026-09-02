@@ -22,25 +22,32 @@ export function SectionHead({
   accent,
   lead,
   level = 2,
+  center = false,
 }: {
   title: string
   accent?: string
   lead?: string
   level?: 1 | 2
+  /** Заголовок по центру полосы: раздел цифр открывается как разворот, а не как список */
+  center?: boolean
 }) {
   // На внутренних страницах заголовок страницы обязан быть h1, иначе документ начинается со второго уровня
   const H = level === 1 ? 'h1' : 'h2'
   return (
-    <header className="mb-10">
+    <header className={center ? 'mb-12 text-center' : 'mb-10'}>
       <Reveal delay={0.06}>
-        <H className="max-w-[20ch] text-[clamp(1.7rem,4vw,2.9rem)] leading-[1.1] font-extralight tracking-[-0.03em]">
+        <H
+          className={`max-w-[20ch] text-[clamp(1.7rem,4vw,2.9rem)] leading-[1.1] font-extralight tracking-[-0.03em] ${
+            center ? 'mx-auto' : ''
+          }`}
+        >
           {title}
           {accent && <span className="font-serif text-[1.08em] font-light italic tracking-normal">&nbsp;{accent}</span>}
         </H>
       </Reveal>
       {lead && (
         <Reveal delay={0.12}>
-          <p className="mt-6 max-w-[58ch] text-lead text-soft">{lead}</p>
+          <p className={`mt-6 max-w-[58ch] text-lead text-soft ${center ? 'mx-auto' : ''}`}>{lead}</p>
         </Reveal>
       )}
     </header>
@@ -51,7 +58,7 @@ export function SectionHead({
 export function FinalCall() {
   const { t } = useLang()
   return (
-    <div className="relative mt-24 overflow-hidden border-t border-line pt-24 pb-10 text-center">
+    <div className="relative mt-12 overflow-hidden border-t border-line pt-12 pb-10 text-center">
       {/* Сайт открывается по центру — пусть так же и закрывается, со своим светом */}
       <span
         aria-hidden="true"

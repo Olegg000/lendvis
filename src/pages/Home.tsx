@@ -1,7 +1,6 @@
 import { Link } from 'react-router-dom'
 import { Hero } from '../sections/Hero'
 import { Showcase } from '../sections/Showcase'
-import { Directions } from '../sections/Directions'
 import { FinalCall, Reveal, SectionHead } from '../sections/kit'
 import { Numbers } from '../sections/Numbers'
 import { ScrollLit } from '../components/ScrollLit'
@@ -50,15 +49,6 @@ export default function Home() {
         <More to="/about">{t.nav.about}</More>
       </section>
 
-      <section className={`${wrap} ${gap}`}>
-        <SectionHead
-          title={t.home.services.title}
-          accent={t.home.services.titleAccent}
-          lead={t.home.services.lead}
-        />
-        <Directions />
-      </section>
-
       {/* Витрина стоит на настоящем кадре: работы плывут поверх сцены, а не поверх пустоты */}
       <section className={`relative ${gap} pt-16 sm:pt-20`}>
         <img
@@ -79,18 +69,11 @@ export default function Home() {
         <div className={`relative ${wrap}`}>
           <SectionHead title={t.home.work.title} accent={t.home.work.titleAccent} lead={t.home.work.lead} />
           <Showcase projects={shown} />
-          <More to="/work">
-            {t.home.work.more} · {projects.length}
-          </More>
         </div>
       </section>
 
       <section className={`${wrap} ${gap}`}>
-        <SectionHead
-          title={t.home.numbers.title}
-          accent={t.home.numbers.titleAccent}
-          lead={t.home.numbers.lead}
-        />
+        <SectionHead title={t.home.numbers.title} accent={t.home.numbers.titleAccent} />
         <Numbers />
       </section>
 

@@ -45,9 +45,6 @@ export function Numbers() {
             <p className="max-w-[34ch] text-[clamp(1rem,1.6vw,1.15rem)] leading-snug text-fg">
               {lang === 'ru' ? m.label : m.labelEn}
             </p>
-            <p className="mt-3 max-w-[42ch] font-mono text-micro leading-relaxed text-faint">
-              {lang === 'ru' ? m.sub : m.subEn}
-            </p>
           </dd>
         </motion.div>
       ))}

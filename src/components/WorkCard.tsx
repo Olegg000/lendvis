@@ -1,4 +1,5 @@
 import { useRef, useState } from 'react'
+import { Link } from 'react-router-dom'
 import { motion, useReducedMotion, useScroll, useTransform } from 'framer-motion'
 import { Phone } from './Device'
 import type { Project } from '../data'
@@ -79,6 +80,14 @@ export function WorkCard({
       transition={{ duration: 0.9, ease: EASE }}
       className="group relative"
     >
+      {/* На главной карточка целиком — ссылка: клик в любом месте ведёт к проектам */}
+      {compact && (
+        <Link
+          to="/work"
+          aria-label={lang === 'ru' ? project.name : project.nameEn}
+          className="absolute inset-0 z-10 rounded-2xl"
+        />
+      )}
       <div className="mb-5 flex flex-wrap items-baseline gap-x-6 gap-y-1">
         {!compact && (
           <span className="font-mono text-label text-white/30 tabular-nums">
@@ -195,7 +204,7 @@ export function WorkCard({
                 loading="lazy"
                 className={`block w-full object-cover object-top opacity-90 transition-all duration-[900ms] group-hover:scale-[1.015] group-hover:opacity-100 ${frameRatio}`}
               />
-              {project.demo && (
+              {project.demo && !compact && (
                 <button
                   type="button"
                   onClick={() => setLive(true)}
@@ -213,6 +222,7 @@ export function WorkCard({
         </motion.div>
       )}
 
+      {!compact && (
       <div className="mt-5 flex flex-wrap items-center justify-between gap-4">
         {/* Стек — только на странице проектов: на главной карточка знакомит именем и кадром */}
         {!compact && (
@@ -235,6 +245,8 @@ export function WorkCard({
           </a>
         </div>
       </div>
+      )}
+
     </motion.article>
   )
 }

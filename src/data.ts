@@ -36,15 +36,16 @@ export const projects: Project[] = [
     n: '02',
     name: 'TON Jetton Vesting',
     nameEn: 'TON Jetton Vesting',
-    kind: 'Блокчейн · смарт-контракт',
-    kindEn: 'Blockchain · smart contract',
+    kind: 'Блокчейн · живое демо',
+    kindEn: 'Blockchain · live demo',
     summary:
-      'Токен стандарта TIP-3 для TON с он-чейн вестингом: девять пулов токеномики, трёхмесячный клиф, графики на 12 и 18 месяцев, сжигание с перераспределением. Ошибку в контракте не откатишь, поэтому всё покрыто песочными тестами — 34 из 34 зелёные.',
+      'Токен стандарта TIP-3 для TON с он-чейн вестингом: девять пулов токеномики, трёхмесячный клиф, графики на 12 и 18 месяцев, сжигание с перераспределением. Ошибку в контракте не откатишь, поэтому всё покрыто песочными тестами — 34 из 34 зелёные. В демо ползунок месяцев пересчитывает лимиты пулов теми же формулами, что исполняет контракт.',
     summaryEn:
-      'A TIP-3 jetton for TON with on-chain vesting: nine tokenomics pools, a three-month cliff, 12- and 18-month schedules, and burn with redistribution. A contract cannot be patched after deploy, so it is covered by sandbox tests — 34 of 34 green.',
+      'A TIP-3 jetton for TON with on-chain vesting: nine tokenomics pools, a three-month cliff, 12- and 18-month schedules, and burn with redistribution. A contract cannot be patched after deploy, so it is covered by sandbox tests — 34 of 34 green. In the demo, a month slider recomputes pool limits with the very arithmetic the contract runs.',
     stack: ['FunC', 'TON', 'TypeScript', 'Jest'],
     repo: 'https://github.com/Olegg000/ton-jetton-vesting',
-    shots: [`${base}shots/blockchain.webp`],
+    demo: 'https://olegg000.github.io/ton-jetton-vesting/',
+    shots: [`${base}shots/ton-vesting.webp`, `${base}shots/blockchain.webp`],
   },
   {
     n: '03',

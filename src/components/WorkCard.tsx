@@ -79,19 +79,14 @@ export function WorkCard({
   /** Строй телефонов на подсвеченной сцене — общий для обоих режимов. */
   const phoneStage = (
     <>
-      {/* Подсветка из самого снимка: размытие заливает поле панели и заодно прячет апскейл */}
-      <img
-        src={project.shots[0]}
-        alt=""
-        aria-hidden
-        loading="lazy"
-        className="absolute inset-0 h-full w-full scale-125 object-cover opacity-[0.28] blur-[60px] saturate-[.55] brightness-90"
-      />
+      {/* Подсветка была размытым на 60px снимком: в липкой стопке карточка ужимается,
+          и браузер перерисовывал это размытие на каждом кадре. Тот же свет статичным
+          градиентом стоит ноль — картинка почти та же, кадры целые. */}
       <div
         className="absolute inset-0"
         style={{
           background:
-            'radial-gradient(ellipse 78% 70% at 50% 46%, transparent 26%, rgba(8,9,12,0.72) 100%)',
+            'radial-gradient(ellipse 62% 58% at 50% 44%, rgba(70,78,96,0.30) 0%, rgba(20,23,29,0.6) 52%, rgba(8,9,12,0.85) 100%)',
         }}
       />
       <div className="relative flex h-full items-center justify-start gap-4 overflow-x-auto px-6 py-7 snap-x snap-mandatory sm:justify-center sm:gap-7 md:gap-20 md:overflow-hidden [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
@@ -110,11 +105,14 @@ export function WorkCard({
     </>
   )
 
-  /* ── Главная: карточка = корпус ноутбука ─────────────────────────────────────
-     Плашки под карточкой больше нет — её роль взял на себя сам корпус.
-     Требование стопки: силуэт обязан быть непрозрачным во всю ширину, иначе сквозь
-     наехавшую карточку виден сосед. Поэтому имя переехало с воздуха над кадром
-     на подбородок крышки — туда, где на настоящей машине стоит марка. */
+  /* ── Главная: карточка = ноутбук ────────────────────────────────────────────
+     Намеренно плоско: ни градиентов, ни размытых теней, ни накладок поверх экрана.
+     Каждый такой слой в липкой стопке перерисовывается на каждом кадре прокрутки —
+     на замере медиана кадра стояла 50мс, то есть 20 кадров в секунду.
+     Осталось три плоские заливки и серая окантовка: корпус, экран, основание.
+
+     Силуэт непрозрачен во всю ширину — иначе сквозь наехавшую карточку виден сосед.
+     Поэтому имя стоит на подбородке корпуса, а не в воздухе над кадром. */
   if (compact) {
     return (
       <motion.article
@@ -125,34 +123,22 @@ export function WorkCard({
         className="group relative"
       >
         {/* Клик в любое место корпуса ведёт к проектам */}
-        <Link to="/work" aria-label={name} className="absolute inset-0 z-10 rounded-[18px]" />
+        <Link to="/work" aria-label={name} className="absolute inset-0 z-10 rounded-xl" />
 
-        {/* крышка: рамка, экран, подбородок */}
-        <div
-          className="relative rounded-t-[18px] border border-b-0 border-white/14 p-[10px] pb-0 transition-colors duration-500 group-hover:border-white/28 sm:p-[13px] sm:pb-0"
-          /* Свет сцены падает слева сверху: верхняя кромка корпуса ловит блик, низ уходит в тень.
-             Без внутренней светлой линии по верху рамка читается рисованным прямоугольником. */
-          style={{
-            background: 'linear-gradient(163deg, #2f353d 0%, #1b1f25 38%, #0d1015 100%)',
-            boxShadow:
-              'inset 0 1px 0 rgba(255,255,255,0.13), 0 60px 120px -55px rgba(0,0,0,1), 0 24px 50px -30px rgba(0,0,0,0.9), 0 46px 110px -70px rgba(216,179,132,0.12)',
-          }}
-        >
-          {/* глазок камеры в верхней кромке */}
-          <span
-            aria-hidden="true"
-            className="absolute top-[4px] left-1/2 h-[3px] w-[3px] -translate-x-1/2 rounded-full bg-black/70 sm:top-[6px]"
-          />
-          <div className="relative overflow-hidden rounded-[9px] bg-[#0d0f13] ring-1 ring-black/70 ring-inset sm:rounded-[11px]">
+        {/* Корпус */}
+        <div className="rounded-t-xl border border-b-0 border-[#3b414a] bg-[#181c22] p-2 pb-0 transition-colors duration-300 group-hover:border-[#565e69] sm:p-2.5 sm:pb-0">
+          {/* Экран отдельным блоком, со своей кромкой */}
+          <div className="overflow-hidden rounded-md border border-[#23272e] bg-[#0d0f13]">
             {project.phone ? (
+              // w-full обязателен: без явной ширины aspect-ratio с max-height ужимает блок по бокам
               <div className={`relative w-full ${phoneFrame}`}>{phoneStage}</div>
             ) : (
               <>
-                <div className="flex items-center gap-2 border-b border-white/8 px-4 py-2.5">
-                  <span className="h-2 w-2 rounded-full bg-white/12" />
-                  <span className="h-2 w-2 rounded-full bg-white/12" />
-                  <span className="h-2 w-2 rounded-full bg-white/12" />
-                  <span className="mx-auto flex min-w-0 items-center gap-2 truncate rounded-full bg-white/[0.05] px-3 py-1 font-mono text-[9.5px] text-faint">
+                <div className="flex items-center gap-2 border-b border-[#23272e] bg-[#12151a] px-3.5 py-2.5">
+                  <span className="h-[11px] w-[11px] rounded-full bg-[#e0443e]" />
+                  <span className="h-[11px] w-[11px] rounded-full bg-[#dea123]" />
+                  <span className="h-[11px] w-[11px] rounded-full bg-[#1aab29]" />
+                  <span className="mx-auto min-w-0 truncate rounded bg-white/[0.05] px-3 py-1 font-mono text-[9.5px] text-faint">
                     {(project.demo ?? project.repo).replace(/^https?:\/\//, '')}
                   </span>
                 </div>
@@ -160,67 +146,26 @@ export function WorkCard({
                   src={project.shots[0]}
                   alt=""
                   loading="lazy"
-                  className={`block w-full object-cover object-top opacity-90 transition-all duration-[900ms] group-hover:opacity-100 motion-safe:group-hover:scale-[1.015] ${frameRatio}`}
+                  className={`block w-full object-cover object-top ${frameRatio}`}
                 />
               </>
             )}
-            {/* Косой блик по матрице — экран должен отражать свет сцены, а не быть дыркой */}
-            <span
-              aria-hidden="true"
-              className="pointer-events-none absolute inset-0 shadow-[inset_0_0_60px_8px_rgba(3,4,6,0.26)]"
-              style={{
-                background:
-                  'linear-gradient(104deg, rgba(255,255,255,0.055) 0%, transparent 34%, transparent 72%, rgba(255,255,255,0.03) 100%)',
-              }}
-            />
           </div>
 
-          {/* Тёплый край слева, холодный справа — ровно та подсветка, что горит на фотоподложке.
-              Без этого корпус живёт отдельно от сцены, на которой стоит. */}
-          <span
-            aria-hidden="true"
-            className="pointer-events-none absolute inset-0 rounded-t-[18px]"
-            style={{
-              background:
-                'linear-gradient(100deg, rgba(216,179,132,0.055) 0%, transparent 34%, transparent 66%, rgba(150,175,215,0.05) 100%)',
-            }}
-          />
-
-          {/* подбородок: имя выгравировано на корпусе */}
-          <div className="flex items-center justify-between gap-5 px-1.5 py-3.5 sm:px-2 sm:py-4">
+          {/* Подбородок: имя на корпусе */}
+          <div className="flex items-center justify-between gap-5 px-1 py-3 sm:px-1.5 sm:py-3.5">
             <Heading className="truncate text-[clamp(1.05rem,1.7vw,1.45rem)] leading-tight font-light tracking-[-0.02em]">
               {name}
             </Heading>
-            {/* На узкой машине вид проекта съедал имя до «AutoChe…» — на подбородке остаётся только имя */}
+            {/* На узкой машине вид проекта съедал имя до «AutoChe…» */}
             <span className="hidden shrink-0 font-mono text-micro text-faint uppercase sm:inline">{kind}</span>
           </div>
         </div>
 
-        {/* основание с выемкой под палец */}
-        {/* Кромку корпуса ведём и по основанию: на крышке border, а на основании его не было —
-            силуэт размыкался ровно на стыке, и на фотоподложке этот разрыв видно.
-            Низ уходит в тень: подсветка снизу читалась бы неоновой полосой, а не металлом. */}
-        <div
-          className="relative h-[14px] rounded-b-[18px] border-x border-b border-white/14 transition-colors duration-500 group-hover:border-white/28 sm:h-[18px]"
-          style={{
-            background: 'linear-gradient(to bottom, #171b20 0%, #2b3037 45%, #14171b 100%)',
-            boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.10)',
-          }}
-        >
-          {/* выемка под палец */}
-          <span className="absolute top-0 left-1/2 h-[3px] w-16 -translate-x-1/2 rounded-b-full bg-black/55 sm:w-28" />
+        {/* Основание с выемкой под палец */}
+        <div className="relative h-3 rounded-b-xl border-x border-b border-[#3b414a] bg-[#22262d] transition-colors duration-300 group-hover:border-[#565e69] sm:h-[15px]">
+          <span className="absolute top-0 left-1/2 h-[3px] w-20 -translate-x-1/2 rounded-b-full bg-[#0d0f13] sm:w-28" />
         </div>
-        {/* Контактная тень пятном, а не полоской: на фотоподложке она гаснет в сцену.
-            Стоит вне потока (top-full) — в высоту карточки не входит и не сбивает
-            замер, по которому витрина решает, влезает ли машина в экран. */}
-        <span
-          aria-hidden="true"
-          className="pointer-events-none absolute inset-x-[6%] top-full h-9"
-          style={{
-            background:
-              'radial-gradient(ellipse 60% 58% at 50% 0%, rgba(0,0,0,0.72) 0%, rgba(0,0,0,0.3) 46%, rgba(0,0,0,0) 78%)',
-          }}
-        />
       </motion.article>
     )
   }

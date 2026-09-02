@@ -25,6 +25,8 @@ const TINT: Record<string, string> = {
   '04': 'linear-gradient(155deg, rgba(150,175,215,0.20), rgba(5,5,7,0.74) 60%)',
   '05': 'linear-gradient(155deg, rgba(216,179,132,0.16), rgba(5,5,7,0.76) 62%)',
   '06': 'linear-gradient(155deg, rgba(216,179,132,0.20), rgba(5,5,7,0.74) 60%)',
+  '07': 'linear-gradient(155deg, rgba(150,175,215,0.20), rgba(5,5,7,0.74) 62%)',
+  '08': 'linear-gradient(155deg, rgba(216,179,132,0.18), rgba(5,5,7,0.76) 60%)',
 }
 
 export function DirectionCover({ n }: { n: string }) {
@@ -35,6 +37,11 @@ export function DirectionCover({ n }: { n: string }) {
         alt=""
         loading="lazy"
         decoding="async"
+        /* У новых направлений своего кадра пока нет: прячем битую картинку,
+           подцветка и знак справляются сами. */
+        onError={(e) => {
+          e.currentTarget.style.display = 'none'
+        }}
         className="absolute inset-0 h-full w-full object-cover transition-transform duration-[1200ms] group-hover:scale-[1.06]"
       />
 

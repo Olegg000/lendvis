@@ -26,7 +26,7 @@ export const copy = {
         eyebrow: 'Направления',
         title: 'Стек выбираем под',
         titleAccent: 'задачу',
-        lead: 'А не задачу под стек. Шесть направлений, и в каждом за спиной боевые проекты, а не учебные.',
+        lead: 'А не задачу под стек. Восемь направлений, и в каждом за спиной боевые проекты, а не учебные.',
         more: 'Все направления',
       },
       work: {
@@ -57,7 +57,7 @@ export const copy = {
     },
 
     services: {
-      title: 'Шесть направлений, один',
+      title: 'Восемь направлений, один',
       titleAccent: 'подход',
       lead: 'Сначала разбираемся, что должно происходить в системе, и только потом выбираем, на чём её писать. Ниже — что именно мы делаем и чем.',
       items: [
@@ -138,6 +138,32 @@ export const copy = {
             'Обновление релизов с сохранением доработок',
           ],
           stack: '1С:Предприятие 8.3 · расширения · печатные формы',
+        },
+        {
+          number: '07',
+          name: 'Боты и мини-приложения',
+          tagline: 'Приложение там, где человек уже сидит.',
+          text: 'Телеграм-боты и мини-приложения прямо внутри мессенджера: заказ, запись, оплата, личный кабинет. Ставить нечего, регистрироваться не надо — вход по самому мессенджеру.',
+          bullets: [
+            'Telegram Mini Apps: полноценный интерфейс в переписке',
+            'Боты для заказов, записи и поддержки',
+            'Оплата и подписки внутри бота',
+            'Уведомления и напоминания из вашей системы',
+          ],
+          stack: 'Telegram Bot API · Mini Apps · aiogram · FastAPI · Node.js',
+        },
+        {
+          number: '08',
+          name: 'Серверы и инфраструктура',
+          tagline: 'Чтобы «у нас всё легло» перестало быть новостью.',
+          text: 'Поднимаем боевой сервер и держим его: домен, сертификаты, Docker, выкладка по коммиту, резервные копии, мониторинг. Переносим проект с чужого хостинга, ничего не теряя по дороге.',
+          bullets: [
+            'Сервер с нуля: домен, HTTPS, nginx, Docker',
+            'Выкладка по коммиту и откат на прошлую версию',
+            'Резервные копии, логи, мониторинг и оповещения',
+            'Переезд между хостингами без простоя',
+          ],
+          stack: 'Linux · nginx · Docker · GitHub Actions · Cloudflare · Proxmox',
         },
       ],
       process: {
@@ -274,7 +300,7 @@ export const copy = {
         eyebrow: 'What we build',
         title: 'The stack fits the',
         titleAccent: 'problem',
-        lead: 'Not the other way round. Six directions, each with production work behind it rather than tutorials.',
+        lead: 'Not the other way round. Eight directions, each with production work behind it rather than tutorials.',
         more: 'All directions',
       },
       work: {
@@ -305,7 +331,7 @@ export const copy = {
     },
 
     services: {
-      title: 'Six directions, one',
+      title: 'Eight directions, one',
       titleAccent: 'method',
       lead: 'First we work out what the system has to do, then we pick what to build it with. Here is the work and the tooling behind it.',
       items: [
@@ -386,6 +412,32 @@ export const copy = {
             'Release upgrades that keep your customisations',
           ],
           stack: '1C:Enterprise 8.3 · extensions · print forms',
+        },
+        {
+          number: '07',
+          name: 'Bots and mini apps',
+          tagline: 'The app lives where the customer already is.',
+          text: 'Telegram bots and mini apps that run inside the messenger: ordering, booking, payment, a personal account. Nothing to install, nothing to sign up for — the messenger handles the login.',
+          bullets: [
+            'Telegram Mini Apps: a real interface inside the chat',
+            'Bots for orders, bookings and support',
+            'Payments and subscriptions inside the bot',
+            'Alerts and reminders pushed from your own system',
+          ],
+          stack: 'Telegram Bot API · Mini Apps · aiogram · FastAPI · Node.js',
+        },
+        {
+          number: '08',
+          name: 'Servers and infrastructure',
+          tagline: 'So that “everything is down” stops being news.',
+          text: 'We stand the production server up and keep it standing: domain, certificates, Docker, deploy on every commit, backups, monitoring. We move projects off someone else\'s hosting without losing anything on the way.',
+          bullets: [
+            'A server from scratch: domain, HTTPS, nginx, Docker',
+            'Deploy on commit, with a rollback to the previous build',
+            'Backups, logs, monitoring and alerts',
+            'Migration between hosts with no downtime',
+          ],
+          stack: 'Linux · nginx · Docker · GitHub Actions · Cloudflare · Proxmox',
         },
       ],
       process: {

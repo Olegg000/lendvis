@@ -71,6 +71,28 @@ export function DirectionIcon({ n, className = '' }: { n: string; className?: st
           <path d="M23 17h8M27 13v8" opacity="0.5" />
         </svg>
       )
+    // Боты и мини-приложения — знак бота: голова с антенной, реплика рядом
+    case '07':
+      return (
+        <svg {...common}>
+          <path d="M24 6v5" />
+          <circle cx="24" cy="4.5" r="1.6" />
+          <rect x="8" y="11" width="32" height="22" rx="5" />
+          <circle cx="18" cy="21" r="1.7" />
+          <circle cx="30" cy="21" r="1.7" />
+          <path d="M19 27h10" opacity="0.6" />
+          <path d="M14 38h20a4 4 0 004-4M14 38l-3 4v-4" opacity="0.5" />
+        </svg>
+      )
+    // Серверы и инфраструктура — облако с выкладкой вверх
+    case '08':
+      return (
+        <svg {...common}>
+          <path d="M14.5 33a7.5 7.5 0 01-.6-14.98 10 10 0 0119.3-2.2A7.6 7.6 0 0134.5 33" />
+          <path d="M24 41V25" />
+          <path d="M19 30l5-5 5 5" />
+        </svg>
+      )
     // 1С — таблица с итоговой строкой
     default:
       return (

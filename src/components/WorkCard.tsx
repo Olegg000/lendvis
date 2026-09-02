@@ -166,9 +166,11 @@ export function WorkCard({
                 <button
                   type="button"
                   onClick={() => setLive(true)}
-                  className="group/play absolute inset-0 flex items-end justify-center pb-6 md:items-center md:pb-0"
+                  /* Кнопка живёт в углу кадра, а не по центру: по центру она садилась
+                     поверх самого интерфейса и читалась как наклейка на скриншоте */
+                  className="group/play absolute inset-x-0 bottom-0 flex items-end justify-start p-4 sm:p-5"
                 >
-                  <span className="rounded-full border border-white/40 bg-black/55 px-7 py-3 font-mono text-label uppercase backdrop-blur-sm transition-[background-color,border-color,transform] duration-300 group-hover/play:border-white/70 group-hover/play:bg-black/75 group-active/play:scale-[0.97]">
+                  <span className="rounded-full border border-white/40 bg-black/70 px-6 py-2.5 font-mono text-label uppercase shadow-[0_10px_30px_-12px_rgba(0,0,0,1)] backdrop-blur-sm transition-[background-color,border-color,transform] duration-300 group-hover/play:border-white/70 group-hover/play:bg-black/85 group-active/play:scale-[0.97]">
                     {label.play}
                   </span>
                 </button>

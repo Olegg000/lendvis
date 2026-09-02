@@ -65,8 +65,11 @@ export function WorkCard({
      На узкой колонке соотношение дало бы кадр НИЖЕ прежнего, поэтому там держим прежнюю высоту. */
   const frameRatio =
     'h-[clamp(195px,32vh,420px)] md:h-auto md:aspect-[16/10] md:max-h-[calc(100svh-280px)]'
-  // Строй телефонов живёт по своей высоте: вертикальным корпусам широкая рамка не подходит
-  const phoneHeight = 'h-[clamp(195px,32vh,420px)]'
+  /* У панели телефонов свой потолок: два одинаковых md:max-h в одной строке классов
+     спорят между собой непредсказуемо, поэтому собираем её класс отдельно.
+     Ниже соседей она стоит намеренно — три корпуса по 106px не заполняют широкое поле,
+     и растянутая панель читается пустой. */
+  const phoneFrame = 'h-[clamp(195px,32vh,420px)] md:h-auto md:aspect-[16/10] md:max-h-[380px]'
 
   return (
     <motion.article
@@ -92,10 +95,40 @@ export function WorkCard({
       {!compact && <p className="mb-7 max-w-[62ch] text-body text-soft">{lede}</p>}
 
       {project.phone ? (
-        <div className={`flex items-center justify-start gap-4 overflow-x-auto rounded-xl border border-line bg-[#0d0f13] px-6 py-7 snap-x snap-mandatory sm:justify-center sm:gap-7 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden ${phoneHeight}`}>
-          {project.shots.slice(0, 3).map((src) => (
-            <Phone key={src} src={src} className="h-full w-auto shrink-0 snap-center" />
-          ))}
+        // w-full обязателен: без явной ширины aspect-ratio с max-height ужимает блок по бокам.
+        // Панель при этом не тянем под веб-кадр: на полной высоте строй занимал 17% поля —
+        // 45px разницы в ритме глаз не ловит, а 400px пустоты ловит.
+        <div
+          className={`relative w-full overflow-hidden rounded-xl border border-line bg-[#0d0f13] ${phoneFrame}`}
+        >
+          {/* Подсветка из самого снимка: размытие заливает поле панели и заодно прячет апскейл */}
+          <img
+            src={project.shots[0]}
+            alt=""
+            aria-hidden
+            loading="lazy"
+            className="absolute inset-0 h-full w-full scale-125 object-cover opacity-[0.28] blur-[60px] saturate-[.55] brightness-90"
+          />
+          <div
+            className="absolute inset-0"
+            style={{
+              background:
+                'radial-gradient(ellipse 78% 70% at 50% 46%, transparent 26%, rgba(8,9,12,0.72) 100%)',
+            }}
+          />
+          <div className="relative flex h-full items-center justify-start gap-4 overflow-x-auto px-6 py-7 snap-x snap-mandatory sm:justify-center sm:gap-7 md:gap-20 md:overflow-hidden [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+            {project.shots.slice(0, 3).map((src, i) => (
+              <Phone
+                key={src}
+                src={src}
+                /* Снимки всего 144x320: выше ~220px начинается каша, поэтому корпуса под высоту панели
+                   не тянем — строй стоит по центру освещённой сцены, а поле закрывают подсветка и виньетка. */
+                className={`h-full max-h-[217px] w-auto shrink-0 origin-bottom snap-center ${
+                  i === 0 ? 'md:-rotate-6' : i === 2 ? 'md:rotate-6' : ''
+                }`}
+              />
+            ))}
+          </div>
         </div>
       ) : (
         <motion.div
@@ -130,7 +163,7 @@ export function WorkCard({
           </div>
 
           {live && project.demo ? (
-            <div className={`relative ${frameRatio}`}>
+            <div className={`relative w-full ${frameRatio}`}>
               <img
                 src={project.shots[0]}
                 alt=""

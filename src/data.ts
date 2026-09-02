@@ -121,6 +121,21 @@ export const projects: Project[] = [
     demo: 'https://olegg000.github.io/hr-connect-mock-backend/',
     shots: [`${base}shots/hr-swagger.webp`],
   },
+  {
+    n: '08',
+    name: 'Shot List',
+    nameEn: 'Shot List',
+    kind: 'AI-сервис · живое демо',
+    kindEn: 'AI service · live demo',
+    summary:
+      'Сценарий фильма в PDF или DOCX превращается в режиссёрский покадровый план: сервис режет текст на сцены по заголовкам ИНТ./НАТ., укладывает их в контекст модели и собирает таблицу — план съёмки, хронометраж, звук, реквизит и техника по каждому кадру. Выгрузка в CSV, который Excel открывает с кириллицей без плясок с кодировкой. Сделано соло на хакатоне MTS True Tech Champ, 3 место.',
+    summaryEn:
+      'A film script in PDF or DOCX becomes a director\'s shot list: the service splits the text into scenes by INT./EXT. headers, batches them into the model context and assembles a table — shot type, duration, sound, props and gear for every shot. Exports a CSV that Excel opens with Cyrillic intact. Built solo at the MTS True Tech Champ hackathon, 3rd place.',
+    stack: ['Kotlin', 'Spring AI', 'Apache Tika', 'Docker'],
+    repo: 'https://github.com/Olegg000/screenplay-to-shotlist',
+    demo: 'https://olegg000.github.io/screenplay-to-shotlist/',
+    shots: [`${base}shots/shotlist-hero.webp`, `${base}shots/shotlist-work.webp`, `${base}shots/shotlist-pipeline.webp`],
+  },
 ]
 
 export const metrics: Metric[] = [

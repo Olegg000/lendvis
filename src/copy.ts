@@ -26,7 +26,7 @@ export const copy = {
         eyebrow: 'Направления',
         title: 'Стек выбираем под',
         titleAccent: 'задачу',
-        lead: 'А не задачу под стек. Восемь направлений, и в каждом за спиной боевые проекты, а не учебные.',
+        lead: 'А не задачу под стек. Десять направлений, и в каждом за спиной боевые проекты, а не учебные.',
         more: 'Все направления',
       },
       work: {
@@ -57,7 +57,7 @@ export const copy = {
     },
 
     services: {
-      title: 'Восемь направлений, один',
+      title: 'Десять направлений, один',
       titleAccent: 'подход',
       lead: 'Сначала разбираемся, что должно происходить в системе, и только потом выбираем, на чём её писать. Ниже — что именно мы делаем и чем.',
       items: [
@@ -164,6 +164,32 @@ export const copy = {
             'Переезд между хостингами без простоя',
           ],
           stack: 'Linux · nginx · Docker · GitHub Actions · Cloudflare · Proxmox',
+        },
+        {
+          number: '09',
+          name: 'Моделирование процессов',
+          tagline: 'Посчитать склад до того, как его построили.',
+          text: 'Собираем модель процесса и гоняем на ней сценарии: сколько нужно людей и техники, где встанет очередь, что случится в пиковый день. Ответ приходит расчётом, а не спором на совещании.',
+          bullets: [
+            'Дискретно-событийные модели складов и производств',
+            'Расчёт пропускной способности и поиск узких мест',
+            'Сравнение сценариев: смены, техника, маршруты',
+            'Трёхмерная сцена — видно, где именно копится очередь',
+          ],
+          stack: 'Python · SimPy · Salabim · Three.js',
+        },
+        {
+          number: '10',
+          name: 'Тестирование и аудит',
+          tagline: 'Пусть лучше найдём мы, чем ваш клиент.',
+          text: 'Покрываем код тестами, прогоняем под нагрузкой и читаем на предмет дыр. Отдельной работой — приёмка чужого проекта: что там внутри на самом деле и во сколько обойдётся довести.',
+          bullets: [
+            'Автотесты: модульные, интеграционные, сквозные',
+            'Нагрузочные прогоны и поиск потолка системы',
+            'Аудит безопасности: секреты, доступы, хранение данных',
+            'Приёмка чужого кода перед покупкой или продлением',
+          ],
+          stack: 'Jest · Pytest · Playwright · k6',
         },
       ],
       process: {
@@ -300,7 +326,7 @@ export const copy = {
         eyebrow: 'What we build',
         title: 'The stack fits the',
         titleAccent: 'problem',
-        lead: 'Not the other way round. Eight directions, each with production work behind it rather than tutorials.',
+        lead: 'Not the other way round. Ten directions, each with production work behind it rather than tutorials.',
         more: 'All directions',
       },
       work: {
@@ -331,7 +357,7 @@ export const copy = {
     },
 
     services: {
-      title: 'Eight directions, one',
+      title: 'Ten directions, one',
       titleAccent: 'method',
       lead: 'First we work out what the system has to do, then we pick what to build it with. Here is the work and the tooling behind it.',
       items: [
@@ -438,6 +464,32 @@ export const copy = {
             'Migration between hosts with no downtime',
           ],
           stack: 'Linux · nginx · Docker · GitHub Actions · Cloudflare · Proxmox',
+        },
+        {
+          number: '09',
+          name: 'Process simulation',
+          tagline: 'Size the warehouse before anyone builds it.',
+          text: 'We build a model of the process and run scenarios on it: how many people and machines are needed, where the queue forms, what happens on the busiest day. The answer arrives as arithmetic instead of an argument in a meeting.',
+          bullets: [
+            'Discrete-event models of warehouses and production lines',
+            'Throughput figures and where the bottleneck actually sits',
+            'Scenario comparison: shifts, equipment, routing',
+            'A 3D scene that shows exactly where the queue builds up',
+          ],
+          stack: 'Python · SimPy · Salabim · Three.js',
+        },
+        {
+          number: '10',
+          name: 'Testing and audit',
+          tagline: 'Better that we find it than your customer does.',
+          text: 'We cover the code with tests, run it under load, and read it for holes. Taking over someone else\'s project is its own job: what is actually inside, and what finishing it will cost.',
+          bullets: [
+            'Automated tests: unit, integration, end to end',
+            'Load runs that find the ceiling of the system',
+            'Security audit: secrets, access, how data is stored',
+            'Code due diligence before you buy or renew',
+          ],
+          stack: 'Jest · Pytest · Playwright · k6',
         },
       ],
       process: {

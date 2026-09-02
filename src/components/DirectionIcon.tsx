@@ -93,6 +93,25 @@ export function DirectionIcon({ n, className = '' }: { n: string; className?: st
           <path d="M19 30l5-5 5 5" />
         </svg>
       )
+    // Моделирование процессов — поток, сходящийся в узкое горло
+    case '09':
+      return (
+        <svg {...common}>
+          <circle cx="13" cy="9" r="1.8" opacity="0.75" />
+          <circle cx="24" cy="9" r="1.8" opacity="0.75" />
+          <circle cx="35" cy="9" r="1.8" opacity="0.75" />
+          <path d="M7 16h34l-12 13v11l-10 5V29z" />
+          <path d="M24 44v-4" opacity="0.6" />
+        </svg>
+      )
+    // Тестирование и аудит — щит с галочкой
+    case '10':
+      return (
+        <svg {...common}>
+          <path d="M24 5l15 5.5v11.5c0 9-6.4 14.6-15 17.5-8.6-2.9-15-8.5-15-17.5V10.5z" />
+          <path d="M17 23.5l5 5 9.5-10.5" opacity="0.9" />
+        </svg>
+      )
     // 1С — таблица с итоговой строкой
     default:
       return (

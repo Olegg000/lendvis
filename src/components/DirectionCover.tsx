@@ -27,6 +27,8 @@ const TINT: Record<string, string> = {
   '06': 'linear-gradient(155deg, rgba(216,179,132,0.20), rgba(5,5,7,0.74) 60%)',
   '07': 'linear-gradient(155deg, rgba(150,175,215,0.20), rgba(5,5,7,0.74) 62%)',
   '08': 'linear-gradient(155deg, rgba(216,179,132,0.18), rgba(5,5,7,0.76) 60%)',
+  '09': 'linear-gradient(155deg, rgba(150,175,215,0.22), rgba(5,5,7,0.72) 60%)',
+  '10': 'linear-gradient(155deg, rgba(216,179,132,0.16), rgba(5,5,7,0.76) 62%)',
 }
 
 export function DirectionCover({ n }: { n: string }) {

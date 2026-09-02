@@ -45,7 +45,7 @@ export const projects: Project[] = [
     stack: ['FunC', 'TON', 'TypeScript', 'Jest'],
     repo: 'https://github.com/Olegg000/ton-jetton-vesting',
     demo: 'https://olegg000.github.io/ton-jetton-vesting/',
-    shots: [`${base}shots/ton-vesting.webp`, `${base}shots/blockchain.webp`],
+    shots: [`${base}shots/ton-vesting.webp`, `${base}shots/ton-pools.webp`, `${base}shots/ton-burn.webp`],
   },
   {
     n: '03',

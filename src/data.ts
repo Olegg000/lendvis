@@ -128,9 +128,9 @@ export const projects: Project[] = [
     kind: 'AI-сервис · живое демо',
     kindEn: 'AI service · live demo',
     summary:
-      'Сценарий фильма в PDF или DOCX превращается в режиссёрский покадровый план: сервис режет текст на сцены по заголовкам ИНТ./НАТ., укладывает их в контекст модели и собирает таблицу — план съёмки, хронометраж, звук, реквизит и техника по каждому кадру. Выгрузка в CSV, который Excel открывает с кириллицей без плясок с кодировкой. Сделано соло на хакатоне MTS True Tech Champ, 3 место.',
+      'Сценарий фильма в PDF или DOCX превращается в режиссёрский покадровый план: сервис режет текст на сцены по заголовкам ИНТ./НАТ., укладывает их в контекст модели и собирает таблицу — план съёмки, хронометраж, звук, реквизит и техника по каждому кадру. Выгрузка в CSV, который Excel открывает с кириллицей без плясок с кодировкой. Сделано на хакатоне MTS True Tech Champ.',
     summaryEn:
-      'A film script in PDF or DOCX becomes a director\'s shot list: the service splits the text into scenes by INT./EXT. headers, batches them into the model context and assembles a table — shot type, duration, sound, props and gear for every shot. Exports a CSV that Excel opens with Cyrillic intact. Built solo at the MTS True Tech Champ hackathon, 3rd place.',
+      'A film script in PDF or DOCX becomes a director\'s shot list: the service splits the text into scenes by INT./EXT. headers, batches them into the model context and assembles a table — shot type, duration, sound, props and gear for every shot. Exports a CSV that Excel opens with Cyrillic intact. Built at the MTS True Tech Champ hackathon.',
     stack: ['Kotlin', 'Spring AI', 'Apache Tika', 'Docker'],
     repo: 'https://github.com/Olegg000/screenplay-to-shotlist',
     demo: 'https://olegg000.github.io/screenplay-to-shotlist/',

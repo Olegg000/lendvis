@@ -29,7 +29,7 @@ export const projects: Project[] = [
       'An LMS with teacher, student and management roles: groups, assignments, test taking and results. The centrepiece is analytics: a single SQL query over answers and timestamps yields share correct and average time per question, the distractor that pulls the most students, score distribution and a per-group cut — so a teacher sees which question is badly worded, not just who scored what. Comes up with a single Docker command.',
     stack: ['React 19', 'Express', 'PostgreSQL', 'Docker'],
     repo: 'https://github.com/lendvis/quiz',
-    demo: 'https://lendvis.github.io/quiz/',
+    demo: 'https://lendvis.ru/quiz/',
     shots: [`${base}shots/quiz-analytics.webp`, `${base}shots/quiz-catalog.webp`, `${base}shots/quiz-login.webp`],
   },
   {

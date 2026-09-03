@@ -76,7 +76,7 @@ export function WorkCard({
      широкого кадра, и половина карточки была пустой. Скриншоты 440x978, тянутся
      без каши. Центральный чуть впереди — витринный акцент, а не плоский строй. */
   const phoneStage = (
-    <div className="relative flex items-end justify-center gap-5 overflow-x-auto px-4 py-8 sm:gap-8 md:gap-12 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+    <div className="relative flex items-end justify-start md:justify-center gap-5 overflow-x-auto px-4 py-8 sm:gap-8 md:gap-12 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
       {project.shots.slice(0, 3).map((src, i) => (
         <Phone
           key={src}

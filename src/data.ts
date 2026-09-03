@@ -59,7 +59,7 @@ export const projects: Project[] = [
       'A shared board: several people draw and type on one canvas, and strokes and text reach the whole room instantly over WebSocket.',
     stack: ['React', 'Konva', 'Socket.IO', 'Express'],
     repo: 'https://github.com/lendvis/drawer',
-    demo: 'https://lendvis.github.io/drawer/',
+    demo: 'https://lendvis.ru/drawer/',
     shots: [`${base}shots/drawer.webp`],
   },
   {

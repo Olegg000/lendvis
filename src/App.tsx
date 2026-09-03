@@ -1,5 +1,5 @@
 import { Suspense, lazy, useEffect } from 'react'
-import { HashRouter, Navigate, Route, Routes, useLocation } from 'react-router-dom'
+import { BrowserRouter, Navigate, Route, Routes, useLocation } from 'react-router-dom'
 import { motion, useReducedMotion } from 'framer-motion'
 import { LangProvider, useLang } from './lib/i18n'
 import { scrollToTop, useSmoothScroll } from './lib/smooth'
@@ -118,9 +118,9 @@ function Shell() {
 export default function App() {
   return (
     <LangProvider>
-      <HashRouter>
+      <BrowserRouter>
         <Shell />
-      </HashRouter>
+      </BrowserRouter>
     </LangProvider>
   )
 }

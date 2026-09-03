@@ -19,8 +19,8 @@ export default function Work() {
       </Reveal>
 
       <div className="space-y-24">
-        {projects.map((p, i) => (
-          <WorkCard key={p.n} project={p} index={i} headingLevel={2} />
+        {projects.map((p) => (
+          <WorkCard key={p.n} project={p} headingLevel={2} />
         ))}
       </div>
 

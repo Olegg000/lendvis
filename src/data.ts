@@ -239,6 +239,17 @@ export const cases: Case[] = [
     textEn: 'A TIP-3 jetton for the TON network with on-chain vesting: nine distribution pools, a three-month cliff, 12- and 18-month unlock schedules, and burn with redistribution. A contract cannot be patched or rolled back once it is live, so every bit of the vesting arithmetic is covered by sandbox tests — 34 of 34 green. The token runs in production; the code belongs to the client.',
   },
   {
+    name: 'Блокчейн-игра с NFT на TON',
+    nameEn: 'A blockchain game with NFTs on TON',
+    kind: 'Блокчейн · сеть TON',
+    kindEn: 'Blockchain · TON network',
+    metric: 'NFT',
+    metricLabel: 'предметы игры на блокчейне',
+    metricLabelEn: 'in-game items on-chain',
+    text: 'Игровой проект в сети TON: внутриигровые предметы выпущены как NFT, а экономика и владение живут на блокчейне, а не в базе на сервере. Работали со смарт-контрактами и выпуском токенов под механику игры — там, где ошибку в контракте не откатить, поэтому логика проверяется до деплоя. Проект клиентский, код закрыт.',
+    textEn: 'A game project on the TON network: in-game items are issued as NFTs, and ownership and economy live on-chain rather than in a server database. We worked on the smart contracts and token issuance behind the game mechanics — where a contract bug cannot be rolled back, so the logic is verified before deploy. A client project; the code is closed.',
+  },
+  {
     name: 'Автопроверка заданий',
     nameEn: 'Automated assignment checking',
     kind: 'Веб-платформа · командная разработка',
@@ -250,8 +261,8 @@ export const cases: Case[] = [
     textEn: 'A service that checks student assignments automatically: a submission enters a queue, runs through a set of checkers and comes back as a per-step breakdown rather than a single grade. Two clients share one API — an expert console in React and a mobile app in Flutter — and the whole stand comes up with a single Docker Compose command. A team project, so it is told as a problem rather than shown as code.',
   },
   {
-    name: 'PrimeFlowers',
-    nameEn: 'PrimeFlowers',
+    name: 'Цветочный магазин под нагрузкой',
+    nameEn: 'A flower shop under load',
     kind: 'Интернет-магазин под нагрузкой',
     metric: '80K+',
     metricLabel: 'строк кода',

@@ -15,12 +15,10 @@ import { useLang } from '../lib/i18n'
  */
 export function WorkCard({
   project,
-  index,
   headingLevel = 3,
   compact = false,
 }: {
   project: Project
-  index: number
   headingLevel?: 2 | 3
   /** На главной карточка знакомит, а не рассказывает: описание в три строки. */
   compact?: boolean
@@ -74,35 +72,21 @@ export function WorkCard({
      спорят между собой непредсказуемо, поэтому собираем её класс отдельно.
      Ниже соседей она стоит намеренно — три корпуса по 106px не заполняют широкое поле,
      и растянутая панель читается пустой. */
-  const phoneFrame = 'h-[clamp(195px,32vh,420px)] md:h-auto md:aspect-[16/10] md:max-h-[380px]'
-
-  /** Строй телефонов на подсвеченной сцене — общий для обоих режимов. */
+  /* Телефоны крупные, в ряд, по высоте панели — раньше стояли крошечными внизу
+     широкого кадра, и половина карточки была пустой. Скриншоты 440x978, тянутся
+     без каши. Центральный чуть впереди — витринный акцент, а не плоский строй. */
   const phoneStage = (
-    <>
-      {/* Подсветка была размытым на 60px снимком: в липкой стопке карточка ужимается,
-          и браузер перерисовывал это размытие на каждом кадре. Тот же свет статичным
-          градиентом стоит ноль — картинка почти та же, кадры целые. */}
-      <div
-        className="absolute inset-0"
-        style={{
-          background:
-            'radial-gradient(ellipse 62% 58% at 50% 44%, rgba(70,78,96,0.30) 0%, rgba(20,23,29,0.6) 52%, rgba(8,9,12,0.85) 100%)',
-        }}
-      />
-      <div className="relative flex h-full items-center justify-start gap-4 overflow-x-auto px-6 py-7 snap-x snap-mandatory sm:justify-center sm:gap-7 md:gap-20 md:overflow-hidden [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-        {project.shots.slice(0, 3).map((src, i) => (
-          <Phone
-            key={src}
-            src={src}
-            /* Снимки всего 144x320: выше ~220px начинается каша, поэтому корпуса под высоту панели
-               не тянем — строй стоит по центру освещённой сцены, а поле закрывают подсветка и виньетка. */
-            className={`h-full max-h-[217px] w-auto shrink-0 origin-bottom snap-center ${
-              i === 0 ? 'md:-rotate-6' : i === 2 ? 'md:rotate-6' : ''
-            }`}
-          />
-        ))}
-      </div>
-    </>
+    <div className="relative flex items-end justify-center gap-5 overflow-x-auto px-4 py-8 sm:gap-8 md:gap-12 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+      {project.shots.slice(0, 3).map((src, i) => (
+        <Phone
+          key={src}
+          src={src}
+          className={`h-[clamp(360px,58vh,600px)] w-auto shrink-0 snap-center ${
+            i === 1 ? 'md:-translate-y-3 md:scale-[1.04]' : 'md:opacity-95'
+          }`}
+        />
+      ))}
+    </div>
   )
 
   /* ── Главная: карточка = ноутбук ────────────────────────────────────────────
@@ -130,8 +114,16 @@ export function WorkCard({
           {/* Экран отдельным блоком, со своей кромкой */}
           <div className="overflow-hidden rounded-md border border-[#23272e] bg-[#0d0f13]">
             {project.phone ? (
-              // w-full обязателен: без явной ширины aspect-ratio с max-height ужимает блок по бокам
-              <div className={`relative w-full ${phoneFrame}`}>{phoneStage}</div>
+              <div className="relative w-full overflow-hidden">
+                <div
+                  className="pointer-events-none absolute inset-0"
+                  style={{
+                    background:
+                      'radial-gradient(ellipse 70% 62% at 50% 42%, rgba(70,78,96,0.20) 0%, rgba(13,15,19,0.7) 64%, rgba(8,9,12,0.9) 100%)',
+                  }}
+                />
+                {phoneStage}
+              </div>
             ) : (
               <>
                 <div className="flex items-center gap-2 border-b border-[#23272e] bg-[#12151a] px-3.5 py-2.5">
@@ -179,9 +171,6 @@ export function WorkCard({
       className="group relative"
     >
       <div className="mb-5 flex flex-wrap items-baseline gap-x-6 gap-y-1">
-        <span className="font-mono text-label text-white/30 tabular-nums">
-          {String(index + 1).padStart(2, '0')}
-        </span>
         <Heading className="text-[clamp(1.4rem,3vw,2.1rem)] leading-tight font-extralight tracking-[-0.03em]">
           {name}
         </Heading>
@@ -191,12 +180,15 @@ export function WorkCard({
       <p className="mb-7 max-w-[62ch] text-body text-soft">{lede}</p>
 
       {project.phone ? (
-        // w-full обязателен: без явной ширины aspect-ratio с max-height ужимает блок по бокам.
-        // Панель при этом не тянем под веб-кадр: на полной высоте строй занимал 17% поля —
-        // 45px разницы в ритме глаз не ловит, а 400px пустоты ловит.
-        <div
-          className={`relative w-full overflow-hidden rounded-xl border border-line bg-[#0d0f13] ${phoneFrame}`}
-        >
+        // Высота панели задаётся самими телефонами, а не фиксированным кадром — пустоты нет
+        <div className="relative w-full overflow-hidden rounded-xl border border-line bg-[#0d0f13]">
+          <div
+            className="pointer-events-none absolute inset-0"
+            style={{
+              background:
+                'radial-gradient(ellipse 70% 62% at 50% 42%, rgba(70,78,96,0.22) 0%, rgba(13,15,19,0.7) 62%, rgba(8,9,12,0.9) 100%)',
+            }}
+          />
           {phoneStage}
         </div>
       ) : (
@@ -283,21 +275,21 @@ export function WorkCard({
       )}
 
       <div className="mt-5 flex flex-wrap items-center justify-between gap-4">
-        {/* Стек — только на странице проектов: на главной карточка знакомит именем и кадром */}
-        <p className="font-mono text-micro text-faint">{project.stack.slice(0, 4).join(' · ')}</p>
-        <div className="flex items-center gap-6">
+        {/* Стек снизу убран — описание уже несёт суть; остаются заметные действия */}
+        <div className="flex flex-wrap items-center gap-3">
           {project.demo && (
             <a
               href={project.demo}
-              className="border-b border-white/30 pb-1 font-mono text-micro text-soft uppercase transition-colors hover:border-white/70 hover:text-fg"
+              className="rounded-full border border-sand/60 bg-sand/10 px-5 py-2 font-mono text-micro text-fg uppercase transition-colors hover:bg-sand/20"
             >
               {label.open}
             </a>
           )}
           <a
             href={project.repo}
-            className="border-b border-white/30 pb-1 font-mono text-micro text-soft uppercase transition-colors hover:border-white/70 hover:text-fg"
+            className="inline-flex items-center gap-2 rounded-full border border-white/25 px-5 py-2 font-mono text-micro text-soft uppercase transition-colors hover:border-white/60 hover:text-fg"
           >
+            <svg viewBox="0 0 16 16" width="13" height="13" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
             {label.code}
           </a>
         </div>

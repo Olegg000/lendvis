@@ -3,7 +3,6 @@ import { Cases } from '../sections/Cases'
 import { WorkCard } from '../components/WorkCard'
 import { useEffect } from 'react'
 import { useLocation } from 'react-router-dom'
-import { scrollToElement } from '../lib/smooth'
 import { useLang } from '../lib/i18n'
 import { projects } from '../data'
 
@@ -11,16 +10,24 @@ export default function Work() {
   const { t, lang } = useLang()
   const { hash } = useLocation()
 
-  // Переход с главной по клику на проект: доскроллить к его карточке
+  // Переход с главной по клику на проект: доскроллить к его карточке.
+  // Страница длинная, картинки ленивые и двигают вёрстку — поэтому доскролл
+  // повторяем несколько раз, пока позиция карточки не устаканится.
   useEffect(() => {
     if (!hash) return
     const id = decodeURIComponent(hash.slice(1))
-    // ждём кадр: страница сначала прыгает наверх при смене маршрута
-    const t = setTimeout(() => {
+    let tries = 0
+    let timer: number
+    const settle = () => {
       const el = document.getElementById(id)
-      if (el) scrollToElement(el)
-    }, 120)
-    return () => clearTimeout(t)
+      if (el) {
+        const y = el.getBoundingClientRect().top + window.scrollY - 16
+        window.scrollTo({ top: y })
+      }
+      if (++tries < 8) timer = window.setTimeout(settle, 140)
+    }
+    timer = window.setTimeout(settle, 80)
+    return () => window.clearTimeout(timer)
   }, [hash])
   return (
     <section className="mx-auto max-w-[1180px] px-5 pt-36 pb-24 sm:px-8 sm:pt-44">

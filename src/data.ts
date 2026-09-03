@@ -19,21 +19,6 @@ export const projects: Project[] = [
 
   {
     n: '01',
-    name: 'Geo Album',
-    nameEn: 'Geo Album',
-    kind: 'Мобильное · ОС Аврора',
-    kindEn: 'Mobile · Aurora OS',
-    summary:
-      'Фотоальбом для отечественной ОС Аврора: читает геометки EXIF и раскладывает снимки по карте, кэширует тайлы для работы без сети, готовит миниатюры в отдельных изолятах.',
-    summaryEn:
-      'A photo album for Russia\'s Aurora OS: reads EXIF geotags onto a map, caches tiles so it works without a network, and builds thumbnails in separate isolates.',
-    stack: ['Flutter', 'Dart', 'Aurora OS'],
-    repo: 'https://github.com/Olegg000/volgaIT2025-flutter',
-    shots: [`${base}shots/aurora-1.webp`, `${base}shots/aurora-2.webp`, `${base}shots/aurora-3.webp`],
-    phone: true,
-  },
-  {
-    n: '02',
     name: 'Drawer',
     nameEn: 'Drawer',
     kind: 'Реальное время · живое демо',
@@ -48,7 +33,7 @@ export const projects: Project[] = [
     shots: [`${base}shots/drawer.webp`],
   },
   {
-    n: '03',
+    n: '02',
     name: 'Разбор багов React',
     nameEn: 'React bug teardown',
     kind: 'Поддержка · демо «до / после»',
@@ -63,7 +48,7 @@ export const projects: Project[] = [
     shots: [`${base}shots/bugfix-fix.webp`],
   },
   {
-    n: '04',
+    n: '03',
     name: 'Quiz',
     nameEn: 'Quiz',
     kind: 'Платформа тестирования · живое демо',
@@ -76,36 +61,6 @@ export const projects: Project[] = [
     repo: 'https://github.com/Olegg000/quiz',
     demo: 'https://olegg000.github.io/quiz/',
     shots: [`${base}shots/quiz-analytics.webp`, `${base}shots/quiz-catalog.webp`, `${base}shots/quiz-login.webp`],
-  },
-  {
-    n: '05',
-    name: 'HR Connect API',
-    nameEn: 'HR Connect API',
-    kind: 'Бекенд · документация онлайн',
-    kindEn: 'Backend · docs online',
-    summary:
-      'Mock REST API на 27 маршрутов: авторизация по токену, пагинация, генерация аватаров — и всё это на чистом Node без единой зависимости.',
-    summaryEn:
-      'A mock REST API with 27 routes: token auth, pagination, generated avatars — all on plain Node without a single dependency.',
-    stack: ['Node.js', 'OpenAPI', 'Docker'],
-    repo: 'https://github.com/Olegg000/hr-connect-mock-backend',
-    demo: 'https://olegg000.github.io/hr-connect-mock-backend/',
-    shots: [`${base}shots/hr-swagger.webp`],
-  },
-  {
-    n: '06',
-    name: 'Shot List',
-    nameEn: 'Shot List',
-    kind: 'AI-сервис · живое демо',
-    kindEn: 'AI service · live demo',
-    summary:
-      'Сценарий фильма в PDF или DOCX превращается в режиссёрский покадровый план: сервис режет текст на сцены по заголовкам ИНТ./НАТ., укладывает их в контекст модели и собирает таблицу — план съёмки, хронометраж, звук, реквизит и техника по каждому кадру. Выгрузка в CSV, который Excel открывает с кириллицей без плясок с кодировкой. Сделано на хакатоне MTS True Tech Champ.',
-    summaryEn:
-      'A film script in PDF or DOCX becomes a director\'s shot list: the service splits the text into scenes by INT./EXT. headers, batches them into the model context and assembles a table — shot type, duration, sound, props and gear for every shot. Exports a CSV that Excel opens with Cyrillic intact. Built at the MTS True Tech Champ hackathon.',
-    stack: ['Kotlin', 'Spring AI', 'Apache Tika', 'Docker'],
-    repo: 'https://github.com/Olegg000/screenplay-to-shotlist',
-    demo: 'https://olegg000.github.io/screenplay-to-shotlist/',
-    shots: [`${base}shots/shotlist-hero.webp`, `${base}shots/shotlist-work.webp`, `${base}shots/shotlist-pipeline.webp`],
   },
 ]
 
@@ -145,6 +100,28 @@ export const metrics: Metric[] = [
 ]
 
 export const cases: Case[] = [
+  {
+    name: 'Сценарий фильма в покадровый план',
+    nameEn: 'Screenplay to a shot list',
+    kind: 'AI-сервис · командная разработка',
+    kindEn: 'AI service · team project',
+    metric: 'PDF · DOCX',
+    metricLabel: 'форматы на входе',
+    metricLabelEn: 'input formats',
+    text: 'Сервис превращает сценарий фильма в режиссёрскую покадровую таблицу: режет текст на сцены по заголовкам ИНТ./НАТ., укладывает их в контекст модели и собирает план съёмки — хронометраж, звук, реквизит и техника по каждому кадру. Сложность была не в том, чтобы поговорить с моделью, а в предсказуемой структуре на выходе. Выгрузка в CSV, который Excel открывает с кириллицей без плясок с кодировкой. Работа командная, код закрыт.',
+    textEn: 'The service turns a film screenplay into a director\u2019s shot list: it splits the text into scenes by INT./EXT. headers, batches them into the model context and assembles a shooting plan — duration, sound, props and gear per shot. The hard part was not talking to a model but getting a predictable structure out of it. Exports a CSV that Excel opens with Cyrillic intact. A team project; the code is closed.',
+  },
+  {
+    name: 'Фотоальбом с картой для ОС Аврора',
+    nameEn: 'A map photo album for Aurora OS',
+    kind: 'Мобильное · отечественная ОС',
+    kindEn: 'Mobile · Russian OS',
+    metric: 'офлайн',
+    metricLabel: 'карта работает без сети',
+    metricLabelEn: 'the map works with no network',
+    text: 'Фотоальбом для отечественной ОС Аврора: читает геометки EXIF и раскладывает снимки по карте. Тайлы кэшируются, поэтому карта живёт и без сети, а миниатюры готовятся в отдельных изолятах, чтобы прокрутка не спотыкалась на тяжёлых снимках. Платформа непривычная: ни Google-сервисов, ни готовых карт-плагинов — всё через собственный слой. Код закрыт.',
+    textEn: 'A photo album for Aurora, a Russian mobile OS: it reads EXIF geotags and lays photos out on a map. Tiles are cached so the map works with no network, and thumbnails are built in separate isolates so scrolling never stalls on heavy shots. The platform is unfamiliar territory — no Google services, no off-the-shelf map plugins — so everything goes through a layer of its own. The code is closed.',
+  },
   {
     name: 'Игровой токен с вестингом',
     nameEn: 'A game token with vesting',

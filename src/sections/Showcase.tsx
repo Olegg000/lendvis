@@ -29,7 +29,8 @@ export function Showcase({ projects }: { projects: Project[] }) {
       const tallest = Math.max(
         ...[...el.children].map((c) => c.querySelector('article')?.getBoundingClientRect().height ?? 0),
       )
-      setCanStick(window.innerWidth >= 768 && tallest + TOP + GAP <= window.innerHeight)
+      // Ширину больше не требуем: на телефоне карточки тоже влезают, и стопка там нужна
+      setCanStick(tallest > 0 && tallest + TOP + GAP <= window.innerHeight)
     }
     check()
     const ro = new ResizeObserver(check)

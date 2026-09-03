@@ -49,27 +49,10 @@ export default function Home() {
         <More to="/about">{t.nav.about}</More>
       </section>
 
-      {/* Витрина стоит на настоящем кадре: работы плывут поверх сцены, а не поверх пустоты */}
-      <section className={`relative ${gap} pt-16 sm:pt-20`}>
-        <img
-          src={`${import.meta.env.BASE_URL}shots/final-bg.webp`}
-          alt=""
-          loading="lazy"
-          className="absolute inset-0 h-full w-full object-cover"
-          style={{ filter: 'grayscale(0.5) brightness(0.62) contrast(1.05)' }}
-        />
-        <span
-          aria-hidden="true"
-          className="pointer-events-none absolute inset-0"
-          style={{
-            background:
-              'linear-gradient(to bottom, var(--color-ground) 0%, rgba(5,5,7,0.52) 20%, rgba(5,5,7,0.52) 78%, var(--color-ground) 100%)',
-          }}
-        />
-        <div className={`relative ${wrap}`}>
-          <SectionHead title={t.home.work.title} accent={t.home.work.titleAccent} lead={t.home.work.lead} />
-          <Showcase projects={shown} />
-        </div>
+      {/* Витрина на чистом фоне: карточки — единственное, на что смотрят, без фото-подложки */}
+      <section className={`${wrap} ${gap} pt-16 sm:pt-20`}>
+        <SectionHead title={t.home.work.title} accent={t.home.work.titleAccent} lead={t.home.work.lead} />
+        <Showcase projects={shown} />
       </section>
 
       {/* Нижнего отступа нет намеренно: финальный блок несёт свой собственный воздух,

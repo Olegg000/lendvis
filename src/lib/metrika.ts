@@ -9,7 +9,7 @@
  */
 
 /** Номер счётчика Яндекс.Метрики. Пусто — аналитика выключена. */
-export const METRIKA_ID = ''
+export const METRIKA_ID = '112277153'
 
 declare global {
   interface Window {

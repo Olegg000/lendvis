@@ -54,9 +54,9 @@ export const projects: Project[] = [
     kind: 'Реальное время · живое демо',
     kindEn: 'Realtime · live demo',
     summary:
-      'Общая доска: несколько человек рисуют и печатают на одном холсте, штрихи и текст расходятся по комнате мгновенно через WebSocket.',
+      'Совместная доска, где несколько человек рисуют и печатают на одном холсте одновременно — штрихи и текст расходятся по комнате мгновенно через WebSocket, без перезагрузок и задержек. У каждого штриха свой идентификатор, поэтому участники не затирают линии друг друга даже когда рисуют в одном месте. Открывается по ссылке, ничего ставить не нужно.',
     summaryEn:
-      'A shared board: several people draw and type on one canvas, and strokes and text reach the whole room instantly over WebSocket.',
+      'A shared board where several people draw and type on one canvas at once — strokes and text reach the whole room instantly over WebSocket, with no reloads or lag. Every stroke carries its own id, so participants never overwrite each other even while drawing in the same spot. Opens from a link, nothing to install.',
     stack: ['React', 'Konva', 'Socket.IO', 'Express'],
     repo: 'https://github.com/lendvis/drawer',
     demo: 'https://lendvis.ru/drawer/',
@@ -69,9 +69,9 @@ export const projects: Project[] = [
     kind: 'Мобильное · Android',
     kindEn: 'Mobile · Android',
     summary:
-      'Приложение бронирования в фирменном оформлении «Билет»: бумага, штемпель, перфорация. Поиск отелей, карточки с фото и ценой, оформление поездки и профиль. Мультимодульный проект на Jetpack Compose, демо работает на подготовленных данных.',
+      'Мобильное бронирование отелей с собственным фирменным стилем «Билет» — бумага, штемпель, перфорация: узнаётся с первого экрана, а не собрано из шаблона. Поиск и фильтры, карточки отелей с фото и ценой, оформление поездки, история и профиль. Мультимодульная архитектура на Jetpack Compose (app / ui-kit / network) — так проект растёт и поддерживается без переписывания. Демо запускается на подготовленных данных.',
     summaryEn:
-      'A hotel-booking app in a “ticket” look — paper, stamp, perforation. Hotel search, cards with photos and price, trip checkout and a profile. A multi-module Jetpack Compose project; the demo runs on prepared data.',
+      'A mobile hotel-booking app with its own “ticket” identity — paper, stamp, perforation: recognisable from the first screen, not assembled from a template. Search and filters, hotel cards with photos and price, trip checkout, history and a profile. A multi-module Jetpack Compose architecture (app / ui-kit / network) so the project grows and is maintained without rewrites. The demo runs on prepared data.',
     stack: ['Kotlin', 'Jetpack Compose', 'Coil'],
     repo: 'https://github.com/lendvis/hotel-booking',
     shots: [`${base}shots/mobile/hotel-booking-home.webp`, `${base}shots/mobile/hotel-booking-search.webp`, `${base}shots/mobile/hotel-booking-trips.webp`],
@@ -84,9 +84,9 @@ export const projects: Project[] = [
     kind: 'Мобильное · модель на устройстве',
     kindEn: 'Mobile · on-device model',
     summary:
-      'HR-приложение в оформлении «Личное дело»: вакансии, карточки кандидатов, профиль и чат-ассистент, который работает на языковой модели прямо на устройстве (MediaPipe + Qwen) — данные кандидатов не покидают телефон. Мультимодульный проект на Jetpack Compose.',
+      'HR-приложение в оформлении «Личное дело»: вакансии, карточки кандидатов, профиль и чат-ассистент, который отвечает языковой моделью прямо на устройстве (MediaPipe + Qwen). Ключевое преимущество — модель работает офлайн, поэтому резюме и переписка кандидатов физически не покидают телефон: для HR это не удобство, а требование к персональным данным. Мультимодульный проект на Jetpack Compose, готовый расти под реальную нагрузку.',
     summaryEn:
-      'An HR app in a “personnel file” look: vacancies, candidate cards, a profile and a chat assistant running a language model on the device itself (MediaPipe + Qwen), so candidate data never leaves the phone. A multi-module Jetpack Compose project.',
+      'An HR app in a “personnel file” look: vacancies, candidate cards, a profile and a chat assistant that answers with a language model on the device itself (MediaPipe + Qwen). The key advantage is that the model runs offline, so résumés and candidate chats physically never leave the phone — for HR that is a data-protection requirement, not a convenience. A multi-module Jetpack Compose project, built to scale under real load.',
     stack: ['Kotlin', 'Jetpack Compose', 'MediaPipe LLM', 'Qwen'],
     repo: 'https://github.com/lendvis/android-hr-assistant',
     shots: [`${base}shots/mobile/hr-assistant.webp`, `${base}shots/mobile/hr-vacancies.webp`, `${base}shots/mobile/hr-profile.webp`],
@@ -99,9 +99,9 @@ export const projects: Project[] = [
     kind: 'Мобильное · Android',
     kindEn: 'Mobile · Android',
     summary:
-      'Приложение ателье в оформлении «Портновский стол»: сукно, мел, золотая нить, сантиметровая лента. Каталог тканей нарисован на Canvas, а не собран из фото; заказы с этапами пошива, корзина и профиль. Мультимодульный проект на Jetpack Compose.',
+      'Приложение ателье с полностью авторским миром «Портновский стол» — сукно, мел, золотая нить, сантиметровая лента: каждая ткань в каталоге не фотография, а рисунок на Canvas, поэтому интерфейс выглядит дороже стокового и весит меньше. Заказы с этапами пошива, корзина, профиль. Мультимодульный проект на Jetpack Compose — пример того, как мобильному приложению делают узнаваемый бренд, а не просто экраны.',
     summaryEn:
-      'An atelier app in a “tailor’s table” look — cloth, chalk, gold thread, a measuring tape. The fabric catalogue is drawn on Canvas rather than assembled from photos; orders with tailoring stages, a cart and a profile. A multi-module Jetpack Compose project.',
+      'An atelier app with a fully bespoke “tailor’s table” world — cloth, chalk, gold thread, a measuring tape: every fabric in the catalogue is drawn on Canvas rather than photographed, so the interface looks richer than stock and weighs less. Orders with tailoring stages, a cart, a profile. A multi-module Jetpack Compose project — an example of giving a mobile app a recognisable brand, not just screens.',
     stack: ['Kotlin', 'Jetpack Compose', 'Canvas'],
     repo: 'https://github.com/lendvis/atelier-android',
     shots: [`${base}shots/mobile/atelier-catalog.webp`, `${base}shots/mobile/atelier-home.webp`, `${base}shots/mobile/atelier-cart.webp`],
@@ -114,9 +114,9 @@ export const projects: Project[] = [
     kind: 'Мобильное · играбельное',
     kindEn: 'Mobile · playable',
     summary:
-      'Приложение в оформлении «Табло»: асфальт, лайм, янтарь, живой индикатор LIVE. Комнаты с призовым фондом, статистика и профиль, а игра на реакцию по-настоящему играбельна — жди зелёный круг и жми, три попытки, в зачёт лучшая. Мультимодульный проект на Jetpack Compose.',
+      'Приложение-арена в оформлении «Табло»: асфальт, лайм, янтарь, живой индикатор LIVE. Комнаты с призовым фондом, лидерборд, статистика и профиль — а сама игра на реакцию по-настоящему играбельна прямо в приложении: жди зелёный круг и жми, три попытки, в зачёт лучшая. Не макет и не набор экранов, а работающий продукт с игровым циклом. Мультимодульный проект на Jetpack Compose.',
     summaryEn:
-      'An app in a “scoreboard” look — asphalt, lime, amber, a live LIVE badge. Rooms with a prize pool, statistics and a profile, and the reaction game is genuinely playable — wait for the green circle and tap, three tries, best one counts. A multi-module Jetpack Compose project.',
+      'An arena app in a “scoreboard” look — asphalt, lime, amber, a live LIVE badge. Rooms with a prize pool, a leaderboard, statistics and a profile — and the reaction game itself is genuinely playable right in the app: wait for the green circle and tap, three tries, best one counts. Not a mock-up or a set of screens, but a working product with a real game loop. A multi-module Jetpack Compose project.',
     stack: ['Kotlin', 'Jetpack Compose'],
     repo: 'https://github.com/lendvis/crossers-arena',
     shots: [`${base}shots/mobile/arena-game.webp`, `${base}shots/mobile/arena-lobby.webp`, `${base}shots/mobile/arena-stats.webp`],
@@ -129,9 +129,9 @@ export const projects: Project[] = [
     kind: 'Бекенд · живое демо',
     kindEn: 'Backend · live demo',
     summary:
-      'Облачный бекенд умного дома под Яндекс Алису: OAuth, WebSocket до устройств, телеметрия и панель управления домом. Демо-панель показывает устройства и задержку канала на моках, а тот же интерфейс подключается к живому серверу токеном.',
+      'Облачный бекенд умного дома, который подключается к Яндекс Алисе: OAuth по протоколу Яндекса, WebSocket до устройств, телеметрия и веб-панель управления домом. Один и тот же интерфейс работает и на демо-данных, и на живом сервере — переключается токеном, задержку канала видно в статусной строке. Показывает, что мы умеем не только рисовать экраны, но и держать постоянные соединения и интеграцию со сторонней экосистемой.',
     summaryEn:
-      'A cloud smart-home backend for Yandex Alice: OAuth, a WebSocket down to the devices, telemetry and a home control panel. The demo panel shows devices and channel latency on mocks, and the same interface connects to a live server with a token.',
+      'A cloud smart-home backend that plugs into Yandex Alice: OAuth over Yandex’s protocol, a WebSocket down to the devices, telemetry and a web control panel. The same interface runs on demo data or a live server — switched with a token, with channel latency shown in the status bar. It shows we do more than draw screens: we hold persistent connections and integrate with a third-party ecosystem.',
     stack: ['Python', 'FastAPI', 'WebSocket', 'JWT'],
     repo: 'https://github.com/lendvis/alice-301-backend',
     demo: 'https://lendvis.github.io/alice-301-backend/',
@@ -144,9 +144,9 @@ export const projects: Project[] = [
     kind: 'Смарт-контракты · живое демо',
     kindEn: 'Smart contracts · live demo',
     summary:
-      'Обзор блокчейн-направления студии: четыре сети — TON, Ethereum, Waves Enterprise, Hyperledger Fabric. Часть работ закрыта соглашением, часть лежит в открытом доступе с тестами: чейнкод учёта поставок для Fabric и реестр документов на Waves Enterprise с проверкой целостности по SHA-256.',
+      'Обзор блокчейн-направления студии сразу в четырёх сетях — TON, Ethereum, Waves Enterprise, Hyperledger Fabric: где ошибку в контракте не откатить, поэтому пишем медленно и закрываем логику тестами. Часть работ под NDA, часть открыта с кодом и тестами — чейнкод учёта поставок для Fabric и реестр документов на Waves Enterprise с проверкой целостности по SHA-256. Это направление, в котором большинство подрядчиков даже не берётся.',
     summaryEn:
-      'An overview of the studio’s blockchain work across four networks — TON, Ethereum, Waves Enterprise, Hyperledger Fabric. Some work is under NDA, some is public with tests: a supply-chain chaincode for Fabric and a document registry on Waves Enterprise with SHA-256 integrity checks.',
+      'An overview of the studio’s blockchain work across four networks at once — TON, Ethereum, Waves Enterprise, Hyperledger Fabric: where a contract bug cannot be rolled back, so we write slowly and cover the logic with tests. Some work is under NDA, some is open with code and tests — a supply-chain chaincode for Fabric and a document registry on Waves Enterprise with SHA-256 integrity checks. A field most contractors will not even take on.',
     stack: ['TypeScript', 'Hyperledger Fabric', 'Waves Enterprise'],
     repo: 'https://github.com/lendvis/blockchain-practice',
     demo: 'https://lendvis.github.io/blockchain-practice/',
@@ -159,9 +159,9 @@ export const projects: Project[] = [
     kind: 'Поддержка · демо «до / после»',
     kindEn: 'Support · before / after demo',
     summary:
-      'Четыре типовые ошибки — потеря состояния при быстрых кликах, мутация массива, index в ключе, утечка таймера. Каждая с разбором: симптом, причина, исправление. Именно так мы чиним чужой код: не симптом, а причину.',
+      'Живой разбор четырёх типовых React-ошибок, на которых спотыкается чужой код: потеря состояния при быстрых кликах, мутация массива, index в ключе, утечка таймера. По каждой — симптом, причина и исправление рядом, «до» и «после» в одном демо. Это витрина услуги поддержки: мы приходим в незнакомый проект, находим корень проблемы, а не глушим симптом, и оставляем код, который потом не разваливается.',
     summaryEn:
-      'Four classic mistakes — state lost on rapid clicks, a mutated array, index as a key, a leaking timer. Each one with the symptom, the cause and the fix. This is how we fix inherited code: the cause, not the symptom.',
+      'A live teardown of four classic React mistakes that trip up inherited code: state lost on rapid clicks, a mutated array, index as a key, a leaking timer. Each one shows the symptom, the cause and the fix side by side, “before” and “after” in one demo. It is a showcase of our support service: we enter an unfamiliar project, find the root cause instead of muting the symptom, and leave code that does not fall apart later.',
     stack: ['React', 'Vite'],
     repo: 'https://github.com/lendvis/react-bugfix-demo',
     demo: 'https://lendvis.github.io/react-bugfix-demo/',
@@ -257,8 +257,8 @@ export const cases: Case[] = [
     metric: '2',
     metricLabel: 'клиента на одном API',
     metricLabelEn: 'clients on one API',
-    text: 'Сервис автоматической проверки учебных заданий: решение попадает в очередь, прогоняется набором чекеров и возвращается разбором по каждому шагу, а не одной оценкой. У сервиса два клиента на общем API — панель эксперта на React и мобильное приложение на Flutter, — и весь стенд поднимается одной командой в Docker Compose. Работа командная, поэтому показываем задачей, а не кодом.',
-    textEn: 'A service that checks student assignments automatically: a submission enters a queue, runs through a set of checkers and comes back as a per-step breakdown rather than a single grade. Two clients share one API — an expert console in React and a mobile app in Flutter — and the whole stand comes up with a single Docker Compose command. A team project, so it is told as a problem rather than shown as code.',
+    text: 'Сервис автоматической проверки учебных заданий: решение попадает в очередь, прогоняется набором чекеров и возвращается разбором по каждому шагу, а не одной сухой оценкой — преподаватель видит, где именно студент ошибся. Ключевое инженерное решение — два клиента на одном API: панель эксперта на React и мобильное приложение на Flutter говорят с общим бэкендом, поэтому логика проверки живёт в одном месте, а не дублируется. Весь стенд поднимается одной командой в Docker Compose. Работа командная, показываем задачей, а не кодом.',
+    textEn: 'A service that checks student assignments automatically: a submission enters a queue, runs through a set of checkers and comes back as a per-step breakdown rather than one dry grade — the teacher sees exactly where the student went wrong. The key engineering call was two clients on one API: an expert console in React and a mobile app in Flutter both talk to a shared backend, so the checking logic lives in one place instead of being duplicated. The whole stand comes up with a single Docker Compose command. A team project, told as a problem rather than shown as code.',
   },
   {
     name: 'Цветочный магазин под нагрузкой',
@@ -269,8 +269,8 @@ export const cases: Case[] = [
     metricLabelEn: 'lines of code',
     kindEn: 'Online shop under load',
     textEn:
-      'A live flower-delivery shop: a Next.js storefront over FastAPI, PostgreSQL, Redis and Celery. Payments, stock, CRM, delivery, three messenger bots and a twenty-section admin panel. The job was not to look good — it was to survive the busiest day of the year without going down.',
-    text: 'Боевой магазин доставки цветов: витрина на Next.js поверх FastAPI, PostgreSQL, Redis и Celery. Оплата, склад, CRM, доставка, три мессенджер-бота и админка на двадцать разделов. Задача была не в красоте, а в том, чтобы 8 марта система прошла пик без падений.',
+      'A production flower-delivery shop with a full commercial cycle: a Next.js storefront over FastAPI, PostgreSQL, Redis and Celery. Payments, stock sync, CRM, a delivery service, three messenger bots for orders and alerts, and a twenty-section admin panel — over 80,000 lines of live code. The job was not to look good but to withstand the 8 March peak under real traffic and stay up on the most profitable day of the year. It did, with no downtime.',
+    text: 'Боевой интернет-магазин доставки цветов с полным коммерческим циклом: витрина на Next.js поверх FastAPI, PostgreSQL, Redis и Celery. Оплата, синхронизация склада, CRM, служба доставки, три мессенджер-бота для заявок и уведомлений и админка на двадцать разделов — больше 80 тысяч строк живого кода. Задача была не «сделать красиво», а выдержать пик 8 марта под настоящим трафиком и не упасть в самый прибыльный день года. Система прошла его без простоев.',
   },
   {
     name: 'Питание по QR без интернета',
@@ -281,8 +281,8 @@ export const cases: Case[] = [
     metricLabelEn: 'users',
     kindEn: 'App for a vocational college · production',
     textEn:
-      'Meal payments by QR pass that works with no internet: an ECDSA signature is verified on the spot, and double-spend protection catches a pass used twice. The Kotlin backend was load tested; the client is one codebase for Android and iOS.',
-    text: 'Оплата питания по QR-пропуску, который работает без интернета: подпись ECDSA проверяется на месте, а повторное гашение ловит защита от double-spend. Бекенд на Kotlin проверен нагрузкой, клиент — одна кодовая база на Android и iOS.',
+      'Meal payments at a campus by a QR pass that works even with no internet — critical when hundreds of people pass a point in fifteen minutes and the connection may drop. The pass is ECDSA-signed and verified on the device itself, with no server call; double-spend protection catches a pass used twice. The Kotlin backend was load tested, and the client is one codebase for both Android and iOS — one app instead of two. It ran in production for around a thousand users.',
+    text: 'Оплата питания в учебном заведении по QR-пропуску, который работает даже без интернета — а это критично, когда на перемене через точку проходят сотни человек за пятнадцать минут и связь может лечь. Пропуск подписан по ECDSA и проверяется прямо на устройстве, без обращения к серверу; повторное гашение одного и того же QR ловит защита от double-spend. Бэкенд на Kotlin проверен нагрузкой, а клиент — одна кодовая база сразу на Android и iOS, то есть одно приложение вместо двух. Система работала в проде примерно на тысячу пользователей.',
   },
   {
     name: 'Спасение legacy-кода',
@@ -293,8 +293,8 @@ export const cases: Case[] = [
     metricLabelEn: 'bugs fixed',
     kindEn: 'Support and bugfixes',
     textEn:
-      'A project handed over as-is: enemy logic did not work, physics behaved unpredictably, performance decayed. The cause was a leak — twelve data structures allocated every frame and never freed.',
-    text: 'Проект достался в наследство: логика противников не работала, физика вела себя непредсказуемо, производительность падала. Причиной оказалась утечка — двенадцать структур создавались каждый кадр и никогда не освобождались.',
+      'A project handed over broken: enemy logic failed, physics behaved unpredictably, performance decayed to unplayable. You cannot “scrap and rewrite” this — the value is in keeping the existing mechanics and fixing the defects. The root was a memory leak: twelve data structures allocated every frame and never freed, so usage grew until it degraded. We found and fixed the cause at the root, closed about twenty bugs and restored the enemy AI. A textbook case of taking over someone else’s neglected code and putting it right.',
+    text: 'Проект достался в наследство в нерабочем состоянии: логика противников ломалась, физика вела себя непредсказуемо, производительность падала до неиграбельной. Такое нельзя «снести и переписать» — ценность в том, чтобы сохранить готовые механики и починить дефекты. Корнем оказалась утечка памяти: двенадцать структур создавались каждый кадр и никогда не освобождались, поэтому потребление росло до деградации. Причину нашли и устранили в корне, закрыли около двадцати багов и восстановили ИИ противника. Классический пример того, как мы забираем чужой запущенный код и приводим его в порядок.',
   },
 ]
 

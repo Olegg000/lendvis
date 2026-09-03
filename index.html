@@ -22,6 +22,44 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500&family=Onest:wght@200;300;400;500&family=Piazzolla:wght@800&family=Cormorant+Garamond:ital,wght@1,300;1,400&family=PT+Serif:ital,wght@1,400&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet" />
+    <!-- Структурированные данные: по ним поисковик понимает, что это организация,
+         и показывает карточку бренда при запросе «Лендвис» вместо строки-ссылки -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "ProfessionalService",
+        "name": "Лендвис",
+        "alternateName": "Lendvis",
+        "url": "https://lendvis.ru/",
+        "logo": "https://lendvis.ru/apple-touch-icon.png",
+        "image": "https://lendvis.ru/shots/og.jpg",
+        "description": "Студия разработки сложных IT-продуктов: веб-сервисы, мобильные приложения, боты, блокчейн и бекенды. Работаем удалённо с русско- и англоязычными заказчиками.",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Самара",
+          "addressCountry": "RU"
+        },
+        "areaServed": "Worldwide",
+        "availableLanguage": ["ru", "en"],
+        "sameAs": ["https://github.com/lendvis", "https://t.me/lendvis"],
+        "contactPoint": {
+          "@type": "ContactPoint",
+          "contactType": "sales",
+          "email": "lends.it@yandex.com",
+          "url": "https://t.me/lendvis",
+          "availableLanguage": ["ru", "en"]
+        },
+        "knowsAbout": [
+          "Веб-разработка",
+          "Мобильная разработка",
+          "Блокчейн и смарт-контракты",
+          "Бекенд и интеграции",
+          "Телеграм-боты",
+          "1С",
+          "Поддержка и рефакторинг legacy-кода"
+        ]
+      }
+    </script>
   </head>
   <body>
     <div id="root"></div>

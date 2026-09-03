@@ -1,4 +1,10 @@
 User-agent: *
 Allow: /
 
+# Демо-приложения: это витрина внутри карточек проектов, в поиске по бренду они лишние
+Disallow: /quiz/
+Disallow: /drawer/
+Disallow: /alice/
+Disallow: /react-bugfix/
+
 Sitemap: https://lendvis.ru/sitemap.xml

@@ -19,36 +19,6 @@ export const projects: Project[] = [
 
   {
     n: '01',
-    name: 'AutoCheck',
-    nameEn: 'AutoCheck',
-    kind: 'Веб-платформа · живое демо',
-    kindEn: 'Web platform · live demo',
-    summary:
-      'Панель эксперта для автоматической проверки заданий: очередь проверок, загрузка решений, разбор по чекерам и аналитика. Демо работает целиком в браузере — данные отдают моки, бекенд не нужен.',
-    summaryEn:
-      'An expert console for automated assignment checking: a queue of runs, uploads, a per-checker breakdown and analytics. The demo runs entirely in the browser — mocked data, no backend needed.',
-    stack: ['React 19', 'RTK Query', 'Tailwind', 'MSW'],
-    repo: 'https://github.com/Olegg000/autoCheckMobileReact',
-    demo: 'https://olegg000.github.io/autoCheckMobileReact/',
-    shots: [`${base}shots/autocheck.webp`],
-  },
-  {
-    n: '02',
-    name: 'TON Jetton Vesting',
-    nameEn: 'TON Jetton Vesting',
-    kind: 'Блокчейн · живое демо',
-    kindEn: 'Blockchain · live demo',
-    summary:
-      'Токен стандарта TIP-3 для TON с он-чейн вестингом: девять пулов токеномики, трёхмесячный клиф, графики на 12 и 18 месяцев, сжигание с перераспределением. Ошибку в контракте не откатишь, поэтому всё покрыто песочными тестами — 34 из 34 зелёные. В демо ползунок месяцев пересчитывает лимиты пулов теми же формулами, что исполняет контракт.',
-    summaryEn:
-      'A TIP-3 jetton for TON with on-chain vesting: nine tokenomics pools, a three-month cliff, 12- and 18-month schedules, and burn with redistribution. A contract cannot be patched after deploy, so it is covered by sandbox tests — 34 of 34 green. In the demo, a month slider recomputes pool limits with the very arithmetic the contract runs.',
-    stack: ['FunC', 'TON', 'TypeScript', 'Jest'],
-    repo: 'https://github.com/Olegg000/ton-jetton-vesting',
-    demo: 'https://olegg000.github.io/ton-jetton-vesting/',
-    shots: [`${base}shots/ton-vesting.webp`, `${base}shots/ton-pools.webp`, `${base}shots/ton-burn.webp`],
-  },
-  {
-    n: '03',
     name: 'Geo Album',
     nameEn: 'Geo Album',
     kind: 'Мобильное · ОС Аврора',
@@ -63,7 +33,7 @@ export const projects: Project[] = [
     phone: true,
   },
   {
-    n: '04',
+    n: '02',
     name: 'Drawer',
     nameEn: 'Drawer',
     kind: 'Реальное время · живое демо',
@@ -78,7 +48,7 @@ export const projects: Project[] = [
     shots: [`${base}shots/drawer.webp`],
   },
   {
-    n: '05',
+    n: '03',
     name: 'Разбор багов React',
     nameEn: 'React bug teardown',
     kind: 'Поддержка · демо «до / после»',
@@ -93,7 +63,7 @@ export const projects: Project[] = [
     shots: [`${base}shots/bugfix-fix.webp`],
   },
   {
-    n: '06',
+    n: '04',
     name: 'Quiz',
     nameEn: 'Quiz',
     kind: 'Платформа тестирования · живое демо',
@@ -108,7 +78,7 @@ export const projects: Project[] = [
     shots: [`${base}shots/quiz-analytics.webp`, `${base}shots/quiz-catalog.webp`, `${base}shots/quiz-login.webp`],
   },
   {
-    n: '07',
+    n: '05',
     name: 'HR Connect API',
     nameEn: 'HR Connect API',
     kind: 'Бекенд · документация онлайн',
@@ -123,7 +93,7 @@ export const projects: Project[] = [
     shots: [`${base}shots/hr-swagger.webp`],
   },
   {
-    n: '08',
+    n: '06',
     name: 'Shot List',
     nameEn: 'Shot List',
     kind: 'AI-сервис · живое демо',
@@ -175,6 +145,28 @@ export const metrics: Metric[] = [
 ]
 
 export const cases: Case[] = [
+  {
+    name: 'Игровой токен с вестингом',
+    nameEn: 'A game token with vesting',
+    kind: 'Блокчейн · сеть TON',
+    kindEn: 'Blockchain · TON network',
+    metric: '34/34',
+    metricLabel: 'теста в песочнице',
+    metricLabelEn: 'sandbox tests green',
+    text: 'Жетон стандарта TIP-3 для сети TON с он-чейн вестингом: девять пулов распределения, трёхмесячный клиф, графики разблокировки на 12 и 18 месяцев, сжигание с перераспределением остатка. Контракт после публикации в сети не исправишь и не откатишь, поэтому вся арифметика вестинга закрыта песочными тестами — 34 из 34 зелёные. Токен работает в сети; код принадлежит заказчику.',
+    textEn: 'A TIP-3 jetton for the TON network with on-chain vesting: nine distribution pools, a three-month cliff, 12- and 18-month unlock schedules, and burn with redistribution. A contract cannot be patched or rolled back once it is live, so every bit of the vesting arithmetic is covered by sandbox tests — 34 of 34 green. The token runs in production; the code belongs to the client.',
+  },
+  {
+    name: 'Автопроверка заданий',
+    nameEn: 'Automated assignment checking',
+    kind: 'Веб-платформа · командная разработка',
+    kindEn: 'Web platform · team project',
+    metric: '2',
+    metricLabel: 'клиента на одном API',
+    metricLabelEn: 'clients on one API',
+    text: 'Сервис автоматической проверки учебных заданий: решение попадает в очередь, прогоняется набором чекеров и возвращается разбором по каждому шагу, а не одной оценкой. У сервиса два клиента на общем API — панель эксперта на React и мобильное приложение на Flutter, — и весь стенд поднимается одной командой в Docker Compose. Работа командная, поэтому показываем задачей, а не кодом.',
+    textEn: 'A service that checks student assignments automatically: a submission enters a queue, runs through a set of checkers and comes back as a per-step breakdown rather than a single grade. Two clients share one API — an expert console in React and a mobile app in Flutter — and the whole stand comes up with a single Docker Compose command. A team project, so it is told as a problem rather than shown as code.',
+  },
   {
     name: 'PrimeFlowers',
     nameEn: 'PrimeFlowers',

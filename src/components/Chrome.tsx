@@ -122,7 +122,7 @@ export function Footer() {
             <ContactIcon kind="mail" className={ico} />
             {t.contact.fields.email}
           </a>
-          <a href="https://github.com/Olegg000" className={link}>
+          <a href="https://github.com/lendvis" className={link}>
             <ContactIcon kind="github" className={ico} />
             GitHub
           </a>

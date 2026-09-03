@@ -21,7 +21,7 @@ function channelsFor(lang: 'ru' | 'en') {
       value: MAIL,
       href: `mailto:${MAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`,
     },
-    { key: 'github', value: 'github.com/Olegg000', href: 'https://github.com/Olegg000' },
+    { key: 'github', value: 'github.com/lendvis', href: 'https://github.com/lendvis' },
   ] as const
 }
 

@@ -8,6 +8,7 @@ import { Cursor } from './components/Cursor'
 import { Progress } from './components/Progress'
 import { Footer, MobileNav, Nav } from './components/Chrome'
 import Home from './pages/Home'
+import { initMetrika, trackPageView } from './lib/metrika'
 
 // Внутренние страницы подгружаются по требованию — первый экран не ждёт весь сайт
 const Services = lazy(() => import('./pages/Services'))
@@ -21,13 +22,22 @@ const Contact = lazy(() => import('./pages/Contact'))
  * иначе оставляет один и тот же title на всех пяти маршрутах.
  */
 function PageMeta() {
-  const { pathname } = useLocation()
+  const { pathname, search } = useLocation()
   const { t, lang } = useLang()
 
   // Наверх — только при смене маршрута: переключение языка не должно уносить со страницы
   useEffect(() => {
     scrollToTop()
   }, [pathname])
+
+  // Аналитика: подключаем один раз, дальше сообщаем о каждом переходе внутри SPA
+  useEffect(() => {
+    initMetrika()
+  }, [])
+
+  useEffect(() => {
+    trackPageView(pathname + search)
+  }, [pathname, search])
 
   useEffect(() => {
     const studio = lang === 'ru' ? 'Лендвис' : 'Lendvis'

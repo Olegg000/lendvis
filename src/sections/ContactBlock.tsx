@@ -1,6 +1,7 @@
 import { useMemo, useState } from 'react'
 import { Reveal } from './kit'
 import { useLang } from '../lib/i18n'
+import { trackGoal } from '../lib/metrika'
 
 const TG = 'lendvis'
 const SLOTS = ['10:00', '12:00', '14:00', '16:00', '18:00']
@@ -69,6 +70,7 @@ export function ContactBlock() {
             <Reveal key={c.key} delay={i * 0.06}>
               <a
                 href={c.href}
+                onClick={() => trackGoal(`contact_${c.key}`)}
                 data-cursor={t.contact.fields[c.key]}
                 className="group flex flex-col gap-2 rounded-xl border border-line px-5 py-4 transition-colors hover:border-white/35 hover:bg-white/[0.03]"
               >

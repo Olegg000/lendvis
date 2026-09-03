@@ -1,6 +1,7 @@
 import { useMemo, useState } from 'react'
 import { FinalCall, Reveal, SectionHead } from '../sections/kit'
 import { useLang } from '../lib/i18n'
+import { trackGoal } from '../lib/metrika'
 import {
   DIAGNOSTIC,
   KINDS,
@@ -155,6 +156,7 @@ export default function Price() {
                 href={`https://t.me/lendvis?text=${encodeURIComponent(
                   own || (ru ? 'Здравствуйте! Хочу обсудить задачу.' : 'Hello! I would like to discuss a project.'),
                 )}`}
+                onClick={() => trackGoal('price_telegram')}
                 className="shrink-0 rounded-full border border-sand/60 px-6 py-3 text-center font-mono text-micro text-fg uppercase transition-colors hover:bg-sand/10"
               >
                 {ru ? 'Отправить в Telegram' : 'Send on Telegram'}

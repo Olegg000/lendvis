@@ -5,6 +5,7 @@ import { Phone } from './Device'
 import type { Project } from '../data'
 import { EASE } from '../lib/motion'
 import { useLang } from '../lib/i18n'
+import { trackGoal } from '../lib/metrika'
 
 
 /**
@@ -224,6 +225,7 @@ export function WorkCard({
               href={project.demo}
               target="_blank"
               rel="noopener noreferrer"
+              onClick={() => trackGoal('demo_open')}
               className="rounded-full border border-sand/60 bg-sand/10 px-5 py-2 font-mono text-micro text-fg uppercase transition-colors hover:bg-sand/20"
             >
               {label.open}

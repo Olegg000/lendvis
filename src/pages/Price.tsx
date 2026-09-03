@@ -152,7 +152,7 @@ export default function Price() {
                 className="w-full rounded-[3px] border border-line bg-raised px-4 py-3 text-[14px] text-fg outline-none placeholder:text-faint focus:border-sand/60"
               />
               <a
-                href={`https://t.me/nektoo1111?text=${encodeURIComponent(
+                href={`https://t.me/lendvis?text=${encodeURIComponent(
                   own || (ru ? 'Здравствуйте! Хочу обсудить задачу.' : 'Hello! I would like to discuss a project.'),
                 )}`}
                 className="shrink-0 rounded-full border border-sand/60 px-6 py-3 text-center font-mono text-micro text-fg uppercase transition-colors hover:bg-sand/10"

@@ -114,11 +114,11 @@ export function Footer() {
           {f.copyright} · {f.line}
         </p>
         <nav className="flex flex-wrap items-center gap-x-7 gap-y-2">
-          <a href="https://t.me/nektoo1111" className={link}>
+          <a href="https://t.me/lendvis" className={link}>
             <ContactIcon kind="telegram" className={ico} />
             Telegram
           </a>
-          <a href="mailto:olegkovalik2013@yandex.ru" className={link}>
+          <a href="mailto:lends.it@yandex.com" className={link}>
             <ContactIcon kind="mail" className={ico} />
             {t.contact.fields.email}
           </a>

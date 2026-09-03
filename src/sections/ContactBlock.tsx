@@ -2,10 +2,10 @@ import { useMemo, useState } from 'react'
 import { Reveal } from './kit'
 import { useLang } from '../lib/i18n'
 
-const TG = 'nektoo1111'
+const TG = 'lendvis'
 const SLOTS = ['10:00', '12:00', '14:00', '16:00', '18:00']
 
-const MAIL = 'olegkovalik2013@yandex.ru'
+const MAIL = 'lends.it@yandex.com'
 
 /** Письмо уходит с темой и каркасом вопросов — иначе почтовый путь хуже телеграма. */
 function channelsFor(lang: 'ru' | 'en') {

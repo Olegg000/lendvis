@@ -44,7 +44,7 @@ export const projects: Project[] = [
       'A booking bot for service businesses that runs the schedule itself: the client picks a service and a free slot right in the chat, slots are computed from the service duration, and a partial unique index makes a double booking impossible even under a race. It reminds clients a day and two hours ahead, and the owner gets an admin panel with the schedule, 30-day revenue and conversion. 109 tests, none needing a network or a live token.',
     stack: ['Python', 'aiogram 3', 'SQLAlchemy 2', 'SQLite'],
     repo: 'https://github.com/lendvis/python-faq-bot',
-    demo: 'https://lendvis.github.io/python-faq-bot/',
+    demo: 'https://lendvis.ru/python-faq-bot/',
     shots: [`${base}shots/faq-bot-start.webp`, `${base}shots/faq-bot-booking.webp`, `${base}shots/faq-bot-admin.webp`],
   },
   {
@@ -134,7 +134,7 @@ export const projects: Project[] = [
       'A cloud smart-home backend that plugs into Yandex Alice: OAuth over Yandex’s protocol, a WebSocket down to the devices, telemetry and a web control panel. The same interface runs on demo data or a live server — switched with a token, with channel latency shown in the status bar. It shows we do more than draw screens: we hold persistent connections and integrate with a third-party ecosystem.',
     stack: ['Python', 'FastAPI', 'WebSocket', 'JWT'],
     repo: 'https://github.com/lendvis/alice-301-backend',
-    demo: 'https://lendvis.github.io/alice-301-backend/',
+    demo: 'https://lendvis.ru/alice/',
     shots: [`${base}shots/alice-panel.webp`, `${base}shots/alice-telemetry.webp`],
   },
   {
@@ -149,7 +149,7 @@ export const projects: Project[] = [
       'An overview of the studio’s blockchain work across four networks at once — TON, Ethereum, Waves Enterprise, Hyperledger Fabric: where a contract bug cannot be rolled back, so we write slowly and cover the logic with tests. Some work is under NDA, some is open with code and tests — a supply-chain chaincode for Fabric and a document registry on Waves Enterprise with SHA-256 integrity checks. A field most contractors will not even take on.',
     stack: ['TypeScript', 'Hyperledger Fabric', 'Waves Enterprise'],
     repo: 'https://github.com/lendvis/blockchain-practice',
-    demo: 'https://lendvis.github.io/blockchain-practice/',
+    demo: 'https://lendvis.ru/blockchain-practice/',
     shots: [`${base}shots/blockchain-desktop.webp`],
   },
   {
@@ -164,7 +164,7 @@ export const projects: Project[] = [
       'A live teardown of four classic React mistakes that trip up inherited code: state lost on rapid clicks, a mutated array, index as a key, a leaking timer. Each one shows the symptom, the cause and the fix side by side, “before” and “after” in one demo. It is a showcase of our support service: we enter an unfamiliar project, find the root cause instead of muting the symptom, and leave code that does not fall apart later.',
     stack: ['React', 'Vite'],
     repo: 'https://github.com/lendvis/react-bugfix-demo',
-    demo: 'https://lendvis.github.io/react-bugfix-demo/',
+    demo: 'https://lendvis.ru/react-bugfix/',
     shots: [`${base}shots/bugfix-fix.webp`],
   },
 ]

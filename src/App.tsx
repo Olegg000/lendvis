@@ -12,6 +12,7 @@ import Home from './pages/Home'
 // Внутренние страницы подгружаются по требованию — первый экран не ждёт весь сайт
 const Services = lazy(() => import('./pages/Services'))
 const Work = lazy(() => import('./pages/Work'))
+const Price = lazy(() => import('./pages/Price'))
 const About = lazy(() => import('./pages/About'))
 const Contact = lazy(() => import('./pages/Contact'))
 
@@ -37,6 +38,13 @@ function PageMeta() {
       },
       '/services': { title: `${t.nav.services} — ${studio}`, description: t.services.lead },
       '/work': { title: `${t.nav.work} — ${studio}`, description: t.work.lead },
+      '/price': {
+        title: `${t.nav.price} — ${studio}`,
+        description:
+          lang === 'ru'
+            ? 'Сколько стоит работа студии: вилка по вашей задаче, срок и правила, по которым считаем.'
+            : 'What the studio charges: a range for your task, a timeline, and the rules we price by.',
+      },
       '/about': { title: `${t.nav.about} — ${studio}`, description: t.about.lead },
       '/contact': { title: `${t.nav.contact} — ${studio}`, description: t.contact.lead },
     }
@@ -93,6 +101,7 @@ function Shell() {
               <Route path="/" element={<Home />} />
               <Route path="/services" element={<Services />} />
               <Route path="/work" element={<Work />} />
+              <Route path="/price" element={<Price />} />
               <Route path="/about" element={<About />} />
               <Route path="/contact" element={<Contact />} />
               <Route path="*" element={<Navigate to="/" replace />} />

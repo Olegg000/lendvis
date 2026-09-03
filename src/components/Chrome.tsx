@@ -7,9 +7,17 @@ const routes = [
   { to: '/', key: 'home' },
   { to: '/services', key: 'services' },
   { to: '/work', key: 'work' },
+  { to: '/price', key: 'price' },
   { to: '/about', key: 'about' },
   { to: '/contact', key: 'contact' },
 ] as const
+
+/**
+ * В шапке — всё, кроме главной (она на логотипе) и контактов (они кнопкой справа).
+ * Раньше здесь стоял slice(1, 4): добавление шестого маршрута молча выкинуло «О студии»
+ * из навигации, и заметить это можно было только глазами.
+ */
+const headerRoutes = routes.filter((r) => r.to !== '/' && r.to !== '/contact')
 
 export function Nav() {
   const { t, lang, setLang } = useLang()
@@ -35,7 +43,7 @@ export function Nav() {
         </NavLink>
 
         <nav className="ml-auto hidden items-center gap-7 md:flex">
-          {routes.slice(1, 4).map((r) => (
+          {headerRoutes.map((r) => (
             <NavLink
               key={r.to}
               to={r.to}

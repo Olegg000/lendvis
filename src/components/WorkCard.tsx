@@ -42,6 +42,8 @@ export function WorkCard({
     },
   }[lang]
 
+  // Якорь для перехода с главной прямо к проекту: последний сегмент адреса репозитория
+  const slug = project.repo.replace(/\/+$/, '').split('/').pop() ?? ''
   const name = lang === 'ru' ? project.name : project.nameEn
   const kind = lang === 'ru' ? project.kind : project.kindEn
   const summary = lang === 'ru' ? project.summary : project.summaryEn
@@ -104,7 +106,7 @@ export function WorkCard({
           transition={{ duration: 0.9, ease: EASE }}
           className="group relative"
         >
-          <Link to="/work" aria-label={name} className="absolute inset-0 z-10 rounded-2xl" />
+          <Link to={`/work#${slug}`} aria-label={name} className="absolute inset-0 z-10 rounded-2xl" />
           {/* Фон непрозрачный: в липкой стопке сквозь карточку не должно быть видно соседа */}
           <div className="overflow-hidden rounded-2xl border border-[#3b414a] bg-[#0d0f13] px-2 pb-1 transition-colors duration-300 group-hover:border-[#565e69]">
             <div className="relative overflow-hidden rounded-xl">
@@ -132,7 +134,7 @@ export function WorkCard({
         transition={{ duration: 0.9, ease: EASE }}
         className="group relative"
       >
-        <Link to="/work" aria-label={name} className="absolute inset-0 z-10 rounded-xl" />
+        <Link to={`/work#${slug}`} aria-label={name} className="absolute inset-0 z-10 rounded-xl" />
         <div className="rounded-t-xl border border-b-0 border-[#3b414a] bg-[#181c22] p-2 pb-0 transition-colors duration-300 group-hover:border-[#565e69] sm:p-2.5 sm:pb-0">
           <div className="overflow-hidden rounded-md border border-[#23272e] bg-[#0d0f13]">
             <div className="flex items-center gap-2 border-b border-[#23272e] bg-[#12151a] px-3.5 py-2.5">
@@ -161,6 +163,7 @@ export function WorkCard({
 
   return (
     <motion.article
+      id={slug}
       initial={still ? false : { opacity: 0, y: 26 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: '-80px' }}

@@ -1,46 +1,25 @@
-import Lenis from 'lenis'
 import { useEffect } from 'react'
 
-let instance: Lenis | null = null
+/**
+ * Прокрутка — нативная. Раньше здесь был Lenis, но `overflow-x: clip` на html/body
+ * ломал ему измерение высоты (limit=0): на десктопе он был пустышкой поверх нативного
+ * скролла, а на мобильном с syncTouch захватывал тач и блокировал прокрутку.
+ * Нативный скролл работает на всех устройствах, а анимации framer-motion (подсветка,
+ * наезд карточек) читают его напрямую через useScroll.
+ */
 
-/** Прокрутка наверх через сам движок: нативный scrollTo проигрывает его инерции. */
+/** Мгновенно наверх — при смене маршрута. */
 export function scrollToTop() {
-  if (instance) instance.scrollTo(0, { immediate: true })
-  else window.scrollTo({ top: 0, behavior: 'instant' as ScrollBehavior })
+  window.scrollTo({ top: 0, behavior: 'instant' as ScrollBehavior })
 }
 
-/**
- * Инерционный скролл. Страница едет с довеском и мягко останавливается —
- * это и есть тот самый эффект «дорогого» сайта.
- * При включённом «уменьшить движение» не подключаем вовсе: нативный скролл честнее.
- */
+/** Плавно к элементу — переход с главной к конкретному проекту. */
+export function scrollToElement(el: HTMLElement, offset = 12) {
+  const y = el.getBoundingClientRect().top + window.scrollY - offset
+  window.scrollTo({ top: y, behavior: 'smooth' })
+}
+
+/** Оставлен как хук совместимости: нативный скролл ничего инициализировать не требует. */
 export function useSmoothScroll() {
-  useEffect(() => {
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
-    // На тач-устройствах инерцию не подключаем: Lenis перехватывает жесты и ломает
-    // нативную вертикальную прокрутку страницы (карточки на главной переставали листаться).
-    // Нативный скролл на телефоне и так плавный — умный ход не улучшает, а мешает.
-    if (window.matchMedia('(pointer: coarse)').matches) return
-
-    const lenis = new Lenis({
-      duration: 1.05,
-      easing: (t: number) => 1 - Math.pow(1 - t, 3),
-      wheelMultiplier: 1,
-    })
-
-    instance = lenis
-    let raf = 0
-    const loop = (time: number) => {
-      lenis.raf(time)
-      raf = requestAnimationFrame(loop)
-    }
-    raf = requestAnimationFrame(loop)
-
-
-    return () => {
-      cancelAnimationFrame(raf)
-      lenis.destroy()
-      instance = null
-    }
-  }, [])
+  useEffect(() => {}, [])
 }

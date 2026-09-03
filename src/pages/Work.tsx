@@ -1,11 +1,27 @@
 import { FinalCall, Reveal, SectionHead } from '../sections/kit'
 import { Cases } from '../sections/Cases'
 import { WorkCard } from '../components/WorkCard'
+import { useEffect } from 'react'
+import { useLocation } from 'react-router-dom'
+import { scrollToElement } from '../lib/smooth'
 import { useLang } from '../lib/i18n'
 import { projects } from '../data'
 
 export default function Work() {
   const { t, lang } = useLang()
+  const { hash } = useLocation()
+
+  // Переход с главной по клику на проект: доскроллить к его карточке
+  useEffect(() => {
+    if (!hash) return
+    const id = decodeURIComponent(hash.slice(1))
+    // ждём кадр: страница сначала прыгает наверх при смене маршрута
+    const t = setTimeout(() => {
+      const el = document.getElementById(id)
+      if (el) scrollToElement(el)
+    }, 120)
+    return () => clearTimeout(t)
+  }, [hash])
   return (
     <section className="mx-auto max-w-[1180px] px-5 pt-36 pb-24 sm:px-8 sm:pt-44">
       <SectionHead level={1} title={t.work.title} accent={t.work.titleAccent} lead={t.work.lead} />

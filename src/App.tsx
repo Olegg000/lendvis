@@ -81,7 +81,7 @@ function Shell() {
   const { lang } = useLang()
   const skipLabel = lang === 'ru' ? 'К содержимому' : 'Skip to content'
   return (
-    <div className="grain min-h-screen bg-ground">
+    <div className="grain min-h-screen overflow-x-clip bg-ground">
       <Cursor />
       <Progress />
       {/* Хэш занят маршрутизатором, поэтому переход к содержимому — кнопкой, а не ссылкой */}

@@ -33,7 +33,6 @@
 
 html {
   background: var(--color-ground);
-  overflow-x: clip;
   /* Иначе браузер рисует свои элементы — полосы, поля — в светлой схеме поверх тёмной страницы */
   color-scheme: dark;
 }
@@ -53,7 +52,6 @@ body {
   font-family: var(--font-ui);
   font-weight: 300;
   -webkit-font-smoothing: antialiased;
-  overflow-x: clip;
 }
 
 /* Плёночное зерно поверх всей страницы — держит кадр.

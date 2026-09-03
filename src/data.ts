@@ -188,13 +188,13 @@ export const cases: Case[] = [
     text: 'Боевой магазин доставки цветов: витрина на Next.js поверх FastAPI, PostgreSQL, Redis и Celery. Оплата, склад, CRM, доставка, три мессенджер-бота и админка на двадцать разделов. Задача была не в красоте, а в том, чтобы 8 марта система прошла пик без падений.',
   },
   {
-    name: 'PGK FOOD',
-    nameEn: 'PGK FOOD',
-    kind: 'Система питания колледжа',
+    name: 'Питание по QR без интернета',
+    nameEn: 'Offline QR meal payments',
+    kind: 'Приложение для колледжа · прод',
     metric: '~1000',
     metricLabel: 'пользователей',
     metricLabelEn: 'users',
-    kindEn: 'Campus meal system',
+    kindEn: 'App for a vocational college · production',
     textEn:
       'Meal payments by QR pass that works with no internet: an ECDSA signature is verified on the spot, and double-spend protection catches a pass used twice. The Kotlin backend was load tested; the client is one codebase for Android and iOS.',
     text: 'Оплата питания по QR-пропуску, который работает без интернета: подпись ECDSA проверяется на месте, а повторное гашение ловит защита от double-spend. Бекенд на Kotlin проверен нагрузкой, клиент — одна кодовая база на Android и iOS.',

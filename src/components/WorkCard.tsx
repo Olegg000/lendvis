@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react'
+import { useRef } from 'react'
 import { Link } from 'react-router-dom'
 import { motion, useReducedMotion, useScroll, useTransform } from 'framer-motion'
 import { Phone } from './Device'
@@ -26,10 +26,6 @@ export function WorkCard({
   const Heading = headingLevel === 2 ? 'h2' : 'h3'
   const { lang } = useLang()
   const still = useReducedMotion()
-  const [live, setLive] = useState(false)
-  const [ready, setReady] = useState(false)
-  // Пока управление не взято, кадр не перехватывает колесо — иначе прокрутка страницы встаёт
-  const [grab, setGrab] = useState(false)
   const ref = useRef<HTMLDivElement>(null)
 
   const { scrollYProgress } = useScroll({ target: ref, offset: ['start end', 'end start'] })
@@ -37,22 +33,12 @@ export function WorkCard({
 
   const label = {
     ru: {
-      play: 'Запустить',
-      close: 'Закрыть демо',
       open: 'Открыть',
       code: 'Код',
-      running: 'работает вживую',
-      grab: 'Взять управление',
-      release: 'Вернуть прокрутку',
     },
     en: {
-      play: 'Run it',
-      close: 'Close demo',
       open: 'Open',
       code: 'Code',
-      running: 'running live',
-      grab: 'Take control',
-      release: 'Give scroll back',
     },
   }[lang]
 
@@ -207,80 +193,23 @@ export function WorkCard({
           style={still ? undefined : { y }}
           className="overflow-hidden rounded-xl border border-white/12 bg-[#0d0f13] shadow-[0_50px_120px_-60px_rgba(0,0,0,1)] transition-colors duration-500 group-hover:border-white/25"
         >
+          {/* Шапка окна браузера с адресом проекта */}
           <div className="flex items-center gap-2 border-b border-white/8 px-4 py-2.5">
             <span className="h-2 w-2 rounded-full bg-white/12" />
             <span className="h-2 w-2 rounded-full bg-white/12" />
             <span className="h-2 w-2 rounded-full bg-white/12" />
-            <span className="mx-auto flex min-w-0 items-center gap-2 truncate rounded-full bg-white/[0.05] px-3 py-1 font-mono text-[9.5px] text-faint">
-              {live && (
-                <span
-                  className={`h-1.5 w-1.5 rounded-full ${ready ? 'bg-[#5ec08a]' : 'animate-pulse bg-white/45'}`}
-                />
-              )}
-              {live && ready ? label.running : (project.demo ?? project.repo).replace(/^https?:\/\//, '')}
+            <span className="mx-auto min-w-0 truncate rounded-full bg-white/[0.05] px-3 py-1 font-mono text-[9.5px] text-faint">
+              {(project.demo ?? project.repo).replace(/^https?:\/\//, '')}
             </span>
-            {live && (
-              <button
-                type="button"
-                onClick={() => {
-                  setLive(false)
-                  setReady(false)
-                }}
-                className="shrink-0 font-mono text-[9.5px] tracking-[0.14em] text-faint uppercase transition-colors hover:text-fg"
-              >
-                {label.close}
-              </button>
-            )}
           </div>
-
-          {live && project.demo ? (
-            <div className={`relative w-full ${frameRatio}`}>
-              <img
-                src={project.shots[0]}
-                alt=""
-                className="absolute inset-0 h-full w-full object-cover object-top opacity-35 blur-[2px]"
-              />
-              <iframe
-                src={project.demo}
-                title={name}
-                onLoad={() => setReady(true)}
-                className={`absolute inset-0 h-full w-full bg-white transition-opacity duration-700 ${
-                  ready ? 'opacity-100' : 'opacity-0'
-                } ${grab ? '' : 'pointer-events-none'}`}
-              />
-              {ready && (
-                <button
-                  type="button"
-                  onClick={() => setGrab((g) => !g)}
-                  className="absolute right-3 bottom-3 rounded-full border border-white/30 bg-black/70 px-4 py-2 font-mono text-[9.5px] tracking-[0.14em] uppercase backdrop-blur-sm transition-colors hover:border-white/60"
-                >
-                  {grab ? label.release : label.grab}
-                </button>
-              )}
-            </div>
-          ) : (
-            <div className="relative">
-              <img
-                src={project.shots[0]}
-                alt=""
-                loading="lazy"
-                className={`block w-full object-cover object-top opacity-90 transition-all duration-[900ms] group-hover:scale-[1.015] group-hover:opacity-100 ${frameRatio}`}
-              />
-              {project.demo && (
-                <button
-                  type="button"
-                  onClick={() => setLive(true)}
-                  /* Кнопка живёт в углу кадра, а не по центру: по центру она садилась
-                     поверх самого интерфейса и читалась как наклейка на скриншоте */
-                  className="group/play absolute inset-x-0 bottom-0 flex items-end justify-start p-4 sm:p-5"
-                >
-                  <span className="rounded-full border border-white/40 bg-black/70 px-6 py-2.5 font-mono text-label uppercase shadow-[0_10px_30px_-12px_rgba(0,0,0,1)] backdrop-blur-sm transition-[background-color,border-color,transform] duration-300 group-hover/play:border-white/70 group-hover/play:bg-black/85 group-active/play:scale-[0.97]">
-                    {label.play}
-                  </span>
-                </button>
-              )}
-            </div>
-          )}
+          <div className="relative">
+            <img
+              src={project.shots[0]}
+              alt=""
+              loading="lazy"
+              className={`block w-full object-cover object-top opacity-90 transition-all duration-[900ms] group-hover:scale-[1.015] group-hover:opacity-100 ${frameRatio}`}
+            />
+          </div>
         </motion.div>
       )}
 
@@ -290,6 +219,8 @@ export function WorkCard({
           {project.demo && (
             <a
               href={project.demo}
+              target="_blank"
+              rel="noopener noreferrer"
               className="rounded-full border border-sand/60 bg-sand/10 px-5 py-2 font-mono text-micro text-fg uppercase transition-colors hover:bg-sand/20"
             >
               {label.open}

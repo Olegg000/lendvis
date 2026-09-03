@@ -231,7 +231,7 @@ export const copy = {
     about: {
       title: 'Кто пишет ваш',
       titleAccent: 'код',
-      lead: 'Лендвис — студия разработки из Самары. Работаем удалённо, с русско- и англоязычными заказчиками.',
+      lead: 'Лендвис — студия разработки полного цикла: сайты, мобильные приложения, боты, блокчейн и бекенды под задачу. Мы из Самары, работаем удалённо — с русско- и англоязычными заказчиками — и отвечаем не за красивый макет, а за то, что работает в проде и выдерживает нагрузку.',
       paragraphs: [
         'Начинали с олимпиад, и это оказалось полезной привычкой: задачу дают за час до сдачи, а работать должно всё — включая деплой.',
         'Дальше был прод. Интернет-магазин на 80 тысяч строк: витрина на Next.js, бекенд на FastAPI, оплата через ЮKassa, склад в МойСклад, CRM, Яндекс Доставка. Задача была не в красоте, а в том, чтобы пиковый день система прошла без падений.',
@@ -532,7 +532,7 @@ export const copy = {
     about: {
       title: 'Who writes your',
       titleAccent: 'code',
-      lead: 'Lendvis is a development studio based in Samara, Russia. We work remotely, with Russian and English-speaking clients.',
+      lead: 'Lendvis is a full-cycle development studio: websites, mobile apps, bots, blockchain and backends, built to the task. We are based in Samara and work remotely — with Russian- and English-speaking clients — and we answer not for a pretty mock-up but for what runs in production and holds under load.',
       paragraphs: [
         'We came up through competitions, and it turned out to be a useful habit: you get the brief an hour before the deadline and everything still has to run — deployment included.',
         'Then came production. An 80,000-line online store: a Next.js storefront over a FastAPI backend, payments through YooKassa, inventory in MoySklad, CRM, Yandex Delivery. The job was not to make it pretty. The job was to get through the peak season without going down.',

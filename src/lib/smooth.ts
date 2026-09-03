@@ -17,12 +17,15 @@ export function scrollToTop() {
 export function useSmoothScroll() {
   useEffect(() => {
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
+    // На тач-устройствах инерцию не подключаем: Lenis перехватывает жесты и ломает
+    // нативную вертикальную прокрутку страницы (карточки на главной переставали листаться).
+    // Нативный скролл на телефоне и так плавный — умный ход не улучшает, а мешает.
+    if (window.matchMedia('(pointer: coarse)').matches) return
 
     const lenis = new Lenis({
       duration: 1.05,
       easing: (t: number) => 1 - Math.pow(1 - t, 3),
       wheelMultiplier: 1,
-      touchMultiplier: 1.6,
     })
 
     instance = lenis

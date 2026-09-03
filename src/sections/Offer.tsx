@@ -14,22 +14,16 @@ export function ServiceList() {
     <>
       {t.services.items.map((s, i) => (
         <Reveal key={s.number} delay={Math.min(i * 0.05, 0.2)}>
-          <article className="grid gap-x-10 gap-y-5 border-t border-line py-12 md:grid-cols-[84px_1fr_1fr]">
-            <div className="flex items-start gap-4 md:block">
-              <DirectionIcon n={s.number} className="h-14 w-14 text-soft md:h-[72px] md:w-[72px]" />
-              <span className="mt-0 block font-mono text-[11px] text-faint md:mt-5">{s.number}</span>
-            </div>
+          <article className="grid gap-x-10 gap-y-5 border-t border-line py-12 md:grid-cols-[84px_1fr]">
+            <DirectionIcon n={s.number} className="h-14 w-14 text-soft md:h-[72px] md:w-[72px]" />
 
+            {/* Всё в один поток: название, краткое описание, описание, пункты */}
             <div>
               <h2 className="text-[clamp(1.3rem,2.6vw,1.7rem)] leading-tight font-light tracking-[-0.02em]">
                 {s.name}
               </h2>
               <p className="mt-3 font-serif text-[19px] leading-snug font-light text-soft italic">{s.tagline}</p>
-              <p className="mt-6 font-mono text-micro leading-relaxed text-faint">{s.stack}</p>
-            </div>
-
-            <div>
-              <p className="text-body text-soft">{s.text}</p>
+              <p className="mt-6 max-w-[64ch] text-body text-soft">{s.text}</p>
               <ul className="mt-5 space-y-2">
                 {s.bullets.map((b) => (
                   <li key={b} className="flex gap-3 text-[13.5px] leading-[1.6] text-soft">

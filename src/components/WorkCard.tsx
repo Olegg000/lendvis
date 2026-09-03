@@ -98,6 +98,46 @@ export function WorkCard({
      Силуэт непрозрачен во всю ширину — иначе сквозь наехавшую карточку виден сосед.
      Поэтому имя стоит на подбородке корпуса, а не в воздухе над кадром. */
   if (compact) {
+    /* Имя + вид проекта под кадром — общая подпись для обоих видов карточки */
+    const caption = (
+      <div className="flex items-center justify-between gap-5 px-1 py-3 sm:px-1.5 sm:py-3.5">
+        <Heading className="truncate text-[clamp(1.05rem,1.7vw,1.45rem)] leading-tight font-light tracking-[-0.02em]">
+          {name}
+        </Heading>
+        <span className="hidden shrink-0 font-mono text-micro text-faint uppercase sm:inline">{kind}</span>
+      </div>
+    )
+
+    // Мобильный проект: чистая сцена с телефонами, без рамки ноутбука
+    if (project.phone) {
+      return (
+        <motion.article
+          initial={still ? false : { opacity: 0, y: 26 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-80px' }}
+          transition={{ duration: 0.9, ease: EASE }}
+          className="group relative"
+        >
+          <Link to="/work" aria-label={name} className="absolute inset-0 z-10 rounded-2xl" />
+          {/* Фон непрозрачный: в липкой стопке сквозь карточку не должно быть видно соседа */}
+          <div className="overflow-hidden rounded-2xl border border-[#3b414a] bg-[#0d0f13] px-2 pb-1 transition-colors duration-300 group-hover:border-[#565e69]">
+            <div className="relative overflow-hidden rounded-xl">
+              <div
+                className="pointer-events-none absolute inset-0"
+                style={{
+                  background:
+                    'radial-gradient(ellipse 72% 64% at 50% 40%, rgba(70,78,96,0.22) 0%, rgba(13,15,19,0.72) 62%, rgba(8,9,12,0.92) 100%)',
+                }}
+              />
+              {phoneStage}
+            </div>
+            {caption}
+          </div>
+        </motion.article>
+      )
+    }
+
+    // Веб-проект: корпус ноутбука
     return (
       <motion.article
         initial={still ? false : { opacity: 0, y: 26 }}
@@ -106,55 +146,26 @@ export function WorkCard({
         transition={{ duration: 0.9, ease: EASE }}
         className="group relative"
       >
-        {/* Клик в любое место корпуса ведёт к проектам */}
         <Link to="/work" aria-label={name} className="absolute inset-0 z-10 rounded-xl" />
-
-        {/* Корпус */}
         <div className="rounded-t-xl border border-b-0 border-[#3b414a] bg-[#181c22] p-2 pb-0 transition-colors duration-300 group-hover:border-[#565e69] sm:p-2.5 sm:pb-0">
-          {/* Экран отдельным блоком, со своей кромкой */}
           <div className="overflow-hidden rounded-md border border-[#23272e] bg-[#0d0f13]">
-            {project.phone ? (
-              <div className="relative w-full overflow-hidden">
-                <div
-                  className="pointer-events-none absolute inset-0"
-                  style={{
-                    background:
-                      'radial-gradient(ellipse 70% 62% at 50% 42%, rgba(70,78,96,0.20) 0%, rgba(13,15,19,0.7) 64%, rgba(8,9,12,0.9) 100%)',
-                  }}
-                />
-                {phoneStage}
-              </div>
-            ) : (
-              <>
-                <div className="flex items-center gap-2 border-b border-[#23272e] bg-[#12151a] px-3.5 py-2.5">
-                  <span className="h-[11px] w-[11px] rounded-full bg-[#e0443e]" />
-                  <span className="h-[11px] w-[11px] rounded-full bg-[#dea123]" />
-                  <span className="h-[11px] w-[11px] rounded-full bg-[#1aab29]" />
-                  <span className="mx-auto min-w-0 truncate rounded bg-white/[0.05] px-3 py-1 font-mono text-[9.5px] text-faint">
-                    {(project.demo ?? project.repo).replace(/^https?:\/\//, '')}
-                  </span>
-                </div>
-                <img
-                  src={project.shots[0]}
-                  alt=""
-                  loading="lazy"
-                  className={`block w-full object-cover object-top ${frameRatio}`}
-                />
-              </>
-            )}
+            <div className="flex items-center gap-2 border-b border-[#23272e] bg-[#12151a] px-3.5 py-2.5">
+              <span className="h-[11px] w-[11px] rounded-full bg-[#e0443e]" />
+              <span className="h-[11px] w-[11px] rounded-full bg-[#dea123]" />
+              <span className="h-[11px] w-[11px] rounded-full bg-[#1aab29]" />
+              <span className="mx-auto min-w-0 truncate rounded bg-white/[0.05] px-3 py-1 font-mono text-[9.5px] text-faint">
+                {(project.demo ?? project.repo).replace(/^https?:\/\//, '')}
+              </span>
+            </div>
+            <img
+              src={project.shots[0]}
+              alt=""
+              loading="lazy"
+              className={`block w-full object-cover object-top ${frameRatio}`}
+            />
           </div>
-
-          {/* Подбородок: имя на корпусе */}
-          <div className="flex items-center justify-between gap-5 px-1 py-3 sm:px-1.5 sm:py-3.5">
-            <Heading className="truncate text-[clamp(1.05rem,1.7vw,1.45rem)] leading-tight font-light tracking-[-0.02em]">
-              {name}
-            </Heading>
-            {/* На узкой машине вид проекта съедал имя до «AutoChe…» */}
-            <span className="hidden shrink-0 font-mono text-micro text-faint uppercase sm:inline">{kind}</span>
-          </div>
+          {caption}
         </div>
-
-        {/* Основание с выемкой под палец */}
         <div className="relative h-3 rounded-b-xl border-x border-b border-[#3b414a] bg-[#22262d] transition-colors duration-300 group-hover:border-[#565e69] sm:h-[15px]">
           <span className="absolute top-0 left-1/2 h-[3px] w-20 -translate-x-1/2 rounded-b-full bg-[#0d0f13] sm:w-28" />
         </div>
@@ -170,11 +181,10 @@ export function WorkCard({
       transition={{ duration: 0.9, ease: EASE }}
       className="group relative"
     >
-      <div className="mb-5 flex flex-wrap items-baseline gap-x-6 gap-y-1">
+      <div className="mb-5">
         <Heading className="text-[clamp(1.4rem,3vw,2.1rem)] leading-tight font-extralight tracking-[-0.03em]">
           {name}
         </Heading>
-        <span className="font-mono text-micro text-faint uppercase">{kind}</span>
       </div>
 
       <p className="mb-7 max-w-[62ch] text-body text-soft">{lede}</p>

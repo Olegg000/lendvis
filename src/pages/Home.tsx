@@ -31,7 +31,10 @@ function More({ to, children }: { to: string; children: React.ReactNode }) {
  */
 export default function Home() {
   const { t } = useLang()
-  const shown = projects.slice(0, 3)
+  // Витрина главной — три сильнейших: продающий бот, самая красивая мобилка, демо с глубиной.
+  // Явный список, а не первые три по порядку: порядок в data.ts — общий для страницы «Проекты».
+  const featured = ['Бот записи клиентов', 'Ателье на заказ', 'Quiz']
+  const shown = featured.map((n) => projects.find((p) => p.name === n)).filter(Boolean) as typeof projects
 
   return (
     <>

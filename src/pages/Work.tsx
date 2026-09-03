@@ -13,8 +13,8 @@ export default function Work() {
       <Reveal>
         <p className="mb-14 font-mono text-micro text-faint uppercase">
           {lang === 'ru'
-            ? `Проектов: ${projects.length} · с живым демо: ${projects.filter((p) => p.demo).length}`
-            : `${projects.length} projects · ${projects.filter((p) => p.demo).length} with live demos`}
+            ? 'Работали более чем над 20 проектами'
+            : 'We have worked on more than 20 projects'}
         </p>
       </Reveal>
 

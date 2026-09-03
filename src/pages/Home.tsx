@@ -33,7 +33,7 @@ export default function Home() {
   const { t } = useLang()
   // Витрина главной — три сильнейших: продающий бот, самая красивая мобилка, демо с глубиной.
   // Явный список, а не первые три по порядку: порядок в data.ts — общий для страницы «Проекты».
-  const featured = ['Бот записи клиентов', 'Ателье на заказ', 'Quiz']
+  const featured = ['Бот записи клиентов', 'Ателье на заказ', 'Блокчейн-практика']
   const shown = featured.map((n) => projects.find((p) => p.name === n)).filter(Boolean) as typeof projects
 
   return (

@@ -187,7 +187,7 @@ export function WorkCard({
         </Heading>
       </div>
 
-      <p className="mb-7 max-w-[62ch] text-body text-soft">{lede}</p>
+      <p className="mb-7 max-w-[82ch] text-body text-soft">{lede}</p>
 
       {project.phone ? (
         // Высота панели задаётся самими телефонами, а не фиксированным кадром — пустоты нет

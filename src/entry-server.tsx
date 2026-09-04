@@ -18,11 +18,11 @@ import { Shell } from './App'
 export async function render(url: string): Promise<string> {
   const { prelude } = await prerender(
     <StrictMode>
-      <LangProvider>
-        <StaticRouter location={url}>
+      <StaticRouter location={url}>
+        <LangProvider>
           <Shell />
-        </StaticRouter>
-      </LangProvider>
+        </LangProvider>
+      </StaticRouter>
     </StrictMode>,
   )
   return await new Response(prelude).text()

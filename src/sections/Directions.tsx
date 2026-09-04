@@ -18,7 +18,7 @@ const DRIFT = [0, 16, 6, 22, 10, 18]
 const SPEED = 0.082 // пикселей на миллисекунду
 
 export function Directions() {
-  const { t } = useLang()
+  const { t, path } = useLang()
   const still = useReducedMotion()
   const top = useRef<HTMLDivElement>(null)
   const bottom = useRef<HTMLDivElement>(null)
@@ -74,7 +74,7 @@ export function Directions() {
           style={{ marginTop: DRIFT[i % DRIFT.length] }}
         >
           <Link
-            to="/services"
+            to={path('/services')}
             aria-hidden={i >= list.length}
             tabIndex={i >= list.length ? -1 : undefined}
             data-cursor={t.nav.services.toLowerCase()}
@@ -116,7 +116,7 @@ export function Directions() {
 
       <div className="mt-5 flex items-center justify-end">
         <Link
-          to="/services"
+          to={path('/services')}
           className="border-b border-white/30 pb-1 font-mono text-label text-soft uppercase transition-colors hover:border-white/70 hover:text-fg"
         >
           {t.home.services.more} · {t.services.items.length}

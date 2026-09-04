@@ -5,39 +5,75 @@
   "pages": [
     {
       "path": "/",
-      "title": "Лендвис — студия разработки сложных IT-продуктов",
-      "description": "Студия разработки из Самары: веб-сервисы, мобильные приложения, боты, блокчейн и бекенды. Живые демо, открытый код, работа по договору.",
-      "priority": "1.0"
+      "priority": "1.0",
+      "ru": {
+        "title": "Лендвис — студия разработки сложных IT-продуктов",
+        "description": "Студия разработки из Самары: веб-сервисы, мобильные приложения, боты, блокчейн и бекенды. Живые демо, открытый код, работа по договору."
+      },
+      "en": {
+        "title": "Lendvis — software development studio",
+        "description": "Development studio based in Samara, Russia: web services, mobile apps, bots, blockchain and backends. Live demos, open code, contract work."
+      }
     },
     {
       "path": "/services",
-      "title": "Услуги — Лендвис",
-      "description": "Десять направлений разработки: сайты и веб-сервисы, мобильные приложения, блокчейн, бекенды и интеграции, боты, 1С, серверы, тестирование кода.",
-      "priority": "0.9"
+      "priority": "0.9",
+      "ru": {
+        "title": "Услуги — Лендвис",
+        "description": "Десять направлений разработки: сайты и веб-сервисы, мобильные приложения, блокчейн, бекенды и интеграции, боты, 1С, серверы, тестирование кода."
+      },
+      "en": {
+        "title": "Services — Lendvis",
+        "description": "Ten directions: websites and web services, mobile apps, blockchain, backends and integrations, bots, servers, process modelling and code audit."
+      }
     },
     {
       "path": "/work",
-      "title": "Проекты — Лендвис",
-      "description": "Работы студии, которые можно открыть: LMS с аналитикой, бот записи клиентов, доска в реальном времени, четыре мобильных приложения, блокчейн. Плюс закрытые кейсы под NDA.",
-      "priority": "0.9"
+      "priority": "0.9",
+      "ru": {
+        "title": "Проекты — Лендвис",
+        "description": "Работы студии, которые можно открыть: LMS с аналитикой, бот записи клиентов, доска в реальном времени, четыре мобильных приложения, блокчейн. Плюс закрытые кейсы под NDA."
+      },
+      "en": {
+        "title": "Work — Lendvis",
+        "description": "Projects you can open: a testing platform, a booking bot with payments, a realtime whiteboard, four mobile apps and blockchain work. Plus cases under NDA."
+      }
     },
     {
       "path": "/price",
-      "title": "Цены — Лендвис",
-      "description": "Сколько стоит разработка: вилка по вашей задаче и срок сразу на сайте. Цена считается из часов, фикс за результат, почасовая на починку чужого кода.",
-      "priority": "0.9"
+      "priority": "0.9",
+      "ru": {
+        "title": "Цены — Лендвис",
+        "description": "Сколько стоит разработка: вилка по вашей задаче и срок сразу на сайте. Цена считается из часов, фикс за результат, почасовая на починку чужого кода."
+      },
+      "en": {
+        "title": "Pricing — Lendvis",
+        "description": "What development costs: a range for your task and a timeline right on the page. Prices are computed from hours, fixed for scoped work, hourly for fixes."
+      }
     },
     {
       "path": "/about",
-      "title": "О студии — Лендвис",
-      "description": "Лендвис — студия разработки сложных IT-продуктов, готовых к высоким нагрузкам от пользователей по всему миру. Самара, работаем удалённо, русский и английский.",
-      "priority": "0.8"
+      "priority": "0.8",
+      "ru": {
+        "title": "О студии — Лендвис",
+        "description": "Лендвис — студия разработки сложных IT-продуктов, готовых к высоким нагрузкам от пользователей по всему миру. Самара, работаем удалённо, русский и английский."
+      },
+      "en": {
+        "title": "Studio — Lendvis",
+        "description": "Lendvis builds complex software products ready for heavy load from users worldwide. Based in Samara, working remotely, in Russian and English."
+      }
     },
     {
       "path": "/contact",
-      "title": "Контакты — Лендвис",
-      "description": "Расскажите о задаче: два абзаца о том, что есть сейчас и что должно быть. В ответ — оценка сроков и цена письменно. Telegram, почта, созвон.",
-      "priority": "0.7"
+      "priority": "0.7",
+      "ru": {
+        "title": "Контакты — Лендвис",
+        "description": "Расскажите о задаче: два абзаца о том, что есть сейчас и что должно быть. В ответ — оценка сроков и цена письменно. Telegram, почта, созвон."
+      },
+      "en": {
+        "title": "Contact — Lendvis",
+        "description": "Tell us about the task: two paragraphs on what you have now and what it should be. You get a written estimate and a price. Telegram, email, a call."
+      }
     }
   ]
 }

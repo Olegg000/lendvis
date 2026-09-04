@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { ContactIcon } from './ContactIcon'
-import { NavLink } from 'react-router-dom'
+import { Link, NavLink } from 'react-router-dom'
 import { useLang } from '../lib/i18n'
 import { MAIL } from '../data'
 
@@ -21,7 +21,7 @@ const routes = [
 const headerRoutes = routes.filter((r) => r.to !== '/' && r.to !== '/contact')
 
 export function Nav() {
-  const { t, lang, setLang } = useLang()
+  const { t, lang, path, other, otherLang } = useLang()
   const [scrolled, setScrolled] = useState(false)
 
   // Ниже первого экрана шапке нужна подложка, иначе текст уезжает прямо под неё
@@ -39,7 +39,7 @@ export function Nav() {
       }`}
     >
       <div className="mx-auto flex max-w-[1180px] items-center gap-5 px-5 py-5 sm:px-8">
-        <NavLink to="/" className="wordmark text-[14px] tracking-[0.03em] text-fg">
+        <NavLink to={path('/')} className="wordmark text-[14px] tracking-[0.03em] text-fg">
           {lang === 'ru' ? 'Лендвис' : 'Lendvis'}
         </NavLink>
 
@@ -47,7 +47,7 @@ export function Nav() {
           {headerRoutes.map((r) => (
             <NavLink
               key={r.to}
-              to={r.to}
+              to={path(r.to)}
               className={({ isActive }) =>
                 `font-mono text-[10.5px] tracking-[0.14em] uppercase transition-colors ${
                   isActive ? 'text-fg' : 'text-faint hover:text-fg'
@@ -60,32 +60,33 @@ export function Nav() {
         </nav>
 
         <NavLink
-          to="/contact"
+          to={path('/contact')}
           className="hidden rounded-full border border-white/28 px-4 py-2 font-mono text-micro uppercase transition-[background-color,border-color] duration-300 hover:border-white/60 hover:bg-white/[0.08] md:inline-flex"
         >
           {t.nav.cta}
         </NavLink>
 
-        <button
-          type="button"
-          onClick={() => setLang(lang === 'ru' ? 'en' : 'ru')}
+        {/* Ссылка, а не кнопка: у второго языка свой адрес, и по этой ссылке его находит робот */}
+        <Link
+          to={other}
+          hrefLang={otherLang}
           className="ml-auto font-mono text-[10.5px] tracking-[0.14em] text-faint uppercase transition-colors hover:text-fg md:ml-0"
         >
           {lang === 'ru' ? 'EN' : 'RU'}
-        </button>
+        </Link>
       </div>
     </header>
   )
 }
 
 export function MobileNav() {
-  const { t } = useLang()
+  const { t, path } = useLang()
   return (
     <nav className="fixed inset-x-0 bottom-0 z-50 flex justify-center gap-0.5 border-t sm:gap-1 border-line bg-ground/92 px-1.5 pt-1 pb-[calc(0.25rem+env(safe-area-inset-bottom))] backdrop-blur-md md:hidden">
       {routes.map((r) => (
         <NavLink
           key={r.to}
-          to={r.to}
+          to={path(r.to)}
           className={({ isActive }) =>
             `flex min-h-[44px] items-center justify-center rounded-full px-1.5 font-mono text-[10px] tracking-normal whitespace-nowrap uppercase transition-colors sm:px-2.5 sm:tracking-[0.06em] ${
               isActive ? 'bg-white/10 text-fg' : 'text-faint'

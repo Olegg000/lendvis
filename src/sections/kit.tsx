@@ -56,7 +56,7 @@ export function SectionHead({
 
 /** Одинаковый финал на каждой странице: ни одна страница не должна обрываться в пустоту. */
 export function FinalCall() {
-  const { t } = useLang()
+  const { t, path } = useLang()
   return (
     <div className="relative mt-12 overflow-hidden border-t border-line pt-12 pb-10 text-center">
       {/* Сайт открывается по центру — пусть так же и закрывается, со своим светом */}
@@ -80,7 +80,7 @@ export function FinalCall() {
         </Reveal>
         <Reveal delay={0.16}>
           <Link
-            to="/contact"
+            to={path('/contact')}
             className="mt-10 inline-flex rounded-full border border-white/28 px-8 py-4 font-mono text-label uppercase transition-[background-color,border-color,transform] duration-300 hover:border-white/60 hover:bg-white/[0.08] active:scale-[0.98]"
           >
             {t.home.final.cta}

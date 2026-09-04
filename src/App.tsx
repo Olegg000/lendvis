@@ -1,7 +1,7 @@
 import { Suspense, lazy, useEffect } from 'react'
 import { BrowserRouter, Navigate, Route, Routes, useLocation } from 'react-router-dom'
 import { motion, useReducedMotion } from 'framer-motion'
-import { LangProvider, useLang } from './lib/i18n'
+import { LangProvider, stripLang, useLang, withEn } from './lib/i18n'
 import { scrollToTop, useSmoothScroll } from './lib/smooth'
 import { EASE } from './lib/motion'
 import { Cursor } from './components/Cursor'
@@ -18,13 +18,23 @@ const Price = lazy(() => import('./pages/Price'))
 const About = lazy(() => import('./pages/About'))
 const Contact = lazy(() => import('./pages/Contact'))
 
+/** Страницы объявлены один раз и разворачиваются в два набора маршрутов: русский и /en/. */
+const PAGES = [
+  { path: '/', element: <Home /> },
+  { path: '/services', element: <Services /> },
+  { path: '/work', element: <Work /> },
+  { path: '/price', element: <Price /> },
+  { path: '/about', element: <About /> },
+  { path: '/contact', element: <Contact /> },
+]
+
 /**
  * Возврат наверх при переходе и честный заголовок вкладки: одностраничное приложение
  * иначе оставляет один и тот же title на всех пяти маршрутах.
  */
 function PageMeta() {
   const { pathname, search } = useLocation()
-  const { t, lang } = useLang()
+  const { lang } = useLang()
 
   // Наверх — только при смене маршрута: переключение языка не должно уносить со страницы
   useEffect(() => {
@@ -41,27 +51,14 @@ function PageMeta() {
   }, [pathname, search])
 
   useEffect(() => {
-    /* Русские title и description берём из того же seo/pages.json, из которого их
-       расставляет сборка по файлам. Раньше здесь лежал свой набор текстов, и после
-       запуска скрипт переписывал статику на другую формулировку — поиск видел одно,
-       человек другое. Английские остаются здесь: статики под них нет. */
-    const ru = seo.pages.find((p) => p.path === pathname)
-    const studio = 'Lendvis'
-    const en: Record<string, { title: string; description: string }> = {
-      '/': { title: 'Lendvis — development studio', description: t.home.hero.subtitle },
-      '/services': { title: `${t.nav.services} — ${studio}`, description: t.services.lead },
-      '/work': { title: `${t.nav.work} — ${studio}`, description: t.work.lead },
-      '/price': {
-        title: `${t.nav.price} — ${studio}`,
-        description: 'What the studio charges: a range for your task, a timeline, and the rules we price by.',
-      },
-      '/about': { title: `${t.nav.about} — ${studio}`, description: t.about.lead },
-      '/contact': { title: `${t.nav.contact} — ${studio}`, description: t.contact.lead },
-    }
-    const meta = lang === 'ru' ? (ru ?? seo.pages[0]) : (en[pathname] ?? en['/'])
+    /* Один источник и для статики, и для переходов внутри сайта: sео/pages.json.
+       Раньше здесь лежал свой набор текстов, и скрипт переписывал статику на другие
+       формулировки — поиск видел одно, человек другое. */
+    const page = seo.pages.find((p) => p.path === stripLang(pathname)) ?? seo.pages[0]
+    const meta = lang === 'en' ? page.en : page.ru
     document.title = meta.title
     document.querySelector('meta[name="description"]')?.setAttribute('content', meta.description)
-  }, [pathname, lang, t])
+  }, [pathname, lang])
 
   return null
 }
@@ -108,12 +105,12 @@ export function Shell() {
         <PageFade>
           <Suspense fallback={<div className="min-h-[70vh]" />}>
             <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/services" element={<Services />} />
-              <Route path="/work" element={<Work />} />
-              <Route path="/price" element={<Price />} />
-              <Route path="/about" element={<About />} />
-              <Route path="/contact" element={<Contact />} />
+              {PAGES.map(({ path, element }) => (
+                <Route key={path} path={path} element={element} />
+              ))}
+              {PAGES.map(({ path, element }) => (
+                <Route key={withEn(path)} path={withEn(path)} element={element} />
+              ))}
               <Route path="*" element={<Navigate to="/" replace />} />
             </Routes>
           </Suspense>
@@ -127,10 +124,10 @@ export function Shell() {
 
 export default function App() {
   return (
-    <LangProvider>
-      <BrowserRouter>
+    <BrowserRouter>
+      <LangProvider>
         <Shell />
-      </BrowserRouter>
-    </LangProvider>
+      </LangProvider>
+    </BrowserRouter>
   )
 }

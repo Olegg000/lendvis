@@ -30,7 +30,7 @@ function FocusIn({ text, className, delay = 0 }: { text: string; className?: str
 }
 
 export function Hero() {
-  const { t, lang } = useLang()
+  const { t, lang, path } = useLang()
   const still = useReducedMotion()
   const h = t.home.hero
   const ref = useRef<HTMLElement>(null)
@@ -107,7 +107,7 @@ export function Hero() {
           className="mt-10 flex flex-wrap items-center justify-center gap-x-7 gap-y-4"
         >
           <Link
-            to="/contact"
+            to={path('/contact')}
             className="inline-flex items-center rounded-full border border-white/25 px-8 py-3.5 font-mono text-label text-fg uppercase transition-[background-color,border-color,transform] duration-300 ease-out hover:border-white/70 hover:bg-white/[0.12] active:scale-[0.98]"
           >
             {h.ctaPrimary}

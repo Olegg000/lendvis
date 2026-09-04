@@ -30,7 +30,7 @@ function More({ to, children }: { to: string; children: React.ReactNode }) {
  * Подробности про услуги, проекты и студию живут на отдельных страницах.
  */
 export default function Home() {
-  const { t } = useLang()
+  const { t, path } = useLang()
   // Витрина главной — три сильнейших: продающий бот, самая красивая мобилка, демо с глубиной.
   // Явный список, а не первые три по порядку: порядок в data.ts — общий для страницы «Проекты».
   const featured = ['Бот записи клиентов', 'Ателье на заказ', 'Блокчейн-практика']
@@ -49,7 +49,7 @@ export default function Home() {
           text={t.about.lead}
           className="max-w-[24ch] text-[clamp(1.9rem,5vw,3.6rem)] leading-[1.12] font-extralight tracking-[-0.035em] text-fg"
         />
-        <More to="/about">{t.nav.about}</More>
+        <More to={path('/about')}>{t.nav.about}</More>
       </section>
 
       {/* Витрина на чистом фоне: карточки — единственное, на что смотрят, без фото-подложки */}

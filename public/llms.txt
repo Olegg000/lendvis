@@ -75,6 +75,8 @@
 - [О студии](https://lendvis.ru/about): подход к работе и регалии.
 - [Контакты](https://lendvis.ru/contact): как связаться и что прислать в первом письме.
 
+Те же страницы по-английски — с префиксом `/en`: [English version](https://lendvis.ru/en).
+
 ## Контакты
 
 - Почта: hello@lendvis.ru

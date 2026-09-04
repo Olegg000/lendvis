@@ -311,3 +311,6 @@ export type Case = {
   textEn: string
 }
 
+
+/** Почта студии. Один адрес на весь сайт: раньше он был вписан в четырёх местах вручную. */
+export const MAIL = 'hello@lendvis.ru'

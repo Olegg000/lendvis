@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { ContactIcon } from './ContactIcon'
 import { NavLink } from 'react-router-dom'
 import { useLang } from '../lib/i18n'
+import { MAIL } from '../data'
 
 const routes = [
   { to: '/', key: 'home' },
@@ -118,7 +119,7 @@ export function Footer() {
             <ContactIcon kind="telegram" className={ico} />
             Telegram
           </a>
-          <a href="mailto:lends.it@yandex.com" className={link}>
+          <a href={`mailto:${MAIL}`} className={link}>
             <ContactIcon kind="mail" className={ico} />
             {t.contact.fields.email}
           </a>

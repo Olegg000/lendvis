@@ -86,7 +86,7 @@ function PageFade({ children }: { children: React.ReactNode }) {
   )
 }
 
-function Shell() {
+export function Shell() {
   useSmoothScroll()
   const { lang } = useLang()
   const skipLabel = lang === 'ru' ? 'К содержимому' : 'Skip to content'

@@ -71,8 +71,16 @@ for (const page of cfg.pages) {
   count++
 }
 
-// 404.html для SPA-фолбэка (GitHub Pages и nginx) — с мета главной
-writeFileSync(join(dist, '404.html'), readFileSync(join(dist, 'index.html'), 'utf8'))
+// Страница «не найдено»: nginx отдаёт её с кодом 404, GitHub Pages — как фолбэк.
+// Заголовок свой, а не главной, и noindex — чтобы она не попала в выдачу сама.
+let notFound = readFileSync(join(dist, 'index.html'), 'utf8')
+notFound = notFound.replace(/<title>[\s\S]*?<\/title>/, '<title>Страница не найдена — Лендвис</title>')
+notFound = notFound.replace(
+  /<meta name="description"[^>]*>/,
+  '<meta name="description" content="Такой страницы нет. Вернитесь на главную — там услуги, проекты и цены студии Лендвис." />\n    <meta name="robots" content="noindex" />',
+)
+notFound = notFound.replace(/<link rel="canonical"[^>]*>\n?\s*/, '')
+writeFileSync(join(dist, '404.html'), notFound)
 
 // sitemap из того же источника
 const today = new Date().toISOString().slice(0, 10)

@@ -1,98 +1,10 @@
-# Правила для всех роботов.
-#
-# Важно: робот выполняет ТОЛЬКО одну группу — самую конкретную из подходящих.
-# Поэтому у каждого названного бота запреты повторены. Если написать
-# «User-agent: Yandex» и один Allow, Яндекс перестанет видеть блок выше
-# и полезет в демо-приложения.
+# Одна группа на всех. Раньше здесь было тринадцать групп с одинаковыми правилами:
+# робот всё равно выполняет ТОЛЬКО одну — самую конкретную из подходящих (RFC 9309),
+# а если правила для бота не отличаются от общих, именованная группа не делает ничего.
+# Роботы поисковиков и языковых моделей — GPTBot, ClaudeBot, PerplexityBot и прочие —
+# попадают сюда же и пускаются наравне со всеми.
 
 User-agent: *
 Allow: /
-Disallow: /quiz/
-Disallow: /drawer/
-Disallow: /alice/
-Disallow: /react-bugfix/
-
-# Поисковые роботы
-
-User-agent: Yandex
-Allow: /
-Disallow: /quiz/
-Disallow: /drawer/
-Disallow: /alice/
-Disallow: /react-bugfix/
-
-User-agent: Googlebot
-Allow: /
-Disallow: /quiz/
-Disallow: /drawer/
-Disallow: /alice/
-Disallow: /react-bugfix/
-
-# Роботы языковых моделей. Пускаем осознанно: пусть на вопрос «кто такие
-# Лендвис» отвечают по нашему сайту, а не по случайным упоминаниям.
-# Отдельная выжимка для них лежит в /llms.txt.
-
-User-agent: GPTBot
-Allow: /
-Disallow: /quiz/
-Disallow: /drawer/
-Disallow: /alice/
-Disallow: /react-bugfix/
-
-User-agent: OAI-SearchBot
-Allow: /
-Disallow: /quiz/
-Disallow: /drawer/
-Disallow: /alice/
-Disallow: /react-bugfix/
-
-User-agent: ChatGPT-User
-Allow: /
-Disallow: /quiz/
-Disallow: /drawer/
-Disallow: /alice/
-Disallow: /react-bugfix/
-
-User-agent: ClaudeBot
-Allow: /
-Disallow: /quiz/
-Disallow: /drawer/
-Disallow: /alice/
-Disallow: /react-bugfix/
-
-User-agent: Claude-SearchBot
-Allow: /
-Disallow: /quiz/
-Disallow: /drawer/
-Disallow: /alice/
-Disallow: /react-bugfix/
-
-User-agent: PerplexityBot
-Allow: /
-Disallow: /quiz/
-Disallow: /drawer/
-Disallow: /alice/
-Disallow: /react-bugfix/
-
-User-agent: Google-Extended
-Allow: /
-Disallow: /quiz/
-Disallow: /drawer/
-Disallow: /alice/
-Disallow: /react-bugfix/
-
-User-agent: Applebot-Extended
-Allow: /
-Disallow: /quiz/
-Disallow: /drawer/
-Disallow: /alice/
-Disallow: /react-bugfix/
-
-User-agent: Bytespider
-Allow: /
-Disallow: /quiz/
-Disallow: /drawer/
-Disallow: /alice/
-Disallow: /react-bugfix/
 
 Sitemap: https://lendvis.ru/sitemap.xml

@@ -9,6 +9,7 @@ import { Progress } from './components/Progress'
 import { Footer, MobileNav, Nav } from './components/Chrome'
 import Home from './pages/Home'
 import { initMetrika, trackPageView } from './lib/metrika'
+import seo from '../seo/pages.json'
 
 // Внутренние страницы подгружаются по требованию — первый экран не ждёт весь сайт
 const Services = lazy(() => import('./pages/Services'))
@@ -40,25 +41,24 @@ function PageMeta() {
   }, [pathname, search])
 
   useEffect(() => {
-    const studio = lang === 'ru' ? 'Лендвис' : 'Lendvis'
-    const map: Record<string, { title: string; description: string }> = {
-      '/': {
-        title: lang === 'ru' ? 'Лендвис — студия разработки' : 'Lendvis — development studio',
-        description: t.home.hero.subtitle,
-      },
+    /* Русские title и description берём из того же seo/pages.json, из которого их
+       расставляет сборка по файлам. Раньше здесь лежал свой набор текстов, и после
+       запуска скрипт переписывал статику на другую формулировку — поиск видел одно,
+       человек другое. Английские остаются здесь: статики под них нет. */
+    const ru = seo.pages.find((p) => p.path === pathname)
+    const studio = 'Lendvis'
+    const en: Record<string, { title: string; description: string }> = {
+      '/': { title: 'Lendvis — development studio', description: t.home.hero.subtitle },
       '/services': { title: `${t.nav.services} — ${studio}`, description: t.services.lead },
       '/work': { title: `${t.nav.work} — ${studio}`, description: t.work.lead },
       '/price': {
         title: `${t.nav.price} — ${studio}`,
-        description:
-          lang === 'ru'
-            ? 'Сколько стоит работа студии: вилка по вашей задаче, срок и правила, по которым считаем.'
-            : 'What the studio charges: a range for your task, a timeline, and the rules we price by.',
+        description: 'What the studio charges: a range for your task, a timeline, and the rules we price by.',
       },
       '/about': { title: `${t.nav.about} — ${studio}`, description: t.about.lead },
       '/contact': { title: `${t.nav.contact} — ${studio}`, description: t.contact.lead },
     }
-    const meta = map[pathname] ?? map['/']
+    const meta = lang === 'ru' ? (ru ?? seo.pages[0]) : (en[pathname] ?? en['/'])
     document.title = meta.title
     document.querySelector('meta[name="description"]')?.setAttribute('content', meta.description)
   }, [pathname, lang, t])

@@ -10,6 +10,10 @@ export function LangProvider({ children }: { children: ReactNode }) {
   const [lang, setLangState] = useState<Lang>(() => {
     // Страницы отрисовываются в статику при сборке, браузера там нет. Отдаём русский:
     // он же язык по умолчанию для поиска. В браузере состояние пересчитается при монтировании.
+    // По умолчанию русский — и на сервере при сборке, и в браузере. Английский включается
+    // только явным переключателем. Раньше здесь смотрели navigator.language, и это било по
+    // поиску: робот Google приходит с пустым localStorage и локалью en-US, поэтому получал
+    // английскую версию поверх русской статики — с русским canonical и русским sitemap.
     if (typeof window === 'undefined') return 'ru'
     try {
       const saved = localStorage.getItem(KEY)
@@ -17,7 +21,7 @@ export function LangProvider({ children }: { children: ReactNode }) {
     } catch {
       /* приватный режим — просто берём язык по умолчанию */
     }
-    return navigator.language?.toLowerCase().startsWith('ru') ? 'ru' : 'en'
+    return 'ru'
   })
 
   useEffect(() => {

@@ -38,3 +38,9 @@ npm run dev
 - Движение по прокрутке: ленты работ, стопка карточек, проявление текста, магнитная кнопка
 - `prefers-reduced-motion` отключает анимации
 - Адаптив от 375px, без горизонтальной прокрутки
+
+---
+
+**Студия Лендвис** — разработка сложных IT-продуктов.
+
+[lendvis.ru](https://lendvis.ru) · [hello@lendvis.ru](mailto:hello@lendvis.ru) · [Telegram](https://t.me/lendvis)

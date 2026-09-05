@@ -1,0 +1,6 @@
+{
+  "key": "b7b78bbc1b0f88c4e4c96f0ccc28473f",
+  "keyLocation": "https://lendvis.ru/b7b78bbc1b0f88c4e4c96f0ccc28473f.txt",
+  "host": "lendvis.ru",
+  "комментарий": "Ключ IndexNow: файл лежит в public/, поэтому переживает пересборку. Поисковик сверяет содержимое файла с ключом в запросе."
+}
